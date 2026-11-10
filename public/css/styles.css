@@ -381,7 +381,8 @@ body.page-home {
 .home-step-list li { position: relative; padding: 26px 0 30px; border-top: 1px solid var(--hm-line); }
 .home-step-list li::before { content: ''; position: absolute; left: 0; top: -1px; width: 48px; height: 3px; background: var(--hm-gold); border-radius: 0 0 2px 2px; transition: width .35s ease; }
 .home-step-list li:hover::before { width: 100%; }
-.home-step-num { display: block; font: 800 60px/1 var(--font-head); letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 1.5px var(--hm-leaf); margin-bottom: 18px; }
+/* solid tint, not -webkit-text-stroke: Epilogue is a variable font whose overlapping contours show through an outline (visible on "4") */
+.home-step-num { display: block; font: 800 60px/1 var(--font-head); letter-spacing: -.04em; color: var(--hm-leaf); margin-bottom: 18px; }
 .home-step-list h3 { font: 700 21px/1.25 var(--font-head); letter-spacing: -.01em; margin: 0 0 8px; }
 .home-step-list p { margin: 0; color: var(--hm-ink-2); font-size: 15.5px; line-height: 1.6; }
 
