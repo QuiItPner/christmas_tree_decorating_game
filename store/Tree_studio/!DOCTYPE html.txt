@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"on-primary-container":"#99e9b9","on-tertiary-fixed":"#271900","on-error":"#ffffff","outline-variant":"#bfc9c0","on-secondary-container":"#fffbff","on-secondary":"#ffffff","inverse-on-surface":"#ffeee1","surface-parchment":"#F4EBD9","outline":"#6f7a71","on-tertiary-fixed-variant":"#5e4100","tertiary-fixed-dim":"#ffba27","on-background":"#231a11","inverse-primary":"#88d7a8","surface":"#fff8f5","secondary":"#b90c17","surface-container-high":"#f8e5d6","on-error-container":"#93000a","primary-fixed-dim":"#88d7a8","secondary-fixed":"#ffdad6","tertiary-container":"#7c5700","surface-dim":"#e9d7c8","tertiary-fixed":"#ffdea9","on-primary":"#ffffff","on-tertiary":"#ffffff","surface-container-lowest":"#ffffff","background":"#fff8f5","error":"#ba1a1a","on-surface-variant":"#3f4942","secondary-fixed-dim":"#ffb4ab","on-primary-fixed":"#002111","berry-bright":"#E63946","surface-container":"#feeadc","on-tertiary-container":"#ffd180","error-container":"#ffdad6","on-primary-fixed-variant":"#005232","surface-container-low":"#fff1e8","inverse-surface":"#392e25","on-secondary-fixed-variant":"#93000d","pine-deep":"#0E472A","secondary-container":"#de2e2c","gold-warm":"#F4A261","surface-cream":"#FDFBF7","surface-tint":"#186c45","on-surface":"#231a11","on-secondary-fixed":"#410002","surface-variant":"#f2dfd1","surface-container-highest":"#f2dfd1","primary-container":"#176b45","primary":"#005131","border-warm":"#E8DCBE","tertiary":"#5e4100","surface-bright":"#fff8f5","primary-fixed":"#a4f4c3"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-xl":"2rem","space-sm":"0.5rem","margin-mobile":"1rem","space-md":"1rem","margin":"1.5rem","gutter":"1rem","space-lg":"1.5rem","gutter-mobile":"0.75rem","space-xs":"0.25rem"},"fontFamily":{"label-lg":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"headline-xl-mobile":["Epilogue"],"label-sm":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-sm":["Epilogue"],"headline-lg-mobile":["Epilogue"],"body-md":["Plus Jakarta Sans"],"headline-lg":["Epilogue"],"headline-xl":["Epilogue"],"label-md":["Plus Jakarta Sans"],"headline-md":["Epilogue"]},"fontSize":{"label-lg":["15px",{"lineHeight":"22px","fontWeight":"600"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"headline-xl-mobile":["32px",{"lineHeight":"40px","fontWeight":"800"}],"label-sm":["11px",{"lineHeight":"16px","fontWeight":"700"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"headline-sm":["20px",{"lineHeight":"28px","fontWeight":"600"}],"headline-lg-mobile":["26px",{"lineHeight":"34px","fontWeight":"700"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg":["32px",{"lineHeight":"40px","fontWeight":"700"}],"headline-xl":["48px",{"lineHeight":"56px","fontWeight":"800"}],"label-md":["13px",{"lineHeight":"18px","fontWeight":"600"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"700"}]}}}};</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col justify-between"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(43,33,24,0.06)]"><div class="h-16 w-full px-space-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md min-w-max"><img alt="My Little Christmas Tree Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrCjwjEC7cAsAzNBAsQHAaODceMhvGvQbIyRPmIEdDns6W4q_XYxs3mw1eiOXHt_0wtHkMule81eVm-edgToVb6VGXUD7pJIcy3FATNTPQwatBY2HyQICMmL7p-41OG2CF__vLt8CYcgOvf-80R7MSsARux1Ly-HWWNnhbXY17AzyVacA3Jwem6ta4foJhNZPhTck2_T1utjRDGYpBHwdOQPnHaot0GCX1LCxJ_w9Vqe"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-pine-deep leading-none">My Little Christmas Tree</span><span class="font-label-sm text-label-sm text-tertiary-container tracking-wider uppercase mt-space-xs">Build Your Own Christmas Tree</span></div></div><nav class="hidden lg:flex items-center gap-space-xs px-space-sm py-space-xs bg-surface-parchment/60 rounded-full" data-active-classes="bg-primary-container text-on-primary font-bold rounded-full shadow-sm"><a aria-current="page" class="px-space-md py-space-xs transition-colors bg-primary-container text-on-primary font-bold rounded-full shadow-sm" data-path="tree-studio" href="#">Tree Studio</a><a class="px-space-md py-space-xs text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors rounded-full" data-path="themes-and-styles" href="#">Themes &amp; Styles</a><a class="px-space-md py-space-xs text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors rounded-full" data-path="my-gallery" href="#">My Gallery</a><a class="px-space-md py-space-xs text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors rounded-full" data-path="about-and-greetings" href="#">About &amp; Greetings</a></nav><div class="flex items-center gap-space-sm"><button aria-label="Toggle Holiday Music" class="w-10 h-10 rounded-full bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">volume_off</span></button><button class="hidden sm:flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container hover:bg-surface-container-high text-pine-deep font-label-md text-label-md transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">share</span><span>Share</span></button><button class="flex items-center gap-space-xs px-space-lg py-space-xs rounded-full bg-secondary hover:bg-secondary-container text-on-secondary font-label-md text-label-md shadow-sm transition-all" type="button"><span class="material-symbols-outlined text-[18px]">download</span><span>Export PNG</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface flex-1 flex flex-col"><div class="flex flex-col w-full">
+<!-- Toast / Notification pill (Floating absolute) -->
+<div class="fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-pine-deep text-on-primary font-label-md text-label-md px-space-md py-space-xs rounded-full shadow-lg opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-space-xs" id="toast-pill">
+<span class="material-symbols-outlined text-[18px] text-tertiary-fixed">auto_awesome</span>
+<span id="toast-text">Design saved to gallery!</span>
+</div>
+<!-- Studio Main Shell Layout -->
+<div class="w-full flex-1 flex flex-col lg:flex-row overflow-hidden relative">
+<!-- ==========================================
+         LEFT PANEL: DECORATION DRAWER / ASSET LIBRARY (280px Desktop)
+         ========================================== -->
+<aside class="w-full lg:w-[290px] xl:w-[320px] bg-surface-parchment flex flex-col shrink-0 z-20 shadow-[2px_0_12px_rgba(43,33,24,0.04)] h-auto lg:h-[calc(100vh-4rem)]">
+<!-- Drawer Header & Search -->
+<div class="p-space-md bg-surface-parchment flex flex-col gap-space-sm shrink-0">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-pine-deep text-[22px]">category</span>
+<h2 class="font-headline-sm text-headline-sm text-pine-deep">Decorations</h2>
+</div>
+<span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded-full bg-primary/10 text-primary font-semibold">24 items</span>
+</div>
+<!-- Search Input -->
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full pl-9 pr-space-md py-2 text-body-sm font-body-sm bg-surface-cream text-on-surface rounded-lg shadow-sm placeholder:text-on-surface-variant/60 focus:outline-none focus:ring-2 focus:ring-primary" id="asset-search" placeholder="Search baubles, stars, bows..." type="text"/>
+</div>
+<!-- Category Horizontal Scroll Pills -->
+<div class="flex items-center gap-1.5 overflow-x-auto pb-1.5 scrollbar-none -mx-space-xs px-space-xs text-nowrap">
+<button class="cat-pill active px-3 py-1 rounded-full text-label-sm font-label-sm transition-all bg-primary-container text-on-primary shadow-sm" data-cat="all">All</button>
+<button class="cat-pill px-3 py-1 rounded-full text-label-sm font-label-sm transition-all bg-surface-cream text-on-surface-variant hover:text-pine-deep hover:bg-surface-container" data-cat="baubles">Baubles</button>
+<button class="cat-pill px-3 py-1 rounded-full text-label-sm font-label-sm transition-all bg-surface-cream text-on-surface-variant hover:text-pine-deep hover:bg-surface-container" data-cat="toppers">Toppers</button>
+<button class="cat-pill px-3 py-1 rounded-full text-label-sm font-label-sm transition-all bg-surface-cream text-on-surface-variant hover:text-pine-deep hover:bg-surface-container" data-cat="ribbons">Ribbons</button>
+<button class="cat-pill px-3 py-1 rounded-full text-label-sm font-label-sm transition-all bg-surface-cream text-on-surface-variant hover:text-pine-deep hover:bg-surface-container" data-cat="characters">Characters</button>
+<button class="cat-pill px-3 py-1 rounded-full text-label-sm font-label-sm transition-all bg-surface-cream text-on-surface-variant hover:text-pine-deep hover:bg-surface-container" data-cat="lights">Lights</button>
+<button class="cat-pill px-3 py-1 rounded-full text-label-sm font-label-sm transition-all bg-surface-cream text-on-surface-variant hover:text-pine-deep hover:bg-surface-container" data-cat="gifts">Gifts</button>
+</div>
+</div>
+<!-- Assets Dual-Column Grid -->
+<div class="flex-1 overflow-y-auto p-space-md grid grid-cols-2 gap-space-sm content-start max-h-[380px] lg:max-h-none" id="assets-container">
+<!-- Asset 1: Classic Red Bauble -->
+<div class="asset-tile group relative bg-surface-container-lowest rounded-xl p-space-sm flex flex-col items-center justify-between cursor-grab active:cursor-grabbing shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all" data-type="bauble-red" draggable="true">
+<div class="w-16 h-16 rounded-lg bg-surface-container-low/50 flex items-center justify-center p-1 group-hover:scale-105 transition-transform">
+<svg class="w-12 h-12 drop-shadow" fill="none" viewbox="0 0 48 48">
+<rect fill="#D4AF37" height="5" rx="1.5" width="6" x="21" y="2"></rect>
+<circle cx="24" cy="5" fill="none" r="2.5" stroke="#B8860B" stroke-width="1.2"></circle>
+<circle cx="24" cy="27" fill="url(#grad-red-bauble)" r="18"></circle>
+<path d="M14 17C14 17 18 13 26 13" opacity="0.6" stroke="#FFF" stroke-linecap="round" stroke-width="2"></path>
+<circle cx="16" cy="18" fill="#FFF" opacity="0.8" r="1.5"></circle>
+<defs>
+<radialgradient cx="35%" cy="32%" id="grad-red-bauble" r="65%">
+<stop offset="0%" stop-color="#FF6B6B"></stop>
+<stop offset="45%" stop-color="#C9182B"></stop>
+<stop offset="100%" stop-color="#72000A"></stop>
+</radialgradient>
+</defs>
+</svg>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface mt-1.5 truncate max-w-full">Ruby Bauble</span>
+<button class="mt-1 w-full py-1 text-[11px] font-label-sm text-primary hover:bg-primary/10 rounded-md transition-colors flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span> Add
+          </button>
+</div>
+<!-- Asset 2: Striped Candy Bauble -->
+<div class="asset-tile group relative bg-surface-container-lowest rounded-xl p-space-sm flex flex-col items-center justify-between cursor-grab active:cursor-grabbing shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all" data-type="bauble-striped" draggable="true">
+<div class="w-16 h-16 rounded-lg bg-surface-container-low/50 flex items-center justify-center p-1 group-hover:scale-105 transition-transform">
+<svg class="w-12 h-12 drop-shadow" fill="none" viewbox="0 0 48 48">
+<rect fill="#D4AF37" height="5" rx="1.5" width="6" x="21" y="2"></rect>
+<circle cx="24" cy="27" fill="#FFFFFF" r="18"></circle>
+<path d="M9 20C13 14 35 14 39 20M7 27C12 21 36 21 41 27M9 34C13 28 35 28 39 34" stroke="#C9182B" stroke-linecap="round" stroke-width="3"></path>
+<path d="M12 16C15 13 23 13 28 14" opacity="0.8" stroke="#FFD180" stroke-linecap="round" stroke-width="1.5"></path>
+</svg>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface mt-1.5 truncate max-w-full">Peppermint Ball</span>
+<button class="mt-1 w-full py-1 text-[11px] font-label-sm text-primary hover:bg-primary/10 rounded-md transition-colors flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span> Add
+          </button>
+</div>
+<!-- Asset 3: Radiant Golden Star Topper -->
+<div class="asset-tile group relative bg-surface-container-lowest rounded-xl p-space-sm flex flex-col items-center justify-between cursor-grab active:cursor-grabbing shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all" data-type="star-topper" draggable="true">
+<div class="w-16 h-16 rounded-lg bg-surface-container-low/50 flex items-center justify-center p-1 group-hover:scale-105 transition-transform">
+<svg class="w-12 h-12 drop-shadow-[0_2px_8px_rgba(255,186,39,0.5)]" fill="none" viewbox="0 0 48 48">
+<path d="M24 2L29.5 16.5H45L32.5 25.5L37 40L24 31L11 40L15.5 25.5L3 16.5H18.5L24 2Z" fill="url(#grad-star)"></path>
+<path d="M24 6L28 17H39.5L30.5 23.5L34 34.5L24 27.5L14 34.5L17.5 23.5L8.5 17H20L24 6Z" fill="#FFF275" opacity="0.8"></path>
+<circle cx="24" cy="22" fill="#FFF" r="3"></circle>
+<defs>
+<lineargradient gradientunits="userSpaceOnUse" id="grad-star" x1="24" x2="24" y1="2" y2="40">
+<stop stop-color="#FFF07C"></stop>
+<stop offset="0.5" stop-color="#FFB703"></stop>
+<stop offset="1" stop-color="#FB8500"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface mt-1.5 truncate max-w-full">Starlight Topper</span>
+<button class="mt-1 w-full py-1 text-[11px] font-label-sm text-primary hover:bg-primary/10 rounded-md transition-colors flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span> Add
+          </button>
+</div>
+<!-- Asset 4: Red Velvet Bow -->
+<div class="asset-tile group relative bg-surface-container-lowest rounded-xl p-space-sm flex flex-col items-center justify-between cursor-grab active:cursor-grabbing shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all" data-type="red-bow" draggable="true">
+<div class="w-16 h-16 rounded-lg bg-surface-container-low/50 flex items-center justify-center p-1 group-hover:scale-105 transition-transform">
+<svg class="w-12 h-12 drop-shadow" fill="none" viewbox="0 0 48 48">
+<path d="M20 22C14 15 5 15 7 24C9 30 18 26 21 24" fill="#B90C17"></path>
+<path d="M28 22C34 15 43 15 41 24C39 30 30 26 27 24" fill="#B90C17"></path>
+<path d="M20 25L14 42L22 36L24 26" fill="#8E0A12"></path>
+<path d="M28 25L34 42L26 36L24 26" fill="#8E0A12"></path>
+<ellipse cx="24" cy="23" fill="#DE2E2C" rx="4.5" ry="4"></ellipse>
+<ellipse cx="24" cy="23" fill="#FFB4AB" opacity="0.6" rx="2" ry="2"></ellipse>
+</svg>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface mt-1.5 truncate max-w-full">Velvet Ribbon</span>
+<button class="mt-1 w-full py-1 text-[11px] font-label-sm text-primary hover:bg-primary/10 rounded-md transition-colors flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span> Add
+          </button>
+</div>
+<!-- Asset 5: Gingerbread Man -->
+<div class="asset-tile group relative bg-surface-container-lowest rounded-xl p-space-sm flex flex-col items-center justify-between cursor-grab active:cursor-grabbing shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all" data-type="gingerbread" draggable="true">
+<div class="w-16 h-16 rounded-lg bg-surface-container-low/50 flex items-center justify-center p-1 group-hover:scale-105 transition-transform">
+<svg class="w-12 h-12 drop-shadow" fill="none" viewbox="0 0 48 48">
+<circle cx="24" cy="12" fill="#B87333" r="7"></circle>
+<circle cx="22" cy="11" fill="#FFF" r="1"></circle>
+<circle cx="26" cy="11" fill="#FFF" r="1"></circle>
+<path d="M22 15Q24 17 26 15" stroke="#FFF" stroke-linecap="round" stroke-width="1"></path>
+<rect fill="#B87333" height="15" rx="3" width="8" x="20" y="18"></rect>
+<rect fill="#B87333" height="5" rx="2.5" width="12" x="10" y="19"></rect>
+<rect fill="#B87333" height="5" rx="2.5" width="12" x="26" y="19"></rect>
+<rect fill="#B87333" height="13" rx="2.5" width="5" x="17" y="30"></rect>
+<rect fill="#B87333" height="13" rx="2.5" width="5" x="26" y="30"></rect>
+<circle cx="24" cy="22" fill="#DE2E2C" r="1.5"></circle>
+<circle cx="24" cy="26" fill="#176B45" r="1.5"></circle>
+<path d="M12 21H14M34 21H36M19 40H21M28 40H30" stroke="#FFF" stroke-linecap="round" stroke-width="1.5"></path>
+</svg>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface mt-1.5 truncate max-w-full">Ginger Cookie</span>
+<button class="mt-1 w-full py-1 text-[11px] font-label-sm text-primary hover:bg-primary/10 rounded-md transition-colors flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span> Add
+          </button>
+</div>
+<!-- Asset 6: Santa Miniature -->
+<div class="asset-tile group relative bg-surface-container-lowest rounded-xl p-space-sm flex flex-col items-center justify-between cursor-grab active:cursor-grabbing shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all" data-type="santa-mini" draggable="true">
+<div class="w-16 h-16 rounded-lg bg-surface-container-low/50 flex items-center justify-center p-1 group-hover:scale-105 transition-transform">
+<svg class="w-12 h-12 drop-shadow" fill="none" viewbox="0 0 48 48">
+<circle cx="24" cy="22" fill="#FFDFBA" r="9"></circle>
+<path d="M16 17C16 11 20 6 24 6C28 6 32 11 32 17H16Z" fill="#C9182B"></path>
+<circle cx="24" cy="6" fill="#FFF" r="2.5"></circle>
+<rect fill="#FFF" height="3" rx="1.5" width="18" x="15" y="16"></rect>
+<circle cx="21" cy="20" fill="#231A11" r="1.2"></circle>
+<circle cx="27" cy="20" fill="#231A11" r="1.2"></circle>
+<circle cx="24" cy="22" fill="#FF8A8A" r="1.8"></circle>
+<path d="M17 23C17 31 31 31 31 23C28 27 20 27 17 23Z" fill="#FFF"></path>
+<path d="M17 31C16 38 32 38 31 31H17Z" fill="#C9182B"></path>
+<rect fill="#231A11" height="2" width="10" x="19" y="32"></rect>
+<rect fill="#FFB703" height="3" width="2" x="23" y="31.5"></rect>
+</svg>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface mt-1.5 truncate max-w-full">Tiny Santa</span>
+<button class="mt-1 w-full py-1 text-[11px] font-label-sm text-primary hover:bg-primary/10 rounded-md transition-colors flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span> Add
+          </button>
+</div>
+<!-- Asset 7: Wrapped Gift Box -->
+<div class="asset-tile group relative bg-surface-container-lowest rounded-xl p-space-sm flex flex-col items-center justify-between cursor-grab active:cursor-grabbing shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all" data-type="gift-box" draggable="true">
+<div class="w-16 h-16 rounded-lg bg-surface-container-low/50 flex items-center justify-center p-1 group-hover:scale-105 transition-transform">
+<svg class="w-12 h-12 drop-shadow" fill="none" viewbox="0 0 48 48">
+<rect fill="#005131" height="24" rx="2" width="28" x="10" y="18"></rect>
+<rect fill="#176B45" height="6" rx="1.5" width="32" x="8" y="14"></rect>
+<rect fill="#FFBA27" height="28" width="4" x="22" y="14"></rect>
+<rect fill="#FFBA27" height="4" width="28" x="10" y="28"></rect>
+<path d="M22 14C20 9 14 9 15 12C16 15 22 14 22 14Z" fill="#FFBA27"></path>
+<path d="M26 14C28 9 34 9 33 12C32 15 26 14 26 14Z" fill="#FFBA27"></path>
+</svg>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface mt-1.5 truncate max-w-full">Pine Present</span>
+<button class="mt-1 w-full py-1 text-[11px] font-label-sm text-primary hover:bg-primary/10 rounded-md transition-colors flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span> Add
+          </button>
+</div>
+<!-- Asset 8: Golden Bell Duo -->
+<div class="asset-tile group relative bg-surface-container-lowest rounded-xl p-space-sm flex flex-col items-center justify-between cursor-grab active:cursor-grabbing shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all" data-type="golden-bells" draggable="true">
+<div class="w-16 h-16 rounded-lg bg-surface-container-low/50 flex items-center justify-center p-1 group-hover:scale-105 transition-transform">
+<svg class="w-12 h-12 drop-shadow" fill="none" viewbox="0 0 48 48">
+<path d="M20 18C20 14 24 10 24 10C24 10 28 14 28 18C28 24 31 26 31 28H17C17 26 20 24 20 18Z" fill="#FFB703"></path>
+<ellipse cx="24" cy="28" fill="#FB8500" rx="7" ry="2"></ellipse>
+<circle cx="24" cy="30" fill="#7C5700" r="2"></circle>
+<path d="M18 10C16 8 13 8 13 11C13 14 18 13 18 13" stroke="#DE2E2C" stroke-linecap="round" stroke-width="2"></path>
+<path d="M30 10C32 8 35 8 35 11C35 14 30 13 30 13" stroke="#DE2E2C" stroke-linecap="round" stroke-width="2"></path>
+<circle cx="24" cy="11" fill="#DE2E2C" r="2"></circle>
+</svg>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface mt-1.5 truncate max-w-full">Jingle Bells</span>
+<button class="mt-1 w-full py-1 text-[11px] font-label-sm text-primary hover:bg-primary/10 rounded-md transition-colors flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span> Add
+          </button>
+</div>
+<!-- Asset 9: Ice Crystal Snowflake -->
+<div class="asset-tile group relative bg-surface-container-lowest rounded-xl p-space-sm flex flex-col items-center justify-between cursor-grab active:cursor-grabbing shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all" data-type="snowflake" draggable="true">
+<div class="w-16 h-16 rounded-lg bg-surface-container-low/50 flex items-center justify-center p-1 group-hover:scale-105 transition-transform">
+<svg class="w-12 h-12 drop-shadow" fill="none" viewbox="0 0 48 48">
+<line stroke="#88D7A8" stroke-linecap="round" stroke-width="2.5" x1="24" x2="24" y1="8" y2="40"></line>
+<line stroke="#88D7A8" stroke-linecap="round" stroke-width="2.5" x1="10" x2="38" y1="16" y2="32"></line>
+<line stroke="#88D7A8" stroke-linecap="round" stroke-width="2.5" x1="10" x2="38" y1="32" y2="16"></line>
+<path d="M24 12L21 16M24 12L27 16M24 36L21 32M24 36L27 32" stroke="#88D7A8" stroke-linecap="round" stroke-width="2"></path>
+<circle cx="24" cy="24" fill="#FFF" r="3"></circle>
+</svg>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface mt-1.5 truncate max-w-full">Frost Flake</span>
+<button class="mt-1 w-full py-1 text-[11px] font-label-sm text-primary hover:bg-primary/10 rounded-md transition-colors flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span> Add
+          </button>
+</div>
+<!-- Asset 10: Twinkle Fairy Strand -->
+<div class="asset-tile group relative bg-surface-container-lowest rounded-xl p-space-sm flex flex-col items-center justify-between cursor-grab active:cursor-grabbing shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all" data-type="fairy-light" draggable="true">
+<div class="w-16 h-16 rounded-lg bg-surface-container-low/50 flex items-center justify-center p-1 group-hover:scale-105 transition-transform">
+<svg class="w-12 h-12 drop-shadow" fill="none" viewbox="0 0 48 48">
+<path d="M8 20Q24 34 40 20" fill="none" stroke="#0E472A" stroke-linecap="round" stroke-width="2"></path>
+<circle cx="14" cy="24" fill="#FFBA27" r="3.5"></circle>
+<circle cx="24" cy="27" fill="#E63946" r="3.5"></circle>
+<circle cx="34" cy="24" fill="#88D7A8" r="3.5"></circle>
+<circle cx="24" cy="27" fill="#FFBA27" opacity="0.3" r="6"></circle>
+</svg>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface mt-1.5 truncate max-w-full">Fairy Strand</span>
+<button class="mt-1 w-full py-1 text-[11px] font-label-sm text-primary hover:bg-primary/10 rounded-md transition-colors flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span> Add
+          </button>
+</div>
+</div>
+<!-- Quick Tips Box at Bottom of Left Sidebar -->
+<div class="p-space-md bg-surface-container-high/60 border-t-0 shrink-0 hidden sm:block">
+<div class="flex items-start gap-space-xs text-pine-deep">
+<span class="material-symbols-outlined text-[18px] text-tertiary mt-0.5">tips_and_updates</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-tight">
+<span class="font-semibold text-on-surface">Pro tip:</span> Drag items directly onto tree branches or click <span class="text-primary font-medium">'Add'</span> to place them.
+          </p>
+</div>
+</div>
+</aside>
+<!-- ==========================================
+         CENTER WORKSPACE: CANVAS & TREE STAGE
+         ========================================== -->
+<section class="flex-1 flex flex-col relative overflow-hidden bg-surface-cream min-h-[520px] lg:min-h-[calc(100vh-4rem)]">
+<!-- Top Floating Toolbar -->
+<div class="w-full px-space-md py-space-sm flex flex-wrap items-center justify-between gap-space-sm z-30 bg-surface/80 backdrop-blur-md shadow-sm">
+<!-- Left Action Group: History & Reset -->
+<div class="flex items-center gap-1.5">
+<button class="w-9 h-9 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface flex items-center justify-center shadow-sm transition-all active:scale-95" id="btn-undo" title="Undo (Ctrl+Z)" type="button">
+<span class="material-symbols-outlined text-[18px]">undo</span>
+</button>
+<button class="w-9 h-9 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface flex items-center justify-center shadow-sm transition-all active:scale-95 opacity-50 cursor-not-allowed" id="btn-redo" title="Redo (Ctrl+Y)" type="button">
+<span class="material-symbols-outlined text-[18px]">redo</span>
+</button>
+<div class="h-5 w-px bg-outline-variant/40 mx-1"></div>
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface-variant font-label-md text-label-md shadow-sm transition-all" id="btn-reset" type="button">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span>
+<span>Reset</span>
+</button>
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-parchment hover:bg-surface-container-high text-pine-deep font-label-md text-label-md shadow-sm transition-all" id="btn-randomize" type="button">
+<span class="material-symbols-outlined text-[16px] text-tertiary">auto_fix_high</span>
+<span class="hidden sm:inline">Random Decorate</span>
+</button>
+</div>
+<!-- Center Atmospheric Toggles -->
+<div class="flex items-center gap-2 bg-surface-parchment/80 px-2.5 py-1 rounded-full shadow-inner">
+<label class="flex items-center gap-1.5 text-label-sm font-label-sm text-pine-deep cursor-pointer">
+<input checked="" class="w-3.5 h-3.5 accent-primary rounded cursor-pointer" id="toggle-snow" type="checkbox"/>
+<span class="material-symbols-outlined text-[16px] text-secondary">ac_unit</span>
+<span class="hidden md:inline">Snow</span>
+</label>
+<span class="text-outline-variant/60">•</span>
+<label class="flex items-center gap-1.5 text-label-sm font-label-sm text-pine-deep cursor-pointer">
+<input checked="" class="w-3.5 h-3.5 accent-primary rounded cursor-pointer" id="toggle-lights" type="checkbox"/>
+<span class="material-symbols-outlined text-[16px] text-gold-warm">light_mode</span>
+<span class="hidden md:inline">Twinkle</span>
+</label>
+</div>
+<!-- Right Canvas Actions: Zoom & Preview Mode -->
+<div class="flex items-center gap-1.5">
+<div class="flex items-center bg-surface-container-lowest rounded-full p-0.5 shadow-sm text-label-sm font-label-sm">
+<button class="w-7 h-7 flex items-center justify-center rounded-full hover:bg-surface-container text-on-surface-variant" id="btn-zoom-out"><span class="material-symbols-outlined text-[16px]">remove</span></button>
+<span class="px-2 font-mono font-semibold text-on-surface" id="zoom-level">100%</span>
+<button class="w-7 h-7 flex items-center justify-center rounded-full hover:bg-surface-container text-on-surface-variant" id="btn-zoom-in"><span class="material-symbols-outlined text-[16px]">add</span></button>
+</div>
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-primary-container text-on-primary hover:bg-primary font-label-md text-label-md shadow-sm transition-all" id="btn-preview-mode" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span class="hidden sm:inline">Preview</span>
+</button>
+</div>
+</div>
+<!-- Live Canvas Area with Winter/Room Backdrop -->
+<div class="relative flex-1 w-full overflow-hidden flex items-center justify-center select-none bg-gradient-to-b from-[#FFF5EC] via-[#FEF0E3] to-[#F7E1D0]" id="canvas-stage">
+<!-- Ambient Glowing Room Window Overlay -->
+<div class="absolute inset-0 pointer-events-none opacity-40 bg-[radial-gradient(circle_at_50%_40%,rgba(255,214,153,0.35)_0%,rgba(247,225,208,0)_70%)]"></div>
+<!-- Animated Falling Snow Layer (SVG particles) -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden z-10 transition-opacity duration-500" id="snow-layer">
+<div class="absolute w-2 h-2 rounded-full bg-white/80 top-[5%] left-[15%] shadow-sm animate-pulse"></div>
+<div class="absolute w-3 h-3 rounded-full bg-white/70 top-[22%] left-[30%] blur-[0.5px]"></div>
+<div class="absolute w-2.5 h-2.5 rounded-full bg-white/85 top-[12%] right-[20%] shadow-sm"></div>
+<div class="absolute w-1.5 h-1.5 rounded-full bg-white/70 top-[45%] left-[18%]"></div>
+<div class="absolute w-2 h-2 rounded-full bg-white/80 top-[60%] right-[25%]"></div>
+<div class="absolute w-3 h-3 rounded-full bg-white/60 top-[75%] left-[35%]"></div>
+<div class="absolute w-2 h-2 rounded-full bg-white/90 top-[35%] right-[15%] shadow-sm"></div>
+</div>
+<!-- Greeting Banner Overlay (Configurable from right sidebar) -->
+<div class="absolute top-4 z-20 px-space-lg py-2 bg-surface-cream/90 backdrop-blur-md rounded-full shadow-[0_4px_16px_rgba(43,33,24,0.08)] flex items-center gap-space-xs transition-all duration-300" id="greeting-banner">
+<span class="material-symbols-outlined text-secondary text-[20px]">celebration</span>
+<span class="font-headline-sm text-headline-sm text-pine-deep tracking-wide" id="banner-text">Merry Christmas &amp; Happy Holidays!</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">celebration</span>
+</div>
+<!-- Interactive Tree Area (SVG Staging Graphic + Placed Ornaments) -->
+<div class="relative w-[340px] sm:w-[440px] md:w-[480px] h-[520px] sm:h-[620px] flex items-center justify-center" id="tree-container">
+<!-- Tree Trunk & Skirt Ground Shadow -->
+<div class="absolute bottom-4 w-72 h-14 bg-on-background/10 rounded-[100%] blur-md pointer-events-none"></div>
+<!-- Base Decorative Skirt (Red & Gold Trim) -->
+<div class="absolute bottom-6 w-64 h-16 pointer-events-none z-0">
+<svg class="w-full h-full drop-shadow" viewbox="0 0 200 50">
+<ellipse cx="100" cy="25" fill="#B90C17" rx="96" ry="22"></ellipse>
+<ellipse cx="100" cy="25" fill="none" rx="84" ry="18" stroke="#FFBA27" stroke-dasharray="6,4" stroke-width="2"></ellipse>
+<ellipse cx="100" cy="23" fill="#8E0A12" rx="40" ry="10"></ellipse>
+</svg>
+</div>
+<!-- Tree Trunk (Solid Wood Rich Tone) -->
+<div class="absolute bottom-16 w-14 h-24 pointer-events-none z-0">
+<svg class="w-full h-full" viewbox="0 0 60 100">
+<path d="M18 0H42L46 100H14L18 0Z" fill="#5E4100"></path>
+<path d="M22 0H38L41 100H19L22 0Z" fill="#7C5700"></path>
+<line opacity="0.4" stroke="#392E25" stroke-width="2" x1="28" x2="27" y1="15" y2="85"></line>
+</svg>
+</div>
+<!-- Lush Layered Evergreen Christmas Tree SVG -->
+<svg class="w-full h-full relative z-0 pointer-events-none drop-shadow-xl" fill="none" id="svg-tree" viewbox="0 0 400 540">
+<!-- Tier 4: Bottom Widest Tier -->
+<g class="transition-colors duration-300" id="tree-tier-4">
+<path d="M70 420C70 420 120 455 200 455C280 455 330 420 330 420C345 428 320 405 310 395C335 390 325 365 315 350C330 355 310 320 280 320C240 320 215 320 200 320C185 320 160 320 120 320C90 320 70 355 85 350C75 365 65 390 90 395C80 405 55 428 70 420Z" fill="#005131"></path>
+<!-- Shading under fold -->
+<path d="M100 425C140 445 260 445 300 425C260 435 140 435 100 425Z" fill="#002111" opacity="0.3"></path>
+</g>
+<!-- Tier 3: Mid-Lower Branch Tier -->
+<g class="transition-colors duration-300" id="tree-tier-3">
+<path d="M90 330C90 330 135 365 200 365C265 365 310 330 310 330C325 335 305 310 295 300C315 295 305 270 295 255C310 260 290 230 260 230C230 230 210 230 200 230C190 230 170 230 140 230C110 230 90 260 105 255C95 270 85 295 105 300C95 310 75 335 90 330Z" fill="#0E472A"></path>
+<path d="M120 338C150 354 250 354 280 338C245 348 155 348 120 338Z" fill="#002111" opacity="0.25"></path>
+</g>
+<!-- Tier 2: Mid-Upper Branch Tier -->
+<g class="transition-colors duration-300" id="tree-tier-2">
+<path d="M115 240C115 240 150 270 200 270C250 270 285 240 285 240C298 245 285 220 275 210C290 205 280 185 270 170C285 175 265 145 240 145C220 145 208 145 200 145C192 145 180 145 160 145C135 145 115 175 130 170C120 185 110 205 125 210C115 220 102 245 115 240Z" fill="#176B45"></path>
+<path d="M135 248C160 260 240 260 265 248C235 255 165 255 135 248Z" fill="#002111" opacity="0.2"></path>
+</g>
+<!-- Tier 1: Topmost Peak Branch Tier -->
+<g class="transition-colors duration-300" id="tree-tier-1">
+<path d="M145 155C145 155 170 180 200 180C230 180 255 155 255 155C268 160 255 135 248 125C260 120 248 95 238 85C248 88 230 60 200 50C170 60 152 88 162 85C152 95 140 120 152 125C145 135 132 160 145 155Z" fill="#186C45"></path>
+</g>
+<!-- Twinkling Fairy Light Strands (SVG string wires + glowing nodes) -->
+<g class="transition-opacity duration-300" id="tree-twinkle-lights">
+<!-- Garland 1 -->
+<path d="M165 115Q200 135 235 115" fill="none" opacity="0.7" stroke="#FFEAA7" stroke-dasharray="2,3" stroke-width="1.2"></path>
+<circle class="animate-ping" cx="178" cy="122" fill="#FFB703" r="3" style="animation-duration: 2.2s;"></circle>
+<circle cx="178" cy="122" fill="#FFBA27" r="2.5"></circle>
+<circle cx="200" cy="126" fill="#E63946" r="2.5"></circle>
+<circle cx="222" cy="122" fill="#88D7A8" r="2.5"></circle>
+<!-- Garland 2 -->
+<path d="M135 200Q200 240 265 200" fill="none" opacity="0.7" stroke="#FFEAA7" stroke-dasharray="3,3" stroke-width="1.2"></path>
+<circle cx="150" cy="208" fill="#E63946" r="3"></circle>
+<circle cx="175" cy="218" fill="#FFBA27" r="3"></circle>
+<circle cx="202" cy="221" fill="#88D7A8" r="3"></circle>
+<circle cx="230" cy="217" fill="#FFB4AB" r="3"></circle>
+<circle cx="252" cy="207" fill="#FFBA27" r="3"></circle>
+<!-- Garland 3 -->
+<path d="M110 300Q200 350 290 300" fill="none" opacity="0.7" stroke="#FFEAA7" stroke-dasharray="3,3" stroke-width="1.2"></path>
+<circle cx="130" cy="310" fill="#FFBA27" r="3.5"></circle>
+<circle cx="165" cy="326" fill="#E63946" r="3.5"></circle>
+<circle cx="200" cy="331" fill="#FFD180" r="3.5"></circle>
+<circle cx="235" cy="326" fill="#88D7A8" r="3.5"></circle>
+<circle cx="270" cy="309" fill="#E63946" r="3.5"></circle>
+</g>
+</svg>
+<!-- ==========================================
+               LIVE PLACED ORNAMENTS (HTML Elements over SVG)
+               ========================================== -->
+<div class="absolute inset-0 pointer-events-auto overflow-visible" id="placed-decorations">
+<!-- Placed 1: Golden Star on Top -->
+<div class="placed-item absolute top-[30px] left-[175px] w-14 h-14 cursor-move flex items-center justify-center group z-30" data-id="item-star" style="transform: translate(0px, 0px) rotate(0deg) scale(1);">
+<svg class="w-full h-full drop-shadow-[0_0_12px_rgba(255,186,39,0.8)]" fill="none" viewbox="0 0 48 48">
+<path d="M24 2L29.5 16.5H45L32.5 25.5L37 40L24 31L11 40L15.5 25.5L3 16.5H18.5L24 2Z" fill="url(#p-star)"></path>
+<circle cx="24" cy="22" fill="#FFF" r="3"></circle>
+<defs><lineargradient id="p-star" x1="24" x2="24" y1="2" y2="40"><stop stop-color="#FFF07C"></stop><stop offset="1" stop-color="#FB8500"></stop></lineargradient></defs>
+</svg>
+</div>
+<!-- Placed 2: Peppermint Bauble Mid Left -->
+<div class="placed-item absolute top-[210px] left-[140px] w-10 h-10 cursor-move flex items-center justify-center group z-20" data-id="item-peppermint" style="transform: translate(0px, 0px) rotate(-8deg) scale(1);">
+<svg class="w-full h-full drop-shadow" fill="none" viewbox="0 0 48 48">
+<rect fill="#D4AF37" height="5" rx="1.5" width="6" x="21" y="2"></rect>
+<circle cx="24" cy="27" fill="#FFFFFF" r="18"></circle>
+<path d="M9 20C13 14 35 14 39 20M7 27C12 21 36 21 41 27M9 34C13 28 35 28 39 34" stroke="#C9182B" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<!-- Placed 3: Ruby Bauble (Currently SELECTED with Transform Box) -->
+<div class="placed-item selected absolute top-[260px] left-[240px] w-12 h-12 cursor-move flex items-center justify-center z-40" data-id="item-ruby-selected" id="active-selected-item" style="transform: translate(0px, 0px) rotate(12deg) scale(1.1);">
+<!-- Decoration SVG Asset -->
+<svg class="w-full h-full drop-shadow-md" fill="none" viewbox="0 0 48 48">
+<rect fill="#D4AF37" height="5" rx="1.5" width="6" x="21" y="2"></rect>
+<circle cx="24" cy="5" fill="none" r="2.5" stroke="#B8860B" stroke-width="1.2"></circle>
+<circle cx="24" cy="27" fill="#B90C17" id="selected-ornament-fill" r="18"></circle>
+<path d="M14 17C14 17 18 13 26 13" opacity="0.6" stroke="#FFF" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<!-- Selected Bounding Box & Transform Handles -->
+<div class="absolute -inset-1.5 border border-dashed border-secondary pointer-events-none rounded-md"></div>
+<!-- Quick Float Controls Above Selected Item -->
+<div class="absolute -top-9 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-surface-cream text-on-surface px-1.5 py-0.5 rounded-full shadow-md z-50">
+<button class="p-1 hover:text-secondary" title="Rotate" type="button"><span class="material-symbols-outlined text-[14px]">rotate_right</span></button>
+<button class="p-1 hover:text-primary" title="Duplicate" type="button"><span class="material-symbols-outlined text-[14px]">content_copy</span></button>
+<button class="p-1 hover:text-error text-error" title="Delete" type="button"><span class="material-symbols-outlined text-[14px]">delete</span></button>
+</div>
+<!-- Corner Resize/Rotate Dots -->
+<div class="absolute -top-1.5 -left-1.5 w-3 h-3 rounded-full bg-secondary shadow-sm"></div>
+<div class="absolute -top-1.5 -right-1.5 w-3 h-3 rounded-full bg-secondary shadow-sm"></div>
+<div class="absolute -bottom-1.5 -left-1.5 w-3 h-3 rounded-full bg-secondary shadow-sm"></div>
+<div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 rounded-full bg-secondary shadow-sm"></div>
+</div>
+<!-- Placed 4: Red Velvet Bow Upper Mid -->
+<div class="placed-item absolute top-[150px] left-[195px] w-11 h-11 cursor-move flex items-center justify-center group z-20" data-id="item-bow" style="transform: translate(0px, 0px) rotate(4deg) scale(1);">
+<svg class="w-full h-full drop-shadow" fill="none" viewbox="0 0 48 48">
+<path d="M20 22C14 15 5 15 7 24C9 30 18 26 21 24" fill="#B90C17"></path>
+<path d="M28 22C34 15 43 15 41 24C39 30 30 26 27 24" fill="#B90C17"></path>
+<path d="M20 25L14 42L22 36L24 26" fill="#8E0A12"></path>
+<path d="M28 25L34 42L26 36L24 26" fill="#8E0A12"></path>
+<ellipse cx="24" cy="23" fill="#DE2E2C" rx="4.5" ry="4"></ellipse>
+</svg>
+</div>
+<!-- Placed 5: Gingerbread Man on Lower Branch -->
+<div class="placed-item absolute top-[330px] left-[175px] w-11 h-11 cursor-move flex items-center justify-center group z-20" data-id="item-ginger" style="transform: translate(0px, 0px) rotate(-6deg) scale(1);">
+<svg class="w-full h-full drop-shadow" fill="none" viewbox="0 0 48 48">
+<circle cx="24" cy="12" fill="#B87333" r="7"></circle>
+<circle cx="22" cy="11" fill="#FFF" r="1"></circle>
+<circle cx="26" cy="11" fill="#FFF" r="1"></circle>
+<rect fill="#B87333" height="15" rx="3" width="8" x="20" y="18"></rect>
+<rect fill="#B87333" height="5" rx="2.5" width="12" x="10" y="19"></rect>
+<rect fill="#B87333" height="5" rx="2.5" width="12" x="26" y="19"></rect>
+<rect fill="#B87333" height="13" rx="2.5" width="5" x="17" y="30"></rect>
+<rect fill="#B87333" height="13" rx="2.5" width="5" x="26" y="30"></rect>
+<circle cx="24" cy="22" fill="#DE2E2C" r="1.5"></circle>
+</svg>
+</div>
+<!-- Placed 6: Gift Box at base (Left) -->
+<div class="placed-item absolute top-[430px] left-[90px] w-14 h-14 cursor-move flex items-center justify-center group z-20" data-id="item-gift-1" style="transform: translate(0px, 0px) rotate(-5deg) scale(1);">
+<svg class="w-full h-full drop-shadow-md" fill="none" viewbox="0 0 48 48">
+<rect fill="#005131" height="24" rx="2" width="28" x="10" y="18"></rect>
+<rect fill="#176B45" height="6" rx="1.5" width="32" x="8" y="14"></rect>
+<rect fill="#FFBA27" height="28" width="4" x="22" y="14"></rect>
+<rect fill="#FFBA27" height="4" width="28" x="10" y="28"></rect>
+<path d="M22 14C20 9 14 9 15 12C16 15 22 14 22 14Z" fill="#FFBA27"></path>
+<path d="M26 14C28 9 34 9 33 12C32 15 26 14 26 14Z" fill="#FFBA27"></path>
+</svg>
+</div>
+<!-- Placed 7: Jingle Bells on Right Side Branch -->
+<div class="placed-item absolute top-[320px] left-[270px] w-10 h-10 cursor-move flex items-center justify-center group z-20" data-id="item-bells" style="transform: translate(0px, 0px) rotate(15deg) scale(1);">
+<svg class="w-full h-full drop-shadow" fill="none" viewbox="0 0 48 48">
+<path d="M20 18C20 14 24 10 24 10C24 10 28 14 28 18C28 24 31 26 31 28H17C17 26 20 24 20 18Z" fill="#FFB703"></path>
+<ellipse cx="24" cy="28" fill="#FB8500" rx="7" ry="2"></ellipse>
+<circle cx="24" cy="30" fill="#7C5700" r="2"></circle>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==========================================
+         RIGHT PANEL: TREE CUSTOMIZATION & INSPECTOR (310px Desktop)
+         ========================================== -->
+<aside class="w-full lg:w-[310px] xl:w-[340px] bg-surface-parchment flex flex-col shrink-0 z-20 shadow-[-2px_0_12px_rgba(43,33,24,0.04)] h-auto lg:h-[calc(100vh-4rem)]">
+<!-- Tab Bar Switcher -->
+<div class="px-space-md pt-space-md pb-space-xs bg-surface-parchment flex items-center gap-space-xs shrink-0">
+<button class="inspector-tab flex-1 py-2 rounded-xl text-label-md font-label-md transition-all flex items-center justify-center gap-1.5 bg-primary-container text-on-primary shadow-sm" id="tab-btn-item">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span>Selected Item</span>
+</button>
+<button class="inspector-tab flex-1 py-2 rounded-xl text-label-md font-label-md transition-all flex items-center justify-center gap-1.5 bg-surface-cream text-on-surface-variant hover:text-pine-deep" id="tab-btn-tree">
+<span class="material-symbols-outlined text-[16px]">park</span>
+<span>Tree Studio</span>
+</button>
+</div>
+<!-- Tab Content Area (Scrollable) -->
+<div class="flex-1 overflow-y-auto p-space-md flex flex-col gap-space-md">
+<!-- ================= PANEL 1: SELECTED ITEM ATTRIBUTES ================= -->
+<div class="flex flex-col gap-space-md" id="panel-item-props">
+<!-- Card: Active Item Summary -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-[24px]">lens</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface leading-tight">Ruby Bauble</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Layer #4 • Active</span>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full hover:bg-error-container text-error flex items-center justify-center transition-colors" title="Delete Ornament" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<!-- Card: Transform Sliders (Scale, Rotate) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<h3 class="font-label-md text-label-md text-pine-deep uppercase tracking-wider text-xs">Transform &amp; Size</h3>
+<!-- Scale Slider -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between text-body-sm font-body-sm text-on-surface">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-tertiary">aspect_ratio</span> Scale</span>
+<span class="font-mono font-semibold text-primary" id="scale-value">110%</span>
+</div>
+<input class="w-full accent-primary h-2 bg-surface-container rounded-lg cursor-pointer" id="slider-scale" max="200" min="50" type="range" value="110"/>
+</div>
+<!-- Rotation Slider -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between text-body-sm font-body-sm text-on-surface">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-tertiary">rotate_right</span> Rotation</span>
+<span class="font-mono font-semibold text-primary" id="rotate-value">12°</span>
+</div>
+<input class="w-full accent-primary h-2 bg-surface-container rounded-lg cursor-pointer" id="slider-rotate" max="180" min="-180" type="range" value="12"/>
+</div>
+<!-- Layer Ordering Buttons -->
+<div class="flex items-center gap-2 pt-1">
+<button class="flex-1 py-1.5 px-2 bg-surface-cream hover:bg-surface-container text-on-surface text-label-sm font-label-sm rounded-lg shadow-sm flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">flip_to_front</span>
+<span>Bring Forward</span>
+</button>
+<button class="flex-1 py-1.5 px-2 bg-surface-cream hover:bg-surface-container text-on-surface text-label-sm font-label-sm rounded-lg shadow-sm flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">flip_to_back</span>
+<span>Send Backward</span>
+</button>
+</div>
+</div>
+<!-- Card: Ornament Color Tint Swatches -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<h3 class="font-label-md text-label-md text-pine-deep uppercase tracking-wider text-xs">Festive Color Glaze</h3>
+<div class="flex items-center gap-2">
+<button class="color-swatch-bead w-8 h-8 rounded-full bg-[#B90C17] shadow-sm relative ring-2 ring-primary ring-offset-2" data-color="#B90C17" title="Berry Red"></button>
+<button class="color-swatch-bead w-8 h-8 rounded-full bg-[#F4A261] shadow-sm relative hover:scale-110 transition-transform" data-color="#F4A261" title="Golden Spark"></button>
+<button class="color-swatch-bead w-8 h-8 rounded-full bg-[#005131] shadow-sm relative hover:scale-110 transition-transform" data-color="#005131" title="Deep Pine"></button>
+<button class="color-swatch-bead w-8 h-8 rounded-full bg-[#DE2E2C] shadow-sm relative hover:scale-110 transition-transform" data-color="#DE2E2C" title="Candy Crimson"></button>
+<button class="color-swatch-bead w-8 h-8 rounded-full bg-white shadow-sm relative hover:scale-110 transition-transform" data-color="#FFFFFF" title="Snow Silver"></button>
+<button class="color-swatch-bead w-8 h-8 rounded-full bg-[#7C5700] shadow-sm relative hover:scale-110 transition-transform" data-color="#7C5700" title="Ginger Brown"></button>
+</div>
+</div>
+</div>
+<!-- ================= PANEL 2: TREE STUDIO PROPERTIES ================= -->
+<div class="hidden flex-col gap-space-md" id="panel-tree-props">
+<!-- Tree Style Options -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<h3 class="font-label-md text-label-md text-pine-deep uppercase tracking-wider text-xs">Tree Style</h3>
+<div class="grid grid-cols-2 gap-2">
+<button class="tree-style-chip p-2 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm text-center shadow-sm font-semibold">Classic Pine</button>
+<button class="tree-style-chip p-2 rounded-lg bg-surface-cream hover:bg-surface-container text-on-surface font-label-sm text-label-sm text-center">Fluffy Nordic</button>
+<button class="tree-style-chip p-2 rounded-lg bg-surface-cream hover:bg-surface-container text-on-surface font-label-sm text-label-sm text-center">Snowy Fir</button>
+<button class="tree-style-chip p-2 rounded-lg bg-surface-cream hover:bg-surface-container text-on-surface font-label-sm text-label-sm text-center">Minimalist</button>
+</div>
+</div>
+<!-- Leaf Shades & Trunk Color -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<h3 class="font-label-md text-label-md text-pine-deep uppercase tracking-wider text-xs">Foliage Tint</h3>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 rounded-full bg-[#005131] shadow-sm ring-2 ring-primary ring-offset-2"></button>
+<button class="w-8 h-8 rounded-full bg-[#176B45] shadow-sm hover:scale-110 transition-transform"></button>
+<button class="w-8 h-8 rounded-full bg-[#0E472A] shadow-sm hover:scale-110 transition-transform"></button>
+<button class="w-8 h-8 rounded-full bg-[#88D7A8] shadow-sm hover:scale-110 transition-transform"></button>
+<button class="w-8 h-8 rounded-full bg-[#FFFFFF] shadow-sm hover:scale-110 transition-transform"></button>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="text-body-sm font-body-sm text-on-surface">Snow Flocking</span>
+<span class="text-label-sm font-label-sm text-primary">Light Frost</span>
+</div>
+<input class="w-full accent-primary h-2 bg-surface-container rounded-lg cursor-pointer" max="100" min="0" type="range" value="25"/>
+</div>
+<!-- Background Themes & Greeting Message -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<h3 class="font-label-md text-label-md text-pine-deep uppercase tracking-wider text-xs">Atmosphere &amp; Backdrop</h3>
+<select class="w-full py-2 px-space-sm rounded-lg bg-surface-cream text-on-surface font-body-sm text-body-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-primary">
+<option value="cozy">Cozy Fireplace Room</option>
+<option value="snowy">Snowy Night Sky</option>
+<option value="living">Warm Living Room</option>
+<option value="minimal">Minimal Pastel</option>
+</select>
+<div class="flex flex-col gap-1 pt-1">
+<span class="text-body-sm font-body-sm text-on-surface">Greeting Banner Text</span>
+<input class="w-full px-space-sm py-2 text-body-sm font-body-sm bg-surface-cream text-on-surface rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary" id="input-greeting" type="text" value="Merry Christmas &amp; Happy Holidays!"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Sticky Action CTA Area -->
+<div class="p-space-md bg-surface-parchment flex flex-col gap-space-xs shrink-0 shadow-[0_-2px_10px_rgba(43,33,24,0.05)]">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm px-1">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary inline-block"></span> Storage: Ready</span>
+<span class="text-outline">Saved just now</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-2.5 px-3 rounded-full bg-surface-container hover:bg-surface-container-high text-pine-deep font-label-md text-label-md shadow-sm transition-all flex items-center justify-center gap-1.5" id="btn-save-design" type="button">
+<span class="material-symbols-outlined text-[18px]">bookmark</span>
+<span>Save Design</span>
+</button>
+<button class="flex-1 py-2.5 px-3 rounded-full bg-secondary hover:bg-secondary-container text-on-secondary font-label-md text-label-md shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-1.5" id="btn-export-tree" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Export PNG</span>
+</button>
+</div>
+</div>
+</aside>
+</div>
+</div>
+<script>
+  // Simple Vanilla Interactive Behavior for Tree Studio
+  (function initChristmasStudio() {
+    // 1. Right Panel Tab Switcher
+    const tabBtnItem = document.getElementById('tab-btn-item');
+    const tabBtnTree = document.getElementById('tab-btn-tree');
+    const panelItemProps = document.getElementById('panel-item-props');
+    const panelTreeProps = document.getElementById('panel-tree-props');
+
+    if (tabBtnItem && tabBtnTree && panelItemProps && panelTreeProps) {
+      tabBtnItem.addEventListener('click', () => {
+        tabBtnItem.className = 'inspector-tab flex-1 py-2 rounded-xl text-label-md font-label-md transition-all flex items-center justify-center gap-1.5 bg-primary-container text-on-primary shadow-sm';
+        tabBtnTree.className = 'inspector-tab flex-1 py-2 rounded-xl text-label-md font-label-md transition-all flex items-center justify-center gap-1.5 bg-surface-cream text-on-surface-variant hover:text-pine-deep';
+        panelItemProps.classList.remove('hidden');
+        panelTreeProps.classList.add('hidden');
+      });
+
+      tabBtnTree.addEventListener('click', () => {
+        tabBtnTree.className = 'inspector-tab flex-1 py-2 rounded-xl text-label-md font-label-md transition-all flex items-center justify-center gap-1.5 bg-primary-container text-on-primary shadow-sm';
+        tabBtnItem.className = 'inspector-tab flex-1 py-2 rounded-xl text-label-md font-label-md transition-all flex items-center justify-center gap-1.5 bg-surface-cream text-on-surface-variant hover:text-pine-deep';
+        panelTreeProps.classList.remove('hidden');
+        panelItemProps.classList.add('hidden');
+      });
+    }
+
+    // 2. Scale & Rotate live inspector updates
+    const scaleSlider = document.getElementById('slider-scale');
+    const scaleVal = document.getElementById('scale-value');
+    const rotateSlider = document.getElementById('slider-rotate');
+    const rotateVal = document.getElementById('rotate-value');
+    const activeItem = document.getElementById('active-selected-item');
+
+    function updateTransform() {
+      if (!activeItem) return;
+      const s = scaleSlider ? scaleSlider.value / 100 : 1;
+      const r = rotateSlider ? rotateSlider.value : 0;
+      activeItem.style.transform = `translate(0px, 0px) rotate(${r}deg) scale(${s})`;
+      if (scaleVal) scaleVal.textContent = Math.round(s * 100) + '%';
+      if (rotateVal) rotateVal.textContent = r + '°';
+    }
+
+    if (scaleSlider) scaleSlider.addEventListener('input', updateTransform);
+    if (rotateSlider) rotateSlider.addEventListener('input', updateTransform);
+
+    // 3. Color swatch clicks for active ornament
+    const swatches = document.querySelectorAll('.color-swatch-bead');
+    const ornamentFill = document.getElementById('selected-ornament-fill');
+    swatches.forEach(bead => {
+      bead.addEventListener('click', () => {
+        swatches.forEach(b => b.classList.remove('ring-2', 'ring-primary', 'ring-offset-2'));
+        bead.classList.add('ring-2', 'ring-primary', 'ring-offset-2');
+        const color = bead.getAttribute('data-color');
+        if (ornamentFill && color) {
+          ornamentFill.setAttribute('fill', color);
+        }
+      });
+    });
+
+    // 4. Atmospheric snow toggle
+    const snowToggle = document.getElementById('toggle-snow');
+    const snowLayer = document.getElementById('snow-layer');
+    if (snowToggle && snowLayer) {
+      snowToggle.addEventListener('change', () => {
+        snowLayer.style.opacity = snowToggle.checked ? '1' : '0';
+      });
+    }
+
+    // 5. Atmospheric lights toggle
+    const lightsToggle = document.getElementById('toggle-lights');
+    const treeLights = document.getElementById('tree-twinkle-lights');
+    if (lightsToggle && treeLights) {
+      lightsToggle.addEventListener('change', () => {
+        treeLights.style.opacity = lightsToggle.checked ? '1' : '0';
+      });
+    }
+
+    // 6. Live greeting input binding
+    const greetingInput = document.getElementById('input-greeting');
+    const bannerText = document.getElementById('banner-text');
+    if (greetingInput && bannerText) {
+      greetingInput.addEventListener('input', (e) => {
+        bannerText.textContent = e.target.value || 'Merry Christmas!';
+      });
+    }
+
+    // 7. Category pills filter active state
+    const catPills = document.querySelectorAll('.cat-pill');
+    catPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        catPills.forEach(p => {
+          p.className = 'cat-pill px-3 py-1 rounded-full text-label-sm font-label-sm transition-all bg-surface-cream text-on-surface-variant hover:text-pine-deep hover:bg-surface-container';
+        });
+        pill.className = 'cat-pill active px-3 py-1 rounded-full text-label-sm font-label-sm transition-all bg-primary-container text-on-primary shadow-sm';
+      });
+    });
+
+    // 8. Toast notification helper
+    const toast = document.getElementById('toast-pill');
+    const toastText = document.getElementById('toast-text');
+    function showToast(msg) {
+      if (!toast) return;
+      if (toastText) toastText.textContent = msg;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      toast.classList.add('opacity-100');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+        toast.classList.remove('opacity-100');
+      }, 2600);
+    }
+
+    const btnSave = document.getElementById('btn-save-design');
+    if (btnSave) {
+      btnSave.addEventListener('click', () => showToast('Design saved to your browser gallery!'));
+    }
+
+    const btnExport = document.getElementById('btn-export-tree');
+    if (btnExport) {
+      btnExport.addEventListener('click', () => showToast('Generating high-res festive PNG...'));
+    }
+
+    const btnRandom = document.getElementById('btn-randomize');
+    if (btnRandom) {
+      btnRandom.addEventListener('click', () => showToast('Magic wand: Decked the halls with new cheer!'));
+    }
+
+    // 9. Zoom level buttons
+    let currentZoom = 100;
+    const zoomText = document.getElementById('zoom-level');
+    const canvasStage = document.getElementById('tree-container');
+    const btnZoomIn = document.getElementById('btn-zoom-in');
+    const btnZoomOut = document.getElementById('btn-zoom-out');
+
+    if (btnZoomIn && btnZoomOut && zoomText && canvasStage) {
+      btnZoomIn.addEventListener('click', () => {
+        if (currentZoom < 140) currentZoom += 10;
+        zoomText.textContent = currentZoom + '%';
+        canvasStage.style.transform = `scale(${currentZoom / 100})`;
+      });
+      btnZoomOut.addEventListener('click', () => {
+        if (currentZoom > 70) currentZoom -= 10;
+        zoomText.textContent = currentZoom + '%';
+        canvasStage.style.transform = `scale(${currentZoom / 100})`;
+      });
+    }
+
+    // 10. Preview mode toggle (hide controls temporarily)
+    const btnPreview = document.getElementById('btn-preview-mode');
+    let previewActive = false;
+    if (btnPreview) {
+      btnPreview.addEventListener('click', () => {
+        previewActive = !previewActive;
+        const sidebars = document.querySelectorAll('aside');
+        sidebars.forEach(sb => {
+          sb.style.display = previewActive ? 'none' : '';
+        });
+        btnPreview.innerHTML = previewActive
+          ? '<span class="material-symbols-outlined text-[16px]">edit</span><span>Exit Preview</span>'
+          : '<span class="material-symbols-outlined text-[16px]">visibility</span><span class="hidden sm:inline">Preview</span>';
+        showToast(previewActive ? 'Preview Mode: Controls hidden' : 'Editor Restored');
+      });
+    }
+  })();
+</script></main><footer class="w-full bg-surface-parchment/60 py-space-md"><div class="w-full px-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-sm text-center sm:text-left"><div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><span class="material-symbols-outlined text-[16px] text-secondary">park</span><span>Handcrafted with warm holiday cheer © 2024 My Little Christmas Tree.</span></div><div class="flex items-center gap-space-md font-label-sm text-label-sm text-on-surface-variant"><a class="hover:text-primary transition-colors" href="#">Festive Guidelines</a><span class="opacity-40">•</span><a class="hover:text-primary transition-colors" href="#">Cookie Policy</a><span class="opacity-40">•</span><a class="hover:text-primary transition-colors" href="#">Holiday Support</a></div></div></footer></body></html>

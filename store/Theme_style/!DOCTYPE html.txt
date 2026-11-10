@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"on-primary-container":"#99e9b9","on-tertiary-fixed":"#271900","on-error":"#ffffff","outline-variant":"#bfc9c0","on-secondary-container":"#fffbff","on-secondary":"#ffffff","inverse-on-surface":"#ffeee1","surface-parchment":"#F4EBD9","outline":"#6f7a71","on-tertiary-fixed-variant":"#5e4100","tertiary-fixed-dim":"#ffba27","on-background":"#231a11","inverse-primary":"#88d7a8","surface":"#fff8f5","secondary":"#b90c17","surface-container-high":"#f8e5d6","on-error-container":"#93000a","primary-fixed-dim":"#88d7a8","secondary-fixed":"#ffdad6","tertiary-container":"#7c5700","surface-dim":"#e9d7c8","tertiary-fixed":"#ffdea9","on-primary":"#ffffff","on-tertiary":"#ffffff","surface-container-lowest":"#ffffff","background":"#fff8f5","error":"#ba1a1a","on-surface-variant":"#3f4942","secondary-fixed-dim":"#ffb4ab","on-primary-fixed":"#002111","berry-bright":"#E63946","surface-container":"#feeadc","on-tertiary-container":"#ffd180","error-container":"#ffdad6","on-primary-fixed-variant":"#005232","surface-container-low":"#fff1e8","inverse-surface":"#392e25","on-secondary-fixed-variant":"#93000d","pine-deep":"#0E472A","secondary-container":"#de2e2c","gold-warm":"#F4A261","surface-cream":"#FDFBF7","surface-tint":"#186c45","on-surface":"#231a11","on-secondary-fixed":"#410002","surface-variant":"#f2dfd1","surface-container-highest":"#f2dfd1","primary-container":"#176b45","primary":"#005131","border-warm":"#E8DCBE","tertiary":"#5e4100","surface-bright":"#fff8f5","primary-fixed":"#a4f4c3"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-xl":"2rem","space-sm":"0.5rem","margin-mobile":"1rem","space-md":"1rem","margin":"1.5rem","gutter":"1rem","space-lg":"1.5rem","gutter-mobile":"0.75rem","space-xs":"0.25rem"},"fontFamily":{"label-lg":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"headline-xl-mobile":["Epilogue"],"label-sm":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-sm":["Epilogue"],"headline-lg-mobile":["Epilogue"],"body-md":["Plus Jakarta Sans"],"headline-lg":["Epilogue"],"headline-xl":["Epilogue"],"label-md":["Plus Jakarta Sans"],"headline-md":["Epilogue"]},"fontSize":{"label-lg":["15px",{"lineHeight":"22px","fontWeight":"600"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"headline-xl-mobile":["32px",{"lineHeight":"40px","fontWeight":"800"}],"label-sm":["11px",{"lineHeight":"16px","fontWeight":"700"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"headline-sm":["20px",{"lineHeight":"28px","fontWeight":"600"}],"headline-lg-mobile":["26px",{"lineHeight":"34px","fontWeight":"700"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg":["32px",{"lineHeight":"40px","fontWeight":"700"}],"headline-xl":["48px",{"lineHeight":"56px","fontWeight":"800"}],"label-md":["13px",{"lineHeight":"18px","fontWeight":"600"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"700"}]}}}};</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col justify-between"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(43,33,24,0.06)]"><div class="h-16 w-full px-space-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md min-w-max"><img alt="My Little Christmas Tree Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrCjwjEC7cAsAzNBAsQHAaODceMhvGvQbIyRPmIEdDns6W4q_XYxs3mw1eiOXHt_0wtHkMule81eVm-edgToVb6VGXUD7pJIcy3FATNTPQwatBY2HyQICMmL7p-41OG2CF__vLt8CYcgOvf-80R7MSsARux1Ly-HWWNnhbXY17AzyVacA3Jwem6ta4foJhNZPhTck2_T1utjRDGYpBHwdOQPnHaot0GCX1LCxJ_w9Vqe"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-pine-deep leading-none">My Little Christmas Tree</span><span class="font-label-sm text-label-sm text-tertiary-container tracking-wider uppercase mt-space-xs">Build Your Own Christmas Tree</span></div></div><nav class="hidden lg:flex items-center gap-space-xs px-space-sm py-space-xs bg-surface-parchment/60 rounded-full" data-active-classes="bg-primary-container text-on-primary font-bold rounded-full shadow-sm"><a class="px-space-md py-space-xs text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors rounded-full" data-path="tree-studio" href="#">Tree Studio</a><a aria-current="page" class="px-space-md py-space-xs transition-colors bg-primary-container text-on-primary font-bold rounded-full shadow-sm" data-path="themes-and-styles" href="#">Themes &amp; Styles</a><a class="px-space-md py-space-xs text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors rounded-full" data-path="my-gallery" href="#">My Gallery</a><a class="px-space-md py-space-xs text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors rounded-full" data-path="about-and-greetings" href="#">About &amp; Greetings</a></nav><div class="flex items-center gap-space-sm"><button aria-label="Toggle Holiday Music" class="w-10 h-10 rounded-full bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">volume_off</span></button><button class="hidden sm:flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container hover:bg-surface-container-high text-pine-deep font-label-md text-label-md transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">share</span><span>Share</span></button><button class="flex items-center gap-space-xs px-space-lg py-space-xs rounded-full bg-secondary hover:bg-secondary-container text-on-secondary font-label-md text-label-md shadow-sm transition-all" type="button"><span class="material-symbols-outlined text-[18px]">download</span><span>Export PNG</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface flex-1 flex flex-col"><div class="flex flex-col w-full">
+<!-- Toast Feedback Component -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-space-sm px-space-md py-space-sm rounded-full bg-pine-deep text-surface shadow-xl" id="toastNotification">
+<span class="material-symbols-outlined text-[20px] text-primary-fixed" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-md text-label-md" id="toastMessage">Theme applied successfully!</span>
+</div>
+<!-- Hero Header & Section Introduction -->
+<section class="w-full px-space-lg lg:px-space-xl pt-space-lg pb-space-md flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="flex flex-col max-w-2xl">
+<div class="flex items-center gap-space-xs text-primary font-label-sm text-label-sm uppercase tracking-widest mb-space-xs">
+<span class="material-symbols-outlined text-[16px]">magic_button</span>
+<span>Curated Aesthetic Presets</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-pine-deep tracking-tight">Holiday Themes &amp; Styles</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-space-xs">
+        Transform your Christmas canvas with one tap. Each master preset synchronizes coordinated needle foliage, festive bauble palettes, handcrafted topper heirlooms, and ambient hearth lighting.
+      </p>
+</div>
+<!-- Quick Stats & Filter Chips -->
+<div class="flex items-center gap-space-xs bg-surface-parchment/70 p-1.5 rounded-full self-start md:self-auto shadow-sm">
+<button class="px-space-md py-space-xs rounded-full bg-primary-container text-on-primary font-label-md text-label-md shadow-sm" type="button">
+        All Styles (6)
+      </button>
+<button class="px-space-md py-space-xs rounded-full text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" type="button">
+        Traditional
+      </button>
+<button class="px-space-md py-space-xs rounded-full text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" type="button">
+        Whimsical
+      </button>
+<button class="px-space-md py-space-xs rounded-full text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" type="button">
+        Rustic
+      </button>
+</div>
+</section>
+<!-- Curated Themes Grid (6 Handcrafted Themes) -->
+<section class="w-full px-space-lg lg:px-space-xl py-space-md">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-space-lg">
+<!-- 1. Classic Heritage -->
+<article class="group relative flex flex-col rounded-xl bg-surface-cream shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden" data-theme="Classic Heritage">
+<!-- Visual Tree Showcase -->
+<div class="relative w-full h-72 overflow-hidden bg-surface-container-low flex items-center justify-center p-space-md">
+<img class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-500" data-alt="A grand Christmas tree decorated in Classic Heritage style with rich deep forest green branches, shiny cranberry red baubles, polished Victorian gold accents, tartan plaid ribbons, warm golden fairy lights, and an antique gold star topper, set by a warm hearth in a cozy wooden cabin." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUISwzGAT2poGTmukAhCoIdACEESUxiyTDWpxUaVAwdZ37S3-PY60j8iNA-WeHsRM-YJGeMhqNuN7rdLsNV07uJnewL0XGnEwyE1iSyDYQ79InMmNGxLd8GsxBHw6FTEbt5okghxCD8FZYU_NpiRvJaVATK3Nmq4VLbjC88xl0ABH2wBkHMenp9gTwcsjtCbJBqU_qiieTIc65Va7gQNwHjthltVE5uoVusB_hDgw"/>
+<span class="absolute top-4 left-4 px-space-sm py-0.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">star</span> Most Popular
+          </span>
+<div class="absolute bottom-3 right-3 px-space-sm py-1 rounded-full bg-surface-cream/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">mic_detect_auto</span> Spruce
+          </div>
+</div>
+<!-- Content Area -->
+<div class="flex-1 p-space-lg flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-pine-deep leading-tight">Classic Heritage</h2>
+<span class="material-symbols-outlined text-secondary text-[24px]">workspace_premium</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+              Deep forest green, cranberry red, polished gold baubles, star topper, tartan ribbon, and a cozy warm wood base.
+            </p>
+<!-- Tags -->
+<div class="flex flex-wrap gap-space-xs mt-space-md">
+<span class="px-space-sm py-0.5 rounded-full bg-surface-parchment text-tertiary-container font-label-sm text-label-sm">Traditional</span>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-parchment text-tertiary-container font-label-sm text-label-sm">Cozy Hearth</span>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-parchment text-tertiary-container font-label-sm text-label-sm">Victorian Brass</span>
+</div>
+<!-- Color Palette Beads -->
+<div class="mt-space-md pt-space-sm flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Palette:</span>
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-primary ring-2 ring-surface-cream shadow-sm" title="Forest Pine #005131"></span>
+<span class="w-6 h-6 rounded-full bg-secondary ring-2 ring-surface-cream shadow-sm" title="Cranberry Red #B90C17"></span>
+<span class="w-6 h-6 rounded-full bg-gold-warm ring-2 ring-surface-cream shadow-sm" title="Victorian Gold #F4A261"></span>
+<span class="w-6 h-6 rounded-full bg-tertiary-fixed-dim ring-2 ring-surface-cream shadow-sm" title="Warm Filament #FFBA27"></span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-space-lg pt-space-sm flex flex-col sm:flex-row items-center gap-space-xs">
+<button class="w-full sm:flex-1 py-space-xs px-space-md rounded-full bg-secondary hover:bg-secondary-container text-on-secondary font-label-md text-label-md flex items-center justify-center gap-space-xs shadow-sm hover:shadow transition-all" onclick="applyTheme('Classic Heritage')" type="button">
+<span class="material-symbols-outlined text-[18px]">palette</span>
+<span>Apply Theme</span>
+</button>
+<button class="w-full sm:w-auto py-space-xs px-space-md rounded-full bg-surface-parchment hover:bg-surface-container-high text-pine-deep font-label-md text-label-md flex items-center justify-center gap-space-xs transition-colors" onclick="customizeTheme('Classic Heritage')" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span class="sm:hidden lg:inline">Customize</span>
+</button>
+</div>
+</div>
+</article>
+<!-- 2. Winter Wonderland -->
+<article class="group relative flex flex-col rounded-xl bg-surface-cream shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden" data-theme="Winter Wonderland">
+<!-- Visual Tree Showcase -->
+<div class="relative w-full h-72 overflow-hidden bg-surface-container-low flex items-center justify-center p-space-md">
+<img class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-500" data-alt="An ethereal Winter Wonderland Christmas tree enveloped in dense powdered snow, silver chime bells, crystal snowflakes, cool ice-blue glass baubles, sparkling silver garlands, and a glowing frosted glass angel topper in a softly lit blizzard setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlpxBY17NZukad1PdnyMekK4F1PIaEZ3NzfDie19UO81ZyvNrEsxSXenl0_FFC1MpssiqDzUvq4xKAR611UBSceqrDlJmPXnQY51iEf8NN_vLhTXRT9zAuFpwso1Tbx67GQxyASgeFThSfbJ_MankYD7v5EVRI7TijUse3dJcnJp12fu2VTedrO6boRCtI2BQsJwDN3kYpBALNd0_HD9sQ8AUNdXeh0mPgbvaK7zA"/>
+<span class="absolute top-4 left-4 px-space-sm py-0.5 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">ac_unit</span> Frosted
+          </span>
+<div class="absolute bottom-3 right-3 px-space-sm py-1 rounded-full bg-surface-cream/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">snowing</span> Flocked Pine
+          </div>
+</div>
+<!-- Content Area -->
+<div class="flex-1 p-space-lg flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-pine-deep leading-tight">Winter Wonderland</h2>
+<span class="material-symbols-outlined text-outline text-[24px]">mode_fan</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+              Icy frosted branches, silver bells, crystal snowflakes, cool blue baubles, and a glittering celestial angel topper.
+            </p>
+<!-- Tags -->
+<div class="flex flex-wrap gap-space-xs mt-space-md">
+<span class="px-space-sm py-0.5 rounded-full bg-surface-parchment text-tertiary-container font-label-sm text-label-sm">Frostbite</span>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-parchment text-tertiary-container font-label-sm text-label-sm">Silver &amp; Ice</span>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-parchment text-tertiary-container font-label-sm text-label-sm">Chilled Aura</span>
+</div>
+<!-- Color Palette Beads -->
+<div class="mt-space-md pt-space-sm flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Palette:</span>
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-surface-container-lowest ring-2 ring-surface-cream shadow-sm" title="Pure Frost #FFFFFF"></span>
+<span class="w-6 h-6 rounded-full bg-outline-variant ring-2 ring-surface-cream shadow-sm" title="Burnished Silver #BFC9C0"></span>
+<span class="w-6 h-6 rounded-full bg-primary-fixed ring-2 ring-surface-cream shadow-sm" title="Glacial Mint #A4F4C3"></span>
+<span class="w-6 h-6 rounded-full bg-surface-container-high ring-2 ring-surface-cream shadow-sm" title="Sky Mist #F8E5D6"></span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-space-lg pt-space-sm flex flex-col sm:flex-row items-center gap-space-xs">
+<button class="w-full sm:flex-1 py-space-xs px-space-md rounded-full bg-secondary hover:bg-secondary-container text-on-secondary font-label-md text-label-md flex items-center justify-center gap-space-xs shadow-sm hover:shadow transition-all" onclick="applyTheme('Winter Wonderland')" type="button">
+<span class="material-symbols-outlined text-[18px]">palette</span>
+<span>Apply Theme</span>
+</button>
+<button class="w-full sm:w-auto py-space-xs px-space-md rounded-full bg-surface-parchment hover:bg-surface-container-high text-pine-deep font-label-md text-label-md flex items-center justify-center gap-space-xs transition-colors" onclick="customizeTheme('Winter Wonderland')" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span class="sm:hidden lg:inline">Customize</span>
+</button>
+</div>
+</div>
+</article>
+<!-- 3. Pastel Sugar Plum -->
+<article class="group relative flex flex-col rounded-xl bg-surface-cream shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden" data-theme="Pastel Sugar Plum">
+<!-- Visual Tree Showcase -->
+<div class="relative w-full h-72 overflow-hidden bg-surface-container-low flex items-center justify-center p-space-md">
+<img class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-500" data-alt="A magical Pastel Sugar Plum fairy tale Christmas tree with soft blush pink and whipped cream foliage, pastel macaron baubles, shimmering mint frosted pine leaves, iridescent spun-sugar ribbon, and a glowing champagne star topper in a whimsical dessert dreamscape." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2IdsdrIoqpl8qXaxePCzL6krAzdzcC-ragIqL4fskzsuGM8d7dspy4JH9LNJMhc2pj7ebhqhO-7m2pF2P-zxruZRMWAtZHJw2sk9awJb2oUipjkjqICOPeR4D216orcnQZNflK3Jc253axMUeW8-e2MUoCFlGjYlpXzcenJKbr7y1JNko0tEhuEBjvZ6XMUlnhib8PovveDohV2SuHIKEEw1-2whLSQIUVPaAWYk"/>
+<span class="absolute top-4 left-4 px-space-sm py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">bakery_dining</span> Confectionery
+          </span>
+<div class="absolute bottom-3 right-3 px-space-sm py-1 rounded-full bg-surface-cream/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">cake</span> Sugar Blush
+          </div>
+</div>
+<!-- Content Area -->
+<div class="flex-1 p-space-lg flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-pine-deep leading-tight">Pastel Sugar Plum</h2>
+<span class="material-symbols-outlined text-secondary-fixed-dim text-[24px]">type_specimen</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+              Soft pink, cream, mint leaves, pastel macaron baubles, iridescent ribbon, and an elegant champagne star.
+            </p>
+<!-- Tags -->
+<div class="flex flex-wrap gap-space-xs mt-space-md">
+<span class="px-space-sm py-0.5 rounded-full bg-surface-parchment text-tertiary-container font-label-sm text-label-sm">Nutcracker</span>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-parchment text-tertiary-container font-label-sm text-label-sm">Cotton Candy</span>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-parchment text-tertiary-container font-label-sm text-label-sm">Whimsical</span>
+</div>
+<!-- Color Palette Beads -->
+<div class="mt-space-md pt-space-sm flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Palette:</span>
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-secondary-fixed ring-2 ring-surface-cream shadow-sm" title="Sugar Rose #FFDAD6"></span>
+<span class="w-6 h-6 rounded-full bg-surface-parchment ring-2 ring-surface-cream shadow-sm" title="Whipped Cream #F4EBD9"></span>
+<span class="w-6 h-6 rounded-full bg-on-primary-container ring-2 ring-surface-cream shadow-sm" title="Mint Meringue #99E9B9"></span>
+<span class="w-6 h-6 rounded-full bg-tertiary-fixed ring-2 ring-surface-cream shadow-sm" title="Champagne Gold #FFDEA9"></span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-space-lg pt-space-sm flex flex-col sm:flex-row items-center gap-space-xs">
+<button class="w-full sm:flex-1 py-space-xs px-space-md rounded-full bg-secondary hover:bg-secondary-container text-on-secondary font-label-md text-label-md flex items-center justify-center gap-space-xs shadow-sm hover:shadow transition-all" onclick="applyTheme('Pastel Sugar Plum')" type="button">
+<span class="material-symbols-outlined text-[18px]">palette</span>
+<span>Apply Theme</span>
+</button>
+<button class="w-full sm:w-auto py-space-xs px-space-md rounded-full bg-surface-parchment hover:bg-surface-container-high text-pine-deep font-label-md text-label-md flex items-center justify-center gap-space-xs transition-colors" onclick="customizeTheme('Pastel Sugar Plum')" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span class="sm:hidden lg:inline">Customize</span>
+</button>
+</div>
+</div>
+</article>
+<!-- 4. Nordic Forest & Nature -->
+<article class="group relative flex flex-col rounded-xl bg-surface-cream shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden" data-theme="Nordic Forest &amp; Nature">
+<!-- Visual Tree Showcase -->
+<div class="relative w-full h-72 overflow-hidden bg-surface-container-low flex items-center justify-center p-space-md">
+<img class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-500" data-alt="A tranquil Scandinavian Nordic Christmas tree adorned with real brown pinecones, hand-carved wooden reindeer, burlap wrapped garlands, dried orange slices, warm white micro fairy lights, and a minimalist geometrical wooden star topper in a bright minimalist cabin." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpZuMD8DrGU4QmVFjOcNxcjM8ldEP9sBolk9ElYm_ZZWS1wjG0_Y8shI859MRRsVPvrHx1Jn9tet-F8KXyfMqRC3vl2QjFYlrnyCrj-CQap9318xy-ugea-Hgvxb-635c0w-TI1xq-T2orb8k8R-On7YHd07wNQc9f1hMo90GaUSgUZpW4N1LwrV7jdZs3Sg6QdeMWeUjmfnzOTGBpLMxBzp1Px3ub1Vu-VkCJdw4"/>
+<span class="absolute top-4 left-4 px-space-sm py-0.5 rounded-full bg-tertiary-container text-on-tertiary font-label-sm text-label-sm shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">nature</span> Organic
+          </span>
+<div class="absolute bottom-3 right-3 px-space-sm py-1 rounded-full bg-surface-cream/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">forest</span> Wild Cedar
+          </div>
+</div>
+<!-- Content Area -->
+<div class="flex-1 p-space-lg flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-pine-deep leading-tight">Nordic Forest &amp; Nature</h2>
+<span class="material-symbols-outlined text-primary-container text-[24px]">forest</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+              Natural pinecones, wooden reindeer, burlap garland, warm white fairy lights, and a minimalist wooden star.
+            </p>
+<!-- Tags -->
+<div class="flex flex-wrap gap-space-xs mt-space-md">
+<span class="px-space-sm py-0.5 rounded-full bg-surface-parchment text-tertiary-container font-label-sm text-label-sm">Hygge</span>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-parchment text-tertiary-container font-label-sm text-label-sm">Earthy Timber</span>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-parchment text-tertiary-container font-label-sm text-label-sm">Artisan Wood</span>
+</div>
+<!-- Color Palette Beads -->
+<div class="mt-space-md pt-space-sm flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Palette:</span>
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-pine-deep ring-2 ring-surface-cream shadow-sm" title="Alpine Deep Green #0E472A"></span>
+<span class="w-6 h-6 rounded-full bg-tertiary-container ring-2 ring-surface-cream shadow-sm" title="Rustic Bark #7C5700"></span>
+<span class="w-6 h-6 rounded-full bg-border-warm ring-2 ring-surface-cream shadow-sm" title="Burlap Tan #E8DCBE"></span>
+<span class="w-6 h-6 rounded-full bg-surface-dim ring-2 ring-surface-cream shadow-sm" title="Bleached Linen #E9D7C8"></span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-space-lg pt-space-sm flex flex-col sm:flex-row items-center gap-space-xs">
+<button class="w-full sm:flex-1 py-space-xs px-space-md rounded-full bg-secondary hover:bg-secondary-container text-on-secondary font-label-md text-label-md flex items-center justify-center gap-space-xs shadow-sm hover:shadow transition-all" onclick="applyTheme('Nordic Forest &amp; Nature')" type="button">
+<span class="material-symbols-outlined text-[18px]">palette</span>
+<span>Apply Theme</span>
+</button>
+<button class="w-full sm:w-auto py-space-xs px-space-md rounded-full bg-surface-parchment hover:bg-surface-container-high text-pine-deep font-label-md text-label-md flex items-center justify-center gap-space-xs transition-colors" onclick="customizeTheme('Nordic Forest &amp; Nature')" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span class="sm:hidden lg:inline">Customize</span>
+</button>
+</div>
+</div>
+</article>
+<!-- 5. Gingerbread Bakery -->
+<article class="group relative flex flex-col rounded-xl bg-surface-cream shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden" data-theme="Gingerbread Bakery">
+<!-- Visual Tree Showcase -->
+<div class="relative w-full h-72 overflow-hidden bg-surface-container-low flex items-center justify-center p-space-md">
+<img class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-500" data-alt="A delicious warm Gingerbread Bakery Christmas tree filled with smiling decorated gingerbread men, candy cane spirals, royal frosting bows, gingerbread houses, warm amber cinnamon lights, and a cookie cutter star topper inside an inviting country kitchen." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIR3SAgwKvnPFvTL23J7KB0x9OWLjNHyvk0HDbBTLRfyZeY6CHuDbACZwHWETFbl9rQ_Y3dFgbTCK8UPR1DIvgl40DXAQNE-wNkeVOLD0oOcbIjrtxXV8YEXH7o0nON0XiFZtA50hakey7t76GM9Nx8pY7KfzH18tM8WcjjRk4ofPf5iRH_7Z7O1yDieAnsAixxkZBBafcFSR1k21y6rC4yRZhqbHCe9Rqja8KX7U"/>
+<span class="absolute top-4 left-4 px-space-sm py-0.5 rounded-full bg-gold-warm text-on-surface font-label-sm text-label-sm shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">cookie</span> Sweet Spices
+          </span>
+<div class="absolute bottom-3 right-3 px-space-sm py-1 rounded-full bg-surface-cream/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">local_fire_department</span> Cinnamon Bark
+          </div>
+</div>
+<!-- Content Area -->
+<div class="flex-1 p-space-lg flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-pine-deep leading-tight">Gingerbread Bakery</h2>
+<span class="material-symbols-outlined text-tertiary text-[24px]">cake</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+              Cute gingerbread figures, peppermint candy canes, warm cinnamon lights, spiced cookie ornaments, and frosting bows.
+            </p>
+<!-- Tags -->
+<div class="flex flex-wrap gap-space-xs mt-space-md">
+<span class="px-space-sm py-0.5 rounded-full bg-surface-parchment text-tertiary-container font-label-sm text-label-sm">Spiced Honey</span>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-parchment text-tertiary-container font-label-sm text-label-sm">Candy Cane</span>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-parchment text-tertiary-container font-label-sm text-label-sm">Playful Family</span>
+</div>
+<!-- Color Palette Beads -->
+<div class="mt-space-md pt-space-sm flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Palette:</span>
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-tertiary ring-2 ring-surface-cream shadow-sm" title="Ginger Brown #5E4100"></span>
+<span class="w-6 h-6 rounded-full bg-berry-bright ring-2 ring-surface-cream shadow-sm" title="Peppermint Red #E63946"></span>
+<span class="w-6 h-6 rounded-full bg-surface-cream ring-2 ring-surface-cream shadow-sm" title="Royal Frosting #FDFBF7"></span>
+<span class="w-6 h-6 rounded-full bg-gold-warm ring-2 ring-surface-cream shadow-sm" title="Baked Molasses #F4A261"></span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-space-lg pt-space-sm flex flex-col sm:flex-row items-center gap-space-xs">
+<button class="w-full sm:flex-1 py-space-xs px-space-md rounded-full bg-secondary hover:bg-secondary-container text-on-secondary font-label-md text-label-md flex items-center justify-center gap-space-xs shadow-sm hover:shadow transition-all" onclick="applyTheme('Gingerbread Bakery')" type="button">
+<span class="material-symbols-outlined text-[18px]">palette</span>
+<span>Apply Theme</span>
+</button>
+<button class="w-full sm:w-auto py-space-xs px-space-md rounded-full bg-surface-parchment hover:bg-surface-container-high text-pine-deep font-label-md text-label-md flex items-center justify-center gap-space-xs transition-colors" onclick="customizeTheme('Gingerbread Bakery')" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span class="sm:hidden lg:inline">Customize</span>
+</button>
+</div>
+</div>
+</article>
+<!-- 6. Midnight Starlight -->
+<article class="group relative flex flex-col rounded-xl bg-surface-cream shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden" data-theme="Midnight Starlight">
+<!-- Visual Tree Showcase -->
+<div class="relative w-full h-72 overflow-hidden bg-surface-container-low flex items-center justify-center p-space-md">
+<img class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-500" data-alt="A dramatic Midnight Starlight Christmas tree set against deep midnight navy velvet, draped with glittering gold bead garlands, radiating cosmic celestial toppers, twinkling constellation lights, and polished mirror-glass spheres under a night sky." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZwynizWjy2I03SHKk39U7UxJ7eJ2MF0756GvO62C6ES0o8JCPBuSjGahSq1dE1gJLSxZBfa3OPBOxof9YPGLROKvoGeDAlgaSfDuZabQj5bUpdJ62TJX0H7mpjZtBevNHI0MRFWyTaOCVlTKZbgX84YESmAi1yZlrsInuMXJhU-ze2wm-bIMzP8Sxj4RVhKhiywTB9AUht80FnpB9hLGY83IEOEbwERCdJIMfxrU"/>
+<span class="absolute top-4 left-4 px-space-sm py-0.5 rounded-full bg-inverse-surface text-inverse-on-surface font-label-sm text-label-sm shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">nights_stay</span> Celestial
+          </span>
+<div class="absolute bottom-3 right-3 px-space-sm py-1 rounded-full bg-surface-cream/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">auto_awesome</span> Midnight Fir
+          </div>
+</div>
+<!-- Content Area -->
+<div class="flex-1 p-space-lg flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-pine-deep leading-tight">Midnight Starlight</h2>
+<span class="material-symbols-outlined text-gold-warm text-[24px]">hotel_class</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+              Deep navy velvet atmosphere, shimmering gold garlands, radiant celestial toppers, and twinkling constellation lights.
+            </p>
+<!-- Tags -->
+<div class="flex flex-wrap gap-space-xs mt-space-md">
+<span class="px-space-sm py-0.5 rounded-full bg-surface-parchment text-tertiary-container font-label-sm text-label-sm">Cosmic Night</span>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-parchment text-tertiary-container font-label-sm text-label-sm">Pure Gold</span>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-parchment text-tertiary-container font-label-sm text-label-sm">Luminous</span>
+</div>
+<!-- Color Palette Beads -->
+<div class="mt-space-md pt-space-sm flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Palette:</span>
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-on-background ring-2 ring-surface-cream shadow-sm" title="Midnight Navy #231A11"></span>
+<span class="w-6 h-6 rounded-full bg-tertiary-fixed-dim ring-2 ring-surface-cream shadow-sm" title="Solar Gold #FFBA27"></span>
+<span class="w-6 h-6 rounded-full bg-gold-warm ring-2 ring-surface-cream shadow-sm" title="Amber Radiance #F4A261"></span>
+<span class="w-6 h-6 rounded-full bg-surface-container-lowest ring-2 ring-surface-cream shadow-sm" title="Starlight Spark #FFFFFF"></span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-space-lg pt-space-sm flex flex-col sm:flex-row items-center gap-space-xs">
+<button class="w-full sm:flex-1 py-space-xs px-space-md rounded-full bg-secondary hover:bg-secondary-container text-on-secondary font-label-md text-label-md flex items-center justify-center gap-space-xs shadow-sm hover:shadow transition-all" onclick="applyTheme('Midnight Starlight')" type="button">
+<span class="material-symbols-outlined text-[18px]">palette</span>
+<span>Apply Theme</span>
+</button>
+<button class="w-full sm:w-auto py-space-xs px-space-md rounded-full bg-surface-parchment hover:bg-surface-container-high text-pine-deep font-label-md text-label-md flex items-center justify-center gap-space-xs transition-colors" onclick="customizeTheme('Midnight Starlight')" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span class="sm:hidden lg:inline">Customize</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Interactive Section: Theme Color Mixer & Needle Texture Studio -->
+<section class="w-full px-space-lg lg:px-space-xl py-space-xl">
+<div class="w-full rounded-2xl bg-surface-parchment/80 p-space-lg lg:p-space-xl shadow-sm flex flex-col lg:flex-row gap-space-xl items-stretch">
+<!-- Left Config Controls -->
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-space-xs text-primary font-label-sm text-label-sm uppercase tracking-wider mb-space-xs">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span>Section 8 &amp; 10.2 Spec</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-pine-deep tracking-tight">Theme Color Mixer &amp; Branch Texture</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+            Want something one-of-a-kind? Tweak the underlying spruce foliage tone, adjust branch density, and blend your personal color accents before heading into the main Studio canvas.
+          </p>
+<!-- Branch Texture Selector -->
+<div class="mt-space-lg">
+<label class="block font-label-md text-label-md text-pine-deep mb-space-sm">Branch Texture &amp; Needle Type</label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs">
+<button class="needle-btn active px-space-sm py-space-xs rounded-xl bg-primary text-on-primary font-label-sm text-label-sm flex flex-col items-center justify-center gap-1 shadow-sm transition-all" onclick="selectNeedle(this, 'Douglas Fir')" type="button">
+<span class="material-symbols-outlined text-[18px]">park</span>
+<span>Douglas Fir</span>
+</button>
+<button class="needle-btn px-space-sm py-space-xs rounded-xl bg-surface-cream text-on-surface hover:bg-surface-container font-label-sm text-label-sm flex flex-col items-center justify-center gap-1 shadow-sm transition-all" onclick="selectNeedle(this, 'Nordmann Blue')" type="button">
+<span class="material-symbols-outlined text-[18px]">nature_people</span>
+<span>Nordmann Blue</span>
+</button>
+<button class="needle-btn px-space-sm py-space-xs rounded-xl bg-surface-cream text-on-surface hover:bg-surface-container font-label-sm text-label-sm flex flex-col items-center justify-center gap-1 shadow-sm transition-all" onclick="selectNeedle(this, 'Snow Flocked')" type="button">
+<span class="material-symbols-outlined text-[18px]">ac_unit</span>
+<span>Snow Flocked</span>
+</button>
+<button class="needle-btn px-space-sm py-space-xs rounded-xl bg-surface-cream text-on-surface hover:bg-surface-container font-label-sm text-label-sm flex flex-col items-center justify-center gap-1 shadow-sm transition-all" onclick="selectNeedle(this, 'Golden Cedar')" type="button">
+<span class="material-symbols-outlined text-[18px]">flare</span>
+<span>Golden Cedar</span>
+</button>
+</div>
+</div>
+<!-- Needle Foliage Swatches -->
+<div class="mt-space-lg">
+<div class="flex items-center justify-between mb-space-sm">
+<label class="font-label-md text-label-md text-pine-deep">Foliage Base Tone</label>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono uppercase" id="selectedFolioHex">#0E472A</span>
+</div>
+<div class="flex items-center gap-space-sm flex-wrap">
+<button class="w-10 h-10 rounded-full bg-pine-deep ring-4 ring-primary shadow-sm hover:scale-105 transition-transform" onclick="setTreeFoliage('#0E472A', 'Alpine Pine')" title="Alpine Deep" type="button"></button>
+<button class="w-10 h-10 rounded-full bg-primary ring-2 ring-surface-cream shadow-sm hover:scale-105 transition-transform" onclick="setTreeFoliage('#005131', 'Emerald Evergreen')" title="Emerald Evergreen" type="button"></button>
+<button class="w-10 h-10 rounded-full bg-primary-container ring-2 ring-surface-cream shadow-sm hover:scale-105 transition-transform" onclick="setTreeFoliage('#176B45', 'Vintage Jade')" title="Vintage Jade" type="button"></button>
+<button class="w-10 h-10 rounded-full bg-primary-fixed ring-2 ring-surface-cream shadow-sm hover:scale-105 transition-transform" onclick="setTreeFoliage('#A4F4C3', 'Chilled Frost')" title="Chilled Frost" type="button"></button>
+<button class="w-10 h-10 rounded-full bg-surface-cream ring-2 ring-outline-variant shadow-sm hover:scale-105 transition-transform" onclick="setTreeFoliage('#FDFBF7', 'Blizzard Powder')" title="Blizzard Powder" type="button"></button>
+<button class="w-10 h-10 rounded-full bg-tertiary ring-2 ring-surface-cream shadow-sm hover:scale-105 transition-transform" onclick="setTreeFoliage('#5E4100', 'Cinnamon Twig')" title="Cinnamon Twig" type="button"></button>
+</div>
+</div>
+<!-- Snow Density Slider -->
+<div class="mt-space-lg">
+<div class="flex items-center justify-between mb-space-xs">
+<label class="font-label-md text-label-md text-pine-deep">Snow Layer Coverage</label>
+<span class="font-label-sm text-label-sm text-primary font-bold" id="snowLevelDisplay">45% (Gentle Flurry)</span>
+</div>
+<div class="relative flex items-center w-full">
+<input class="w-full h-2 bg-border-warm rounded-lg appearance-none cursor-pointer accent-primary" id="snowSlider" max="100" min="0" oninput="updateSnow(this.value)" type="range" value="45"/>
+</div>
+</div>
+</div>
+<div class="mt-space-xl pt-space-md flex flex-wrap items-center gap-space-sm">
+<button class="px-space-lg py-space-xs rounded-full bg-primary hover:bg-pine-deep text-on-primary font-label-md text-label-md shadow-sm transition-all flex items-center gap-space-xs" onclick="launchCustomizedStudio()" type="button">
+<span class="material-symbols-outlined text-[18px]">brush</span>
+<span>Launch Tree Studio with Custom Blend</span>
+</button>
+<button class="px-space-md py-space-xs rounded-full bg-surface-cream hover:bg-surface-container text-on-surface-variant font-label-md text-label-md transition-colors flex items-center gap-space-xs" onclick="resetMixer()" type="button">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+<span>Reset Swatches</span>
+</button>
+</div>
+</div>
+<!-- Right Interactive Preview Box (Live Dynamic SVG Tree) -->
+<div class="w-full lg:w-96 rounded-xl bg-surface-cream p-space-md flex flex-col items-center justify-between shadow-sm relative overflow-hidden">
+<div class="w-full flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-pine-deep flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span> Live Render
+          </span>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-parchment text-tertiary-container font-label-sm text-label-sm" id="previewTag">
+            Douglas Fir
+          </span>
+</div>
+<!-- Render Canvas Frame -->
+<div class="w-full h-72 rounded-lg bg-surface-container-low flex items-center justify-center relative p-space-sm">
+<!-- Ambient Radial Glow -->
+<div class="absolute inset-0 bg-radial from-gold-warm/15 via-transparent to-transparent pointer-events-none"></div>
+<!-- Dynamic Vector Tree for Section 6/8 Requirements -->
+<svg class="w-56 h-64 transition-all duration-500 drop-shadow-md" fill="none" id="liveTreeSvg" viewbox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+<!-- Tree Trunk -->
+<path d="M92 200H108V232C108 233.105 107.105 234 106 234H94C92.8954 234 92 233.105 92 232V200Z" fill="#7C5700"></path>
+<path d="M84 230C84 227 116 227 116 230L112 236H88L84 230Z" fill="#5E4100" opacity="0.6"></path>
+<!-- Foliage Layer Bottom -->
+<path class="transition-colors duration-500" d="M100 120L155 195C158 199 154 204 149 204H51C46 204 42 199 45 195L100 120Z" fill="#0E472A" id="foliageBottom"></path>
+<!-- Foliage Layer Mid -->
+<path class="transition-colors duration-500" d="M100 70L145 140C148 144 144 149 139 149H61C56 149 52 144 55 140L100 70Z" fill="#0E472A" id="foliageMid" opacity="0.95"></path>
+<!-- Foliage Layer Top -->
+<path class="transition-colors duration-500" d="M100 28L135 90C137.5 94 134 98 129.5 98H70.5C66 98 62.5 94 65 90L100 28Z" fill="#0E472A" id="foliageTop" opacity="0.9"></path>
+<!-- Dynamic Snow Caps -->
+<g class="transition-opacity duration-300 opacity-50" id="snowCaps">
+<path d="M100 120L155 195C148 188 135 196 122 188C112 182 104 190 98 184C90 178 80 188 68 182C58 188 49 192 45 195L100 120Z" fill="#FFFFFF" fill-opacity="0.85"></path>
+<path d="M100 70L145 140C138 134 128 142 118 135C108 130 96 138 88 132C78 128 68 138 55 140L100 70Z" fill="#FFFFFF" fill-opacity="0.9"></path>
+<path d="M100 28L135 90C128 85 118 92 108 86C98 82 90 90 82 85C74 80 68 88 65 90L100 28Z" fill="#FFFFFF" fill-opacity="0.95"></path>
+</g>
+<!-- Pre-placed Ornaments matching preset -->
+<circle class="drop-shadow-sm" cx="85" cy="110" fill="#B90C17" r="5"></circle>
+<circle class="drop-shadow-sm" cx="118" cy="125" fill="#F4A261" r="6"></circle>
+<circle class="drop-shadow-sm" cx="75" cy="165" fill="#F4A261" r="7"></circle>
+<circle class="drop-shadow-sm" cx="128" cy="170" fill="#B90C17" r="6"></circle>
+<circle class="drop-shadow-sm" cx="102" cy="150" fill="#FFBA27" r="5"></circle>
+<circle class="drop-shadow-sm" cx="100" cy="85" fill="#E8DCBE" r="4.5"></circle>
+<!-- Golden Twinkle Garland Arc -->
+<path d="M68 95 Q100 115 130 95" opacity="0.8" stroke="#FFBA27" stroke-dasharray="2 3" stroke-width="1.5"></path>
+<path d="M54 145 Q100 175 144 145" opacity="0.8" stroke="#FFBA27" stroke-dasharray="2 3" stroke-width="1.5"></path>
+<!-- Glowing Star Topper -->
+<polygon class="drop-shadow-md animate-pulse" fill="#FFBA27" points="100,12 103,22 114,22 105,28 108,38 100,32 92,38 95,28 86,22 97,22"></polygon>
+</svg>
+</div>
+<!-- Spec Detail Metadata -->
+<div class="w-full mt-space-sm pt-space-xs flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<span>Active Preset:</span>
+<span class="font-label-md text-label-md text-pine-deep" id="summaryPresetLabel">Douglas Fir + Hearth Tone</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Client-side Scripting -->
+<script>
+    // State management for Theme preview and mixer
+    const mixerState = {
+      foliageColor: '#0E472A',
+      needleType: 'Douglas Fir',
+      snowPercent: 45
+    };
+
+    function showToast(message) {
+      const toast = document.getElementById('toastNotification');
+      const toastMsg = document.getElementById('toastMessage');
+      if (!toast || !toastMsg) return;
+
+      toastMsg.innerText = message;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3000);
+    }
+
+    function applyTheme(themeName) {
+      showToast(`'${themeName}' applied to your Christmas Tree!`);
+      
+      // Update mixer visualizer to reflect chosen preset
+      if (themeName === 'Classic Heritage') {
+        setTreeFoliage('#005131', 'Douglas Fir');
+        updateSnow(20);
+      } else if (themeName === 'Winter Wonderland') {
+        setTreeFoliage('#A4F4C3', 'Nordmann Blue');
+        updateSnow(95);
+      } else if (themeName === 'Pastel Sugar Plum') {
+        setTreeFoliage('#FDFBF7', 'Blizzard Powder');
+        updateSnow(40);
+      } else if (themeName === 'Nordic Forest & Nature') {
+        setTreeFoliage('#0E472A', 'Golden Cedar');
+        updateSnow(15);
+      } else if (themeName === 'Gingerbread Bakery') {
+        setTreeFoliage('#5E4100', 'Cinnamon Twig');
+        updateSnow(35);
+      } else if (themeName === 'Midnight Starlight') {
+        setTreeFoliage('#0E472A', 'Nordmann Blue');
+        updateSnow(10);
+      }
+    }
+
+    function customizeTheme(themeName) {
+      showToast(`Opening '${themeName}' in Tree Studio customizer...`);
+      const mixerSection = document.getElementById('snowSlider');
+      if (mixerSection) {
+        mixerSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function setTreeFoliage(colorHex, name) {
+      mixerState.foliageColor = colorHex;
+      const tTop = document.getElementById('foliageTop');
+      const tMid = document.getElementById('foliageMid');
+      const tBot = document.getElementById('foliageBottom');
+      const hexLabel = document.getElementById('selectedFolioHex');
+      const summary = document.getElementById('summaryPresetLabel');
+
+      if (tTop) tTop.setAttribute('fill', colorHex);
+      if (tMid) tMid.setAttribute('fill', colorHex);
+      if (tBot) tBot.setAttribute('fill', colorHex);
+      if (hexLabel) hexLabel.innerText = colorHex;
+      if (summary) summary.innerText = `${mixerState.needleType} (${colorHex})`;
+    }
+
+    function selectNeedle(button, needleType) {
+      mixerState.needleType = needleType;
+      document.querySelectorAll('.needle-btn').forEach(btn => {
+        btn.classList.remove('bg-primary', 'text-on-primary');
+        btn.classList.add('bg-surface-cream', 'text-on-surface');
+      });
+      button.classList.remove('bg-surface-cream', 'text-on-surface');
+      button.classList.add('bg-primary', 'text-on-primary');
+
+      const tag = document.getElementById('previewTag');
+      const summary = document.getElementById('summaryPresetLabel');
+      if (tag) tag.innerText = needleType;
+      if (summary) summary.innerText = `${needleType} (${mixerState.foliageColor})`;
+    }
+
+    function updateSnow(val) {
+      mixerState.snowPercent = val;
+      const display = document.getElementById('snowLevelDisplay');
+      const snowGroup = document.getElementById('snowCaps');
+      const slider = document.getElementById('snowSlider');
+
+      if (slider && slider.value !== val) slider.value = val;
+
+      let descriptor = 'Light Powder';
+      if (val > 70) descriptor = 'Blizzard Whiteout';
+      else if (val > 40) descriptor = 'Gentle Flurry';
+      else if (val == 0) descriptor = 'Snow Free';
+
+      if (display) display.innerText = `${val}% (${descriptor})`;
+      if (snowGroup) {
+        snowGroup.style.opacity = (val / 100).toString();
+      }
+    }
+
+    function resetMixer() {
+      setTreeFoliage('#0E472A', 'Alpine Deep');
+      updateSnow(45);
+      const firstNeedle = document.querySelector('.needle-btn');
+      if (firstNeedle) selectNeedle(firstNeedle, 'Douglas Fir');
+      showToast('Swatches reset to holiday default!');
+    }
+
+    function launchCustomizedStudio() {
+      showToast('Loading custom foliage configuration into Tree Studio...');
+      setTimeout(() => {
+        const studioNav = document.querySelector('nav a[data-path="tree-studio"]');
+        if (studioNav) {
+          studioNav.click();
+        }
+      }, 700);
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-parchment/60 py-space-md"><div class="w-full px-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-sm text-center sm:text-left"><div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><span class="material-symbols-outlined text-[16px] text-secondary">park</span><span>Handcrafted with warm holiday cheer © 2024 My Little Christmas Tree.</span></div><div class="flex items-center gap-space-md font-label-sm text-label-sm text-on-surface-variant"><a class="hover:text-primary transition-colors" href="#">Festive Guidelines</a><span class="opacity-40">•</span><a class="hover:text-primary transition-colors" href="#">Cookie Policy</a><span class="opacity-40">•</span><a class="hover:text-primary transition-colors" href="#">Holiday Support</a></div></div></footer></body></html>

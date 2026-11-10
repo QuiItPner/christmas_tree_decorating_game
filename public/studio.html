@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tree Studio · My Little Christmas Tree</title>
+  <meta name="description" content="Decorate your own Christmas tree: drag ornaments, recolor the tree, add snow, lights and a greeting, then save or export it as a PNG.">
+  <meta name="theme-color" content="#176B45">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,0..1,0&display=block">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="page-studio">
+  <main class="studio" id="studio">
+    <!-- ============ LEFT: decoration library ============ -->
+    <aside class="panel panel-left" id="panel-library" aria-label="Decoration library">
+      <div class="sheet-handle" aria-hidden="true"></div>
+      <div class="panel-head">
+        <div class="panel-title"><span class="ms">category</span><h2>Decorations</h2></div>
+        <span class="count-pill" id="lib-count">… items</span>
+        <button class="icon-btn sm sheet-close" type="button" data-close-sheet aria-label="Close decorations"><span class="ms">close</span></button>
+      </div>
+      <div class="lib-tools">
+        <label class="search"><span class="ms">search</span><input class="field" id="lib-search" type="search" placeholder="Search baubles, stars, bows…" aria-label="Search decorations" autocomplete="off"></label>
+        <div class="chip-row" id="lib-cats" role="toolbar" aria-label="Categories"></div>
+      </div>
+      <div class="asset-grid" id="lib-grid" aria-live="polite"></div>
+      <div class="panel-tip">
+        <span class="ms">tips_and_updates</span>
+        <p><b>Pro tip:</b> drag items onto the tree or click <b>Add</b>. Shortcuts: <span class="kbd">Del</span> remove, <span class="kbd">Ctrl D</span> duplicate, arrows nudge, <span class="kbd">[</span> <span class="kbd">]</span> layer order.</p>
+      </div>
+    </aside>
+
+    <!-- ============ CENTER: workspace ============ -->
+    <section class="workspace" id="workspace" aria-label="Tree workspace">
+      <div class="toolbar" role="toolbar" aria-label="Editor tools">
+        <div class="tb-group">
+          <button class="icon-btn" id="btn-undo" type="button" title="Undo (Ctrl+Z)" aria-label="Undo"><span class="ms">undo</span></button>
+          <button class="icon-btn" id="btn-redo" type="button" title="Redo (Ctrl+Y)" aria-label="Redo"><span class="ms">redo</span></button>
+          <span class="tb-sep"></span>
+          <button class="btn btn-ghost btn-sm" id="btn-reset" type="button" title="Reset to the default tree"><span class="ms">restart_alt</span><span class="tb-hide-m tb-hide-l">Reset</span></button>
+          <button class="btn btn-ghost btn-sm" id="btn-clear" type="button" title="Remove all decorations, keep the tree"><span class="ms">layers_clear</span><span class="tb-hide-m tb-hide-l">Clear</span></button>
+          <button class="btn btn-parchment btn-sm" id="btn-random" type="button" title="Random Decorate"><span class="ms" style="color:var(--bronze)">auto_fix_high</span><span class="tb-hide-m">Random Decorate</span></button>
+        </div>
+        <div class="tb-toggles">
+          <label title="Falling snow"><input type="checkbox" id="tg-snow"><span class="ms snow-ic">ac_unit</span><span class="lbl">Snow</span></label>
+          <label title="Twinkling lights"><input type="checkbox" id="tg-twinkle"><span class="ms tw-ic">light_mode</span><span class="lbl">Twinkle</span></label>
+        </div>
+        <div class="tb-group">
+          <div class="zoom" aria-label="Zoom">
+            <button type="button" id="btn-zoom-out" aria-label="Zoom out"><span class="ms">remove</span></button>
+            <span id="zoom-level" aria-live="polite">100%</span>
+            <button type="button" id="btn-zoom-in" aria-label="Zoom in"><span class="ms">add</span></button>
+          </div>
+          <button class="btn btn-pine btn-sm" id="btn-preview" type="button" title="Preview without editing controls"><span class="ms">visibility</span><span class="tb-hide-m">Preview</span></button>
+        </div>
+      </div>
+
+      <div class="stage-wrap" id="stage-wrap">
+        <div class="stage-frame" id="stage-frame">
+          <svg id="stage" viewBox="0 0 600 720" xmlns="http://www.w3.org/2000/svg" role="application" aria-label="Christmas tree canvas. Click a decoration to select it.">
+            <g id="L-bg"></g>
+            <g id="L-tree"></g>
+            <g id="L-decos"></g>
+            <g id="L-greet"></g>
+            <g id="L-ui"></g>
+          </svg>
+          <canvas class="snowfall" id="snowfall" aria-hidden="true"></canvas>
+        </div>
+        <div class="float-bar" id="float-bar" role="toolbar" aria-label="Selected decoration">
+          <button type="button" data-act="rotate" title="Rotate 15°" aria-label="Rotate 15 degrees"><span class="ms">rotate_right</span></button>
+          <button type="button" data-act="duplicate" title="Duplicate (Ctrl+D)" aria-label="Duplicate"><span class="ms">content_copy</span></button>
+          <button type="button" data-act="forward" title="Bring forward (])" aria-label="Bring forward"><span class="ms">flip_to_front</span></button>
+          <button type="button" data-act="lock" title="Lock / unlock" aria-label="Lock or unlock"><span class="ms">lock_open</span></button>
+          <button type="button" data-act="delete" class="danger" title="Delete (Del)" aria-label="Delete"><span class="ms">delete</span></button>
+        </div>
+      </div>
+
+      <div class="shared-note" id="shared-note"><span class="ms" style="font-size:16px;vertical-align:-3px;color:var(--gold)">redeem</span> Someone shared a Christmas tree with you!</div>
+      <div class="preview-bar" id="preview-bar">
+        <button class="btn btn-ghost btn-sm" type="button" id="pv-exit"><span class="ms">edit</span><span>Edit this tree</span></button>
+        <button class="btn btn-soft btn-sm" type="button" id="pv-share"><span class="ms">share</span><span>Copy link</span></button>
+        <button class="btn btn-berry btn-sm" type="button" id="pv-export"><span class="ms">download</span><span>Export PNG</span></button>
+        <button class="btn btn-pine btn-sm" type="button" id="pv-new" hidden><span class="ms">park</span><span>Decorate my own</span></button>
+      </div>
+    </section>
+
+    <!-- ============ RIGHT: inspector ============ -->
+    <aside class="panel panel-right" id="panel-inspector" aria-label="Customize">
+      <div class="sheet-handle" aria-hidden="true"></div>
+      <div class="tabs" role="tablist">
+        <button class="tab active" role="tab" id="tab-item" data-tab="item" aria-selected="true" aria-controls="tp-item"><span class="ms">tune</span><span>Item</span></button>
+        <button class="tab" role="tab" id="tab-tree" data-tab="tree" aria-selected="false" aria-controls="tp-tree"><span class="ms">park</span><span>Tree</span></button>
+        <button class="tab" role="tab" id="tab-scene" data-tab="scene" aria-selected="false" aria-controls="tp-scene"><span class="ms">wb_twilight</span><span>Scene</span></button>
+        <button class="icon-btn sm sheet-close" type="button" data-close-sheet aria-label="Close panel"><span class="ms">close</span></button>
+      </div>
+      <div class="tab-panels">
+        <!-- Item -->
+        <div class="tab-panel active" id="tp-item" role="tabpanel" aria-labelledby="tab-item">
+          <div id="item-editor"></div>
+          <div class="box">
+            <h3><span>Layers <span id="layer-count" style="color:var(--muted)"></span></span><span style="font-weight:600;letter-spacing:0;text-transform:none;color:var(--muted)">top = front</span></h3>
+            <div class="layers" id="layers"></div>
+          </div>
+        </div>
+        <!-- Tree -->
+        <div class="tab-panel" id="tp-tree" role="tabpanel" aria-labelledby="tab-tree">
+          <div class="box">
+            <h3>Tree style</h3>
+            <div class="style-grid" id="tree-styles"></div>
+            <div class="slider-row">
+              <div class="top"><span><span class="ms">height</span>Tree size</span><b id="size-val">100%</b></div>
+              <input type="range" id="tree-size" min="60" max="120" step="1" aria-label="Tree size">
+            </div>
+            <div class="slider-row">
+              <div class="top"><span><span class="ms">ac_unit</span>Snow coverage</span><b id="snow-val">None</b></div>
+              <input type="range" id="tree-snow" min="0" max="100" step="1" aria-label="Snow coverage">
+            </div>
+            <label class="switch"><span>String lights on the tree</span><input type="checkbox" id="tree-lights"></label>
+          </div>
+          <div class="box" id="color-studio">
+            <h3><span>Color studio</span><button class="link" type="button" id="btn-reset-colors"><span class="ms">format_color_reset</span>Reset</button></h3>
+            <div id="cs-leaves"></div>
+            <div id="cs-branches"></div>
+            <div id="cs-trunk"></div>
+            <div id="cs-skirt"></div>
+            <div id="cs-snow"></div>
+          </div>
+          <div class="box">
+            <h3><span>Christmas themes</span><a class="link" href="themes.html"><span class="ms">open_in_new</span>Browse</a></h3>
+            <div class="theme-mini-grid" id="theme-minis"></div>
+          </div>
+        </div>
+        <!-- Scene -->
+        <div class="tab-panel" id="tp-scene" role="tabpanel" aria-labelledby="tab-scene">
+          <div class="box">
+            <h3>Personalized greeting</h3>
+            <label class="switch"><span>Show greeting on the tree</span><input type="checkbox" id="gr-visible"></label>
+            <label class="sub" for="gr-text">Greeting</label>
+            <input class="field" id="gr-text" maxlength="60" placeholder="Merry Christmas!">
+            <label class="sub" for="gr-name">Your name</label>
+            <input class="field" id="gr-name" maxlength="40" placeholder="e.g. The Nguyen family">
+            <label class="sub" for="gr-date">Date or dedication</label>
+            <input class="field" id="gr-date" maxlength="40" placeholder="e.g. Christmas 2026 · For Grandma">
+            <div id="gr-color"></div>
+          </div>
+          <div class="box">
+            <h3>Background</h3>
+            <div class="bg-grid" id="bg-grid"></div>
+            <div id="bg-color"></div>
+          </div>
+          <div class="box">
+            <h3>Atmosphere</h3>
+            <label class="switch"><span>Falling snow</span><input type="checkbox" id="fx-snow"></label>
+            <label class="switch"><span>Twinkling lights</span><input type="checkbox" id="fx-twinkle"></label>
+            <p style="margin:0;font-size:12.5px;color:var(--muted)">Holiday music is in the top bar (off by default). Effects pause automatically if your device prefers reduced motion.</p>
+          </div>
+          <div class="box">
+            <h3>Design name</h3>
+            <input class="field" id="design-name" maxlength="60" aria-label="Design name">
+          </div>
+        </div>
+      </div>
+      <div class="panel-foot">
+        <div class="save-status"><span><span class="dot"></span><span id="save-state">Storage: ready</span></span><span class="muted" id="save-time"></span></div>
+        <div class="foot-btns">
+          <button class="btn btn-soft" type="button" id="btn-save"><span class="ms">bookmark</span><span>Save Design</span></button>
+          <button class="btn btn-berry" type="button" id="btn-export"><span class="ms">download</span><span>Export PNG</span></button>
+        </div>
+        <button class="save-as" type="button" id="btn-save-as" hidden>Save as a new copy</button>
+      </div>
+    </aside>
+  </main>
+
+  <nav class="mobile-dock" id="mobile-dock" aria-label="Studio panels">
+    <button type="button" data-sheet="library"><span class="ms">category</span>Decorate</button>
+    <button type="button" data-sheet="item"><span class="ms">tune</span>Item</button>
+    <button type="button" data-sheet="tree"><span class="ms">park</span>Tree</button>
+    <button type="button" data-sheet="scene"><span class="ms">wb_twilight</span>Scene</button>
+    <button type="button" class="save" data-sheet="save"><span class="ms">bookmark</span>Save</button>
+  </nav>
+
+  <script type="module" src="js/studio.js"></script>
+</body>
+</html>

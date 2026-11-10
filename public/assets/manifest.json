@@ -1,0 +1,382 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "id": "balls",
+      "name": "Christmas Balls",
+      "short": "Baubles",
+      "icon": "circle"
+    },
+    {
+      "id": "toppers",
+      "name": "Tree Toppers",
+      "short": "Toppers",
+      "icon": "star"
+    },
+    {
+      "id": "ribbons",
+      "name": "Ribbons & Bells",
+      "short": "Ribbons",
+      "icon": "notifications"
+    },
+    {
+      "id": "characters",
+      "name": "Cute Characters",
+      "short": "Characters",
+      "icon": "mood"
+    },
+    {
+      "id": "lights",
+      "name": "Christmas Lights",
+      "short": "Lights",
+      "icon": "lightbulb"
+    },
+    {
+      "id": "gifts",
+      "name": "Gift Boxes",
+      "short": "Gifts",
+      "icon": "redeem"
+    },
+    {
+      "id": "extras",
+      "name": "Seasonal Extras",
+      "short": "Extras",
+      "icon": "ac_unit"
+    }
+  ],
+  "decorations": [
+    {
+      "id": "ruby-bauble",
+      "name": "Ruby Bauble",
+      "category": "balls",
+      "image": "assets/decorations/balls/ruby-bauble.svg",
+      "colorable": true,
+      "defaultColor": "#C9182B",
+      "width": 46,
+      "height": 46,
+      "keywords": "ball red classic"
+    },
+    {
+      "id": "peppermint-ball",
+      "name": "Peppermint Ball",
+      "category": "balls",
+      "image": "assets/decorations/balls/peppermint-ball.svg",
+      "colorable": true,
+      "defaultColor": "#C9182B",
+      "width": 46,
+      "height": 46,
+      "keywords": "ball candy stripe"
+    },
+    {
+      "id": "gold-bauble",
+      "name": "Gilded Bauble",
+      "category": "balls",
+      "image": "assets/decorations/balls/gold-bauble.svg",
+      "colorable": true,
+      "defaultColor": "#E9A93B",
+      "width": 46,
+      "height": 46,
+      "keywords": "ball gold band"
+    },
+    {
+      "id": "frost-bauble",
+      "name": "Frost Bauble",
+      "category": "balls",
+      "image": "assets/decorations/balls/frost-bauble.svg",
+      "colorable": true,
+      "defaultColor": "#4E9BE0",
+      "width": 46,
+      "height": 46,
+      "keywords": "ball blue snowflake winter"
+    },
+    {
+      "id": "teardrop",
+      "name": "Glass Finial",
+      "category": "balls",
+      "image": "assets/decorations/balls/teardrop.svg",
+      "colorable": true,
+      "defaultColor": "#B9C6D3",
+      "width": 38,
+      "height": 56,
+      "keywords": "drop glass silver icicle"
+    },
+    {
+      "id": "polka-bauble",
+      "name": "Polka Bauble",
+      "category": "balls",
+      "image": "assets/decorations/balls/polka-bauble.svg",
+      "colorable": true,
+      "defaultColor": "#1E7F4F",
+      "width": 46,
+      "height": 46,
+      "keywords": "ball dots green"
+    },
+    {
+      "id": "star-topper",
+      "name": "Starlight Topper",
+      "category": "toppers",
+      "image": "assets/decorations/toppers/star-topper.svg",
+      "colorable": true,
+      "defaultColor": "#FFB703",
+      "width": 84,
+      "height": 84,
+      "keywords": "star gold top"
+    },
+    {
+      "id": "angel-topper",
+      "name": "Little Angel",
+      "category": "toppers",
+      "image": "assets/decorations/toppers/angel-topper.svg",
+      "colorable": true,
+      "defaultColor": "#FFF6E0",
+      "width": 80,
+      "height": 80,
+      "keywords": "angel top wings"
+    },
+    {
+      "id": "bow-topper",
+      "name": "Grand Bow",
+      "category": "toppers",
+      "image": "assets/decorations/toppers/bow-topper.svg",
+      "colorable": true,
+      "defaultColor": "#C9182B",
+      "width": 86,
+      "height": 86,
+      "keywords": "bow ribbon top big"
+    },
+    {
+      "id": "north-star",
+      "name": "North Star",
+      "category": "toppers",
+      "image": "assets/decorations/toppers/north-star.svg",
+      "colorable": true,
+      "defaultColor": "#FFD54F",
+      "width": 86,
+      "height": 86,
+      "keywords": "star burst shine top celestial"
+    },
+    {
+      "id": "velvet-bow",
+      "name": "Velvet Bow",
+      "category": "ribbons",
+      "image": "assets/decorations/ribbons/velvet-bow.svg",
+      "colorable": true,
+      "defaultColor": "#B90C17",
+      "width": 46,
+      "height": 46,
+      "keywords": "bow ribbon red"
+    },
+    {
+      "id": "jingle-bells",
+      "name": "Jingle Bells",
+      "category": "ribbons",
+      "image": "assets/decorations/ribbons/jingle-bells.svg",
+      "colorable": false,
+      "width": 50,
+      "height": 50,
+      "keywords": "bell gold jingle"
+    },
+    {
+      "id": "candy-cane",
+      "name": "Candy Cane",
+      "category": "ribbons",
+      "image": "assets/decorations/ribbons/candy-cane.svg",
+      "colorable": true,
+      "defaultColor": "#D62828",
+      "width": 40,
+      "height": 60,
+      "keywords": "candy cane stripe sweet"
+    },
+    {
+      "id": "golden-bell",
+      "name": "Golden Bell",
+      "category": "ribbons",
+      "image": "assets/decorations/ribbons/golden-bell.svg",
+      "colorable": true,
+      "defaultColor": "#F2B33D",
+      "width": 48,
+      "height": 48,
+      "keywords": "bell single gold"
+    },
+    {
+      "id": "ribbon-swag",
+      "name": "Ribbon Swag",
+      "category": "ribbons",
+      "image": "assets/decorations/ribbons/ribbon-swag.svg",
+      "colorable": true,
+      "defaultColor": "#C9182B",
+      "width": 190,
+      "height": 57,
+      "keywords": "garland ribbon drape"
+    },
+    {
+      "id": "gingerbread",
+      "name": "Ginger Cookie",
+      "category": "characters",
+      "image": "assets/decorations/characters/gingerbread.svg",
+      "colorable": false,
+      "width": 48,
+      "height": 48,
+      "keywords": "cookie gingerbread man"
+    },
+    {
+      "id": "tiny-santa",
+      "name": "Tiny Santa",
+      "category": "characters",
+      "image": "assets/decorations/characters/tiny-santa.svg",
+      "colorable": false,
+      "width": 50,
+      "height": 50,
+      "keywords": "santa claus"
+    },
+    {
+      "id": "snowman",
+      "name": "Snowman",
+      "category": "characters",
+      "image": "assets/decorations/characters/snowman.svg",
+      "colorable": true,
+      "defaultColor": "#C9182B",
+      "width": 52,
+      "height": 52,
+      "keywords": "snowman frosty scarf"
+    },
+    {
+      "id": "reindeer",
+      "name": "Little Reindeer",
+      "category": "characters",
+      "image": "assets/decorations/characters/reindeer.svg",
+      "colorable": false,
+      "width": 52,
+      "height": 52,
+      "keywords": "reindeer deer rudolph antlers"
+    },
+    {
+      "id": "fairy-strand",
+      "name": "Fairy Strand",
+      "category": "lights",
+      "image": "assets/decorations/lights/fairy-strand.svg",
+      "colorable": false,
+      "width": 180,
+      "height": 54,
+      "keywords": "lights string multicolor"
+    },
+    {
+      "id": "glow-bulb",
+      "name": "Glow Bulb",
+      "category": "lights",
+      "image": "assets/decorations/lights/glow-bulb.svg",
+      "colorable": true,
+      "defaultColor": "#FFC93C",
+      "width": 40,
+      "height": 52,
+      "keywords": "bulb light c9 retro"
+    },
+    {
+      "id": "warm-garland",
+      "name": "Warm Light Garland",
+      "category": "lights",
+      "image": "assets/decorations/lights/warm-garland.svg",
+      "colorable": true,
+      "defaultColor": "#FFE08A",
+      "width": 210,
+      "height": 63,
+      "keywords": "lights garland warm white string"
+    },
+    {
+      "id": "pine-present",
+      "name": "Pine Present",
+      "category": "gifts",
+      "image": "assets/decorations/gifts/pine-present.svg",
+      "colorable": true,
+      "defaultColor": "#176B45",
+      "width": 72,
+      "height": 72,
+      "keywords": "gift box present green"
+    },
+    {
+      "id": "striped-gift",
+      "name": "Candy Stripe Gift",
+      "category": "gifts",
+      "image": "assets/decorations/gifts/striped-gift.svg",
+      "colorable": true,
+      "defaultColor": "#C9182B",
+      "width": 70,
+      "height": 70,
+      "keywords": "gift box present stripe red"
+    },
+    {
+      "id": "tall-gift",
+      "name": "Tall Gift",
+      "category": "gifts",
+      "image": "assets/decorations/gifts/tall-gift.svg",
+      "colorable": true,
+      "defaultColor": "#3A7BD5",
+      "width": 54,
+      "height": 72,
+      "keywords": "gift box tall present blue"
+    },
+    {
+      "id": "gift-stack",
+      "name": "Gift Stack",
+      "category": "gifts",
+      "image": "assets/decorations/gifts/gift-stack.svg",
+      "colorable": false,
+      "width": 84,
+      "height": 84,
+      "keywords": "gifts presents pile stack"
+    },
+    {
+      "id": "frost-flake",
+      "name": "Frost Flake",
+      "category": "extras",
+      "image": "assets/decorations/extras/frost-flake.svg",
+      "colorable": true,
+      "defaultColor": "#9FD3F0",
+      "width": 44,
+      "height": 44,
+      "keywords": "snowflake snow ice"
+    },
+    {
+      "id": "holly",
+      "name": "Holly Sprig",
+      "category": "extras",
+      "image": "assets/decorations/extras/holly.svg",
+      "colorable": false,
+      "width": 48,
+      "height": 48,
+      "keywords": "holly berries leaves"
+    },
+    {
+      "id": "pine-cone",
+      "name": "Pine Cone",
+      "category": "extras",
+      "image": "assets/decorations/extras/pine-cone.svg",
+      "colorable": false,
+      "width": 40,
+      "height": 50,
+      "keywords": "pinecone nature rustic"
+    },
+    {
+      "id": "tiny-star",
+      "name": "Tiny Star",
+      "category": "extras",
+      "image": "assets/decorations/extras/tiny-star.svg",
+      "colorable": true,
+      "defaultColor": "#FFD54F",
+      "width": 30,
+      "height": 30,
+      "keywords": "star small sparkle"
+    },
+    {
+      "id": "stocking",
+      "name": "Cozy Stocking",
+      "category": "extras",
+      "image": "assets/decorations/extras/stocking.svg",
+      "colorable": true,
+      "defaultColor": "#C9182B",
+      "width": 52,
+      "height": 56,
+      "keywords": "stocking sock fireplace"
+    }
+  ]
+}
