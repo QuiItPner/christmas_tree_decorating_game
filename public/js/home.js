@@ -1,12 +1,13 @@
-import { $, $$, mountChrome, loadLibrary, showFatal, escapeHtml } from './core.js?v=20261110u';
-import { renderDesignSVG } from './render.js?v=20261110u';
-import { THEMES, designFromTheme } from './themes-data.js?v=20261110u';
+import { $, $$, mountChrome, loadLibrary, showFatal, escapeHtml } from './core.js?v=20261111a';
+import { renderDesignSVG } from './render.js?v=20261111a';
+import { THEMES, designFromTheme } from './themes-data.js?v=20261111a';
 
 mountChrome('about');
 
 /* ---------------- helpers ---------------- */
 const isFert = (a) => /phân bón/i.test(a.keywords || '');
-const typeLabel = (a) => (isFert(a) ? 'Phân bón' : 'Thuốc BVTV');
+// only bottles hang on the garland — square sachets/bags (ratio ~1.15) look out of place
+const isBottle = (a) => a.width / a.height < 0.9;
 
 /** Runs fn once the element is close to the viewport (or immediately without IO support). */
 function whenNear(el, fn, margin = '300px 0px') {
@@ -27,7 +28,6 @@ function fillTree(el, design, lib, uid, title) {
 /* ---------------- themes teaser (skeleton first, trees once the library is ready) ---------------- */
 const TEASER = [THEMES[1], THEMES[2], THEMES[6]].filter(Boolean);
 $$('[data-theme-count]').forEach((n) => { n.textContent = THEMES.length; });
-$('#stat-themes').textContent = THEMES.length;
 $('#theme-teaser').innerHTML = TEASER.map((t) => `
   <li>
     <a class="home-theme" href="studio.html?theme=${encodeURIComponent(t.id)}" aria-label="Bắt đầu với chủ đề ${escapeHtml(t.name)}">
@@ -104,11 +104,11 @@ function renderGarland() {
     const dur = (3.6 + ((i * 7) % 5) * 0.35).toFixed(2);
     const delay = (-((i * 13) % 9) * 0.4).toFixed(2);
     return `<li class="home-orn" style="--drop:${DROPS[i % DROPS.length]}px;--dur:${dur}s;--delay:${delay}s;--i:${i}">
-      <a class="home-orn-link" href="studio.html" title="${escapeHtml(a.name)} — bấm để vào trang trí">
+      <a class="home-orn-link" href="studio.html" aria-label="${escapeHtml(a.name)}">
         <span class="home-orn-swing">
           <span class="home-orn-hook" aria-hidden="true"></span>
-          <span class="home-orn-body"><img src="${escapeHtml(a.image)}" alt="${escapeHtml(a.name)} (${typeLabel(a)})" loading="lazy" decoding="async"></span>
-          <span class="home-orn-name" aria-hidden="true">${escapeHtml(a.name)}<small>${typeLabel(a)}</small></span>
+          <span class="home-orn-body"><img src="${escapeHtml(a.image)}" alt="" loading="lazy" decoding="async"></span>
+          <span class="home-orn-name" aria-hidden="true">${escapeHtml(a.name)}</span>
         </span>
       </a>
     </li>`;
@@ -120,13 +120,11 @@ function renderGarland() {
   void list.offsetWidth; // restart the drop-in animation
   list.classList.add('is-in');
   $('#garland-status').hidden = true;
-  const label = { all: 'sản phẩm', bvtv: 'thuốc BVTV', fert: 'phân bón' }[garlandFilter];
-  $('#garland-summary').textContent = `Đang treo ${items.length}/${all.length} ${label}. Bấm vào chai bất kỳ để vào trang trí — cả ${products.length} sản phẩm đều có trong thư viện.`;
   $('#garland-scroller').scrollLeft = 0;
 }
 
 function setupGarland() {
-  products = lib.decorations.filter((a) => a.category === 'products');
+  products = lib.decorations.filter((a) => a.category === 'products' && isBottle(a));
   const counts = { all: products.length, bvtv: products.filter((a) => !isFert(a)).length, fert: products.filter(isFert).length };
   $$('[data-count]').forEach((n) => { n.textContent = counts[n.dataset.count]; });
   $$('#garland-filter button').forEach((btn) => {
@@ -152,10 +150,6 @@ let lib = null;
 (async () => {
   lib = await loadLibrary();
   try { await Promise.race([document.fonts.load('800 26px Epilogue', 'Giáng Sinh ăâđêôơư'), new Promise((r) => setTimeout(r, 1000))]); } catch { /* ignore */ }
-
-  const products_ = lib.decorations.filter((a) => a.category === 'products');
-  $('#stat-products').textContent = products_.length;
-  $('#stat-items').textContent = lib.decorations.length - products_.length;
 
   // hero: the Phú Nông theme, no banner so the tree and bottles carry the frame
   const hero = designFromTheme(THEMES[0], lib, { seed: 'hero-tree' });

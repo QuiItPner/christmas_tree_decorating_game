@@ -6,12 +6,12 @@ import {
   loadLibrary, defaultDesign, normalizeDesign, loadCurrent, saveCurrent,
   decodeDesign, shareLink, copyText, downloadBlob, fileSafe,
   toast, confirmDialog, alertDialog, mountChrome, showFatal,
-} from './core.js?v=20261110u';
+} from './core.js?v=20261111a';
 import {
   W, H, TREE_STYLES, BACKGROUNDS, treeGeometry, renderTree, renderBackground, renderDecoration,
   renderGreeting, transformOf, assetSVG, designToPngBlob, generateDecorations, suggestPosition,
-} from './render.js?v=20261110u';
-import { THEMES, themeById, designFromTheme } from './themes-data.js?v=20261110u';
+} from './render.js?v=20261111a';
+import { THEMES, themeById, designFromTheme } from './themes-data.js?v=20261111a';
 
 mountChrome('studio', { share: true, noFooter: true, primary: { label: 'Xuất PNG', icon: 'download', id: 'hdr-export' } });
 

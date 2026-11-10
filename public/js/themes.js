@@ -1,6 +1,6 @@
-import { $, $$, mountChrome, loadLibrary, showFatal, escapeHtml } from './core.js?v=20261110u';
-import { renderDesignSVG } from './render.js?v=20261110u';
-import { THEMES, designFromTheme, themeById } from './themes-data.js?v=20261110u';
+import { $, $$, mountChrome, loadLibrary, showFatal, escapeHtml } from './core.js?v=20261111a';
+import { renderDesignSVG } from './render.js?v=20261111a';
+import { THEMES, designFromTheme, themeById } from './themes-data.js?v=20261111a';
 
 mountChrome('themes');
 

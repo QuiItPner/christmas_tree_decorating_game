@@ -1,8 +1,8 @@
 /* Ready-made Christmas themes. Each one sets coordinated colours,
    a background and a decoration pool, then the random decorator
    lays them out. Users can keep editing afterwards. */
-import { defaultDesign, clone } from './core.js?v=20261110u';
-import { generateDecorations } from './render.js?v=20261110u';
+import { defaultDesign, clone } from './core.js?v=20261111a';
+import { generateDecorations } from './render.js?v=20261111a';
 
 export const THEMES = [
   {
