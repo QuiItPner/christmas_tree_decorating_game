@@ -1,44 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>My Gallery · My Little Christmas Tree</title>
-  <meta name="description" content="Browse, re-edit or share the Christmas trees you saved in this browser.">
+  <title>Bộ sưu tập · Cây Thông Phú Nông</title>
+  <meta name="description" content="Xem, chỉnh sửa lại hoặc chia sẻ những cây thông Noel bạn đã lưu trên trình duyệt này.">
   <meta name="theme-color" content="#176B45">
-  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/brand/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/brand/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,0..1,0&display=block">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=20261110c">
 </head>
 <body class="page-gallery">
   <div class="vault-bar">
     <div class="container">
-      <div class="crumbs"><a href="studio.html"><span class="ms">home_work</span>Studio Workshop</a><span>/</span><span style="color:var(--ink)">My Gallery</span></div>
+      <div class="crumbs"><a href="studio.html"><span class="ms">home_work</span>Xưởng trang trí</a><span>/</span><span style="color:var(--ink)">Bộ sưu tập</span></div>
       <div class="meter" id="meter"><span class="ms">save</span><span id="meter-text"></span><span class="bar"><i id="meter-bar"></i></span></div>
     </div>
   </div>
   <main class="container">
     <div class="page-head">
       <div>
-        <span class="eyebrow pill berry"><span class="ms">auto_awesome</span>Personal holiday vault</span>
-        <h1 class="h-xl">My Christmas Creations</h1>
-        <p class="lead">Browse, re-edit or share your personalized holiday trees and greeting cards, crafted with warm winter spirit.</p>
+        <span class="eyebrow pill berry"><span class="ms">auto_awesome</span>Kho lưu trữ mùa lễ của bạn</span>
+        <h1 class="h-xl">Cây thông của tôi</h1>
+        <p class="lead">Xem, chỉnh sửa lại hoặc chia sẻ những cây thông và thiệp chúc bạn đã tự tay tạo nên với tất cả sự ấm áp của mùa đông.</p>
       </div>
       <div class="hero-ctas">
-        <button class="btn btn-ghost" type="button" id="btn-import"><span class="ms">upload</span>Import Design</button>
-        <a class="btn btn-berry" href="studio.html?new=1"><span class="ms">add</span>Create New Tree</a>
+        <button class="btn btn-ghost" type="button" id="btn-import"><span class="ms">upload</span>Nhập thiết kế</button>
+        <a class="btn btn-berry" href="studio.html?new=1"><span class="ms">add</span>Tạo cây mới</a>
         <input type="file" id="import-file" accept=".json,application/json" hidden>
       </div>
     </div>
 
     <div class="gallery-tools">
-      <div class="chips" id="filters" role="toolbar" aria-label="Filter trees"></div>
+      <div class="chips" id="filters" role="toolbar" aria-label="Lọc cây"></div>
       <div class="right">
-        <label class="search"><span class="ms">search</span><input class="field" id="search" type="search" placeholder="Search creations…" aria-label="Search creations"></label>
-        <button class="icon-btn sm" type="button" id="btn-view" title="Switch to list view" aria-label="Switch layout"><span class="ms">view_agenda</span></button>
-        <button class="icon-btn sm" type="button" id="btn-sort" title="Sort: newest first" aria-label="Change sort order"><span class="ms">sort</span></button>
+        <label class="search"><span class="ms">search</span><input class="field" id="search" type="search" placeholder="Tìm kiếm…" aria-label="Tìm kiếm cây thông"></label>
+        <button class="icon-btn sm" type="button" id="btn-view" title="Chuyển sang dạng danh sách" aria-label="Đổi kiểu hiển thị"><span class="ms">view_agenda</span></button>
+        <button class="icon-btn sm" type="button" id="btn-sort" title="Sắp xếp: mới nhất" aria-label="Đổi cách sắp xếp"><span class="ms">sort</span></button>
       </div>
     </div>
 
@@ -46,17 +47,17 @@
 
     <section class="card-promo">
       <div>
-        <span class="eyebrow pill berry"><span class="ms">mail</span>Digital postcard feature</span>
-        <h2 class="h-lg" style="margin:10px 0 8px">Create a Christmas Card</h2>
-        <p>Personalize a warm greeting and send it as a digital holiday postcard. Choose any decorated tree, write your note, then export a high-resolution keepsake or share a card link.</p>
+        <span class="eyebrow pill berry"><span class="ms">mail</span>Thiệp điện tử</span>
+        <h2 class="h-lg" style="margin:10px 0 8px">Tạo thiệp Giáng Sinh</h2>
+        <p>Viết lời chúc mùa vàng và gửi đi như một tấm thiệp điện tử tới bà con, đại lý và đối tác. Chọn cây thông bạn đã trang trí, ghi lời nhắn, rồi xuất ảnh độ phân giải cao hoặc chia sẻ link thiệp.</p>
         <div class="row">
-          <a class="btn btn-pine" href="studio.html?panel=greeting"><span class="ms">edit</span>Write New Holiday Card</a>
-          <a href="index.html#greetings" style="font-weight:600;display:inline-flex;align-items:center;gap:4px">Learn how card links work <span class="ms" style="font-size:18px">arrow_forward</span></a>
+          <a class="btn btn-pine" href="studio.html?panel=greeting"><span class="ms">edit</span>Viết thiệp mới</a>
+          <a href="index.html#greetings" style="font-weight:600;display:inline-flex;align-items:center;gap:4px">Link thiệp hoạt động thế nào <span class="ms" style="font-size:18px">arrow_forward</span></a>
         </div>
       </div>
-      <div class="postcard" aria-hidden="true"><b>SEASON’S GREETINGS</b><i></i><i style="width:70%"></i><small>Warmest Wishes ✦</small></div>
+      <div class="postcard" aria-hidden="true"><b>MÙA VÀNG BỘI THU</b><i></i><i style="width:70%"></i><small>Phú Nông kính chúc ✦</small></div>
     </section>
   </main>
-  <script type="module" src="js/gallery.js"></script>
+  <script type="module" src="js/gallery.js?v=20261110"></script>
 </body>
 </html>

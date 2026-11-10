@@ -114,11 +114,7 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--pine-deep); margin:
 }
 .hdr-inner { height: 100%; padding: 0 20px; display: flex; align-items: center; gap: 16px; justify-content: space-between; }
 .brand { display: flex; align-items: center; gap: 10px; min-width: 0; color: inherit; }
-.brand-logo { width: 38px; height: 38px; flex-shrink: 0; display: block; }
-.brand-logo svg { width: 100%; height: 100%; display: block; }
-.brand-text { display: flex; flex-direction: column; min-width: 0; }
-.brand-name { font: 700 19px/1.1 var(--font-head); color: var(--pine-deep); white-space: nowrap; }
-.brand-tag { font: 700 10.5px/1.3 var(--font-body); letter-spacing: .09em; text-transform: uppercase; color: var(--bronze); margin-top: 3px; white-space: nowrap; }
+.brand-logo { height: 46px; width: auto; flex-shrink: 0; display: block; }
 .main-nav { display: flex; align-items: center; gap: 4px; padding: 4px; background: rgba(244, 235, 217, .65); border-radius: 999px; }
 .main-nav a { display: flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 999px; color: var(--ink-2); font: 600 14px/1.2 var(--font-body); white-space: nowrap; transition: background .18s, color .18s; }
 .main-nav a .ms { display: none; }
@@ -143,17 +139,14 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--pine-deep); margin:
   .site-header.nav-open .main-nav { opacity: 1; pointer-events: auto; transform: none; }
   .main-nav a { padding: 12px 14px; border-radius: var(--r); }
   .main-nav a .ms { display: inline-block; }
-  .brand-tag { display: none; }
-  .brand-name { font-size: 17px; }
 }
 @media (max-width: 640px) {
   .hide-sm { display: none !important; }
 }
 @media (max-width: 460px) {
   .hide-xs { display: none !important; }
+  .brand-logo { height: 38px; }
   .hdr-actions .btn { padding: 9px 11px; }
-  .brand-name { font-size: 15px; white-space: normal; line-height: 1.05; }
-  .brand-logo { width: 34px; height: 34px; }
 }
 
 /* ---------------- footer ---------------- */
@@ -441,6 +434,8 @@ input[type=range] { width: 100%; accent-color: var(--pine-2); height: 22px; curs
 .lib-tools { padding: 0 16px 6px; display: flex; flex-direction: column; gap: 10px; }
 .chip-row { display: flex; gap: 6px; overflow-x: auto; padding: 2px 2px 6px; scrollbar-width: none; }
 .chip-row::-webkit-scrollbar { display: none; }
+#lib-cats { flex-wrap: wrap; overflow: visible; gap: 6px; padding-bottom: 2px; }
+#lib-cats .chip { padding: 6px 12px; }
 .asset-grid { flex: 1; min-height: 0; overflow-y: auto; padding: 8px 16px 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-content: start; }
 .asset-tile {
   position: relative; background: var(--c-lowest); border-radius: var(--r); padding: 10px 8px 6px; border: 0;
@@ -448,8 +443,8 @@ input[type=range] { width: 100%; accent-color: var(--pine-2); height: 22px; curs
   transition: transform .15s, box-shadow .15s; cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
 }
 .asset-tile:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
-.asset-tile .thumb { width: 64px; height: 64px; border-radius: var(--r-sm); background: rgba(255, 241, 232, .6); display: grid; place-items: center; padding: 6px; pointer-events: none; }
-.asset-tile .thumb svg { width: 100%; height: 100%; overflow: visible; }
+.asset-tile .thumb { width: 84px; height: 84px; border-radius: var(--r-sm); background: rgba(255, 241, 232, .6); display: grid; place-items: center; padding: 6px; pointer-events: none; }
+.asset-tile .thumb > svg { width: 72px; height: 72px; display: block; overflow: hidden; }
 .asset-tile .name { font: 700 12px/1.25 var(--font-body); color: var(--ink); text-align: center; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .asset-tile .add { border: 0; background: transparent; color: var(--pine-2); font: 700 11.5px/1 var(--font-body); padding: 6px 10px; border-radius: 6px; display: inline-flex; align-items: center; gap: 3px; width: 100%; justify-content: center; }
 .asset-tile .add:hover { background: rgba(23, 107, 69, .1); }

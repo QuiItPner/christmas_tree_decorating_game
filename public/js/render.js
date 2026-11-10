@@ -3,7 +3,7 @@
    full-design markup, PNG export and the random decorator.
    Stage coordinate system: 600 × 720 units.
    ========================================================= */
-import { escapeHtml, round, uid, clamp } from './core.js';
+import { escapeHtml, round, uid, clamp } from './core.js?v=20261110';
 
 export const W = 600;
 export const H = 720;
@@ -11,19 +11,20 @@ const CX = 300;
 const ANCHOR_Y = 640; // tree scales around the skirt centre
 
 export const TREE_STYLES = [
-  { id: 'classic', label: 'Classic Pine', icon: 'park' },
-  { id: 'mini', label: 'Mini Spruce', icon: 'nature' },
-  { id: 'snowy', label: 'Snowy Fir', icon: 'ac_unit' },
-  { id: 'minimalist', label: 'Minimalist', icon: 'change_history' },
+  { id: 'classic', label: 'Thông cổ điển', icon: 'park' },
+  { id: 'mini', label: 'Vân sam mini', icon: 'nature' },
+  { id: 'snowy', label: 'Linh sam phủ tuyết', icon: 'ac_unit' },
+  { id: 'minimalist', label: 'Tối giản', icon: 'change_history' },
 ];
 export const BACKGROUNDS = [
-  { id: 'cozy-room', label: 'Cozy Living Room', icon: 'chair' },
-  { id: 'fireplace', label: 'Warm Fireplace Room', icon: 'fireplace' },
-  { id: 'snowy-forest', label: 'Snowy Forest', icon: 'forest' },
-  { id: 'night-sky', label: 'Christmas Night Sky', icon: 'bedtime' },
-  { id: 'minimal', label: 'Minimal Colour', icon: 'gradient' },
+  { id: 'rice-field', label: 'Cánh đồng lúa mùa vàng', short: 'Đồng lúa', icon: 'grass' },
+  { id: 'cozy-room', label: 'Phòng khách ấm cúng', short: 'Phòng khách', icon: 'chair' },
+  { id: 'fireplace', label: 'Phòng lò sưởi', short: 'Lò sưởi', icon: 'fireplace' },
+  { id: 'snowy-forest', label: 'Rừng tuyết', short: 'Rừng tuyết', icon: 'forest' },
+  { id: 'night-sky', label: 'Bầu trời đêm Giáng sinh', short: 'Đêm sao', icon: 'bedtime' },
+  { id: 'minimal', label: 'Màu tối giản', short: 'Tối giản', icon: 'gradient' },
 ];
-export const bgLabel = (id) => BACKGROUNDS.find((b) => b.id === id)?.label || 'Custom';
+export const bgLabel = (id) => BACKGROUNDS.find((b) => b.id === id)?.label || 'Tuỳ chỉnh';
 
 /* ---------------- colour helpers ---------------- */
 function hexToRgb(hex) {
@@ -302,6 +303,38 @@ export function renderBackground(bg, u = 'b') {
     s += snowDots(r, 30, 0, 600, 0.6);
     return s;
   }
+  if (theme === 'rice-field') {
+    const r = rng(71);
+    let s = `<defs><linearGradient id="${id('sky')}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD9A3"/><stop offset=".55" stop-color="#FFEFD2"/><stop offset="1" stop-color="#FFF8E6"/></linearGradient><radialGradient id="${id('sun')}"><stop offset="0" stop-color="#FFE48A" stop-opacity=".9"/><stop offset="1" stop-color="#FFE48A" stop-opacity="0"/></radialGradient><linearGradient id="${id('paddy')}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9B542"/><stop offset="1" stop-color="#E0B93A"/></linearGradient><linearGradient id="${id('ground')}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C98F4C"/><stop offset="1" stop-color="#9D6A33"/></linearGradient></defs>`;
+    s += `<rect width="${W}" height="${H}" fill="url(#${id('sky')})"/><circle cx="470" cy="150" r="120" fill="url(#${id('sun')})"/><circle cx="470" cy="150" r="42" fill="#FFE48A"/>`;
+    // far hills + palm silhouettes
+    s += `<path d="M0 330Q90 270 190 310T380 290T600 320V400H0Z" fill="#B9D4A6"/><path d="M0 360Q120 320 240 350T470 335T600 360V420H0Z" fill="#9CC48A"/>`;
+    [[62, 346, 38], [548, 350, 44]].forEach(([x, y, h]) => {
+      s += `<path d="M${x} ${y}q2 -${h * 0.6} -1 -${h}" stroke="#5E7F43" stroke-width="4" fill="none" stroke-linecap="round"/>`;
+      for (let k = 0; k < 6; k++) { const a = -150 + k * 36; s += `<path d="M${x - 1} ${y - h}q${round(18 * Math.cos((a * Math.PI) / 180))} ${round(12 * Math.sin((a * Math.PI) / 180) - 6)} ${round(30 * Math.cos((a * Math.PI) / 180))} ${round(26 * Math.sin((a * Math.PI) / 180) + 2)}" stroke="#4F7A3A" stroke-width="3.5" fill="none" stroke-linecap="round"/>`; }
+    });
+    // village house
+    s += `<g transform="translate(118 378)"><rect x="-34" y="-28" width="68" height="34" fill="#F4E3C7"/><path d="M-42 -28L0 -58L42 -28Z" fill="#B5542C"/><rect x="-8" y="-14" width="16" height="20" fill="#7C4A22"/><rect x="16" y="-18" width="12" height="10" fill="#9ED1F0"/><rect x="-28" y="-18" width="12" height="10" fill="#9ED1F0"/></g>`;
+    // paddy rows in golden-green
+    s += `<rect y="400" width="${W}" height="200" fill="url(#${id('paddy')})"/>`;
+    for (let row = 0; row < 7; row++) {
+      const y = 412 + row * 27;
+      const sp = 14 + row * 5;
+      for (let x = (row % 2) * sp / 2; x < W; x += sp) {
+        const hh = 9 + row * 3.4;
+        s += `<path d="M${round(x)} ${y + hh}q-3 -${round(hh * 0.6)} 0 -${round(hh)}q3 ${round(hh * 0.4)} 0 ${round(hh)}" fill="#6E9A3A" opacity="${round(0.55 + row * 0.06)}"/><path d="M${round(x)} ${y + 2}q2 -8 5 -11" stroke="#E9C64A" stroke-width="2" fill="none" stroke-linecap="round" opacity="${round(0.6 + row * 0.05)}"/>`;
+      }
+    }
+    // field divider paths + water glints
+    s += `<path d="M0 468Q300 452 600 470" stroke="#B59334" stroke-opacity=".5" stroke-width="2" fill="none"/><path d="M0 536Q300 520 600 540" stroke="#B59334" stroke-opacity=".5" stroke-width="2.5" fill="none"/>`;
+    for (let i = 0; i < 26; i++) s += `<ellipse cx="${round(r() * W)}" cy="${round(430 + r() * 150)}" rx="${round(3 + r() * 6)}" ry="1.2" fill="#fff" opacity="${round(0.25 + r() * 0.3)}"/>`;
+    // dirt yard where the tree stands
+    s += `<path d="M0 596Q300 560 600 596V720H0Z" fill="url(#${id('ground')})"/><path d="M0 596Q300 560 600 596" stroke="#8F5D2B" stroke-opacity=".5" stroke-width="3" fill="none"/>`;
+    for (let i = 0; i < 40; i++) s += `<circle cx="${round(r() * W)}" cy="${round(610 + r() * 100)}" r="${round(1 + r() * 2.2)}" fill="#6B4320" opacity="${round(0.15 + r() * 0.25)}"/>`;
+    // dragonflies / birds
+    s += `<path d="M330 120q10-8 20 0M350 120q10-8 20 0M400 92q8-6 16 0M416 92q8-6 16 0" stroke="#7A5C3A" stroke-width="1.8" fill="none" stroke-linecap="round"/>`;
+    return s;
+  }
   // minimal
   const c = bg.color || '#FBE9D7';
   const light = luminance(c) > 0.35;
@@ -372,7 +405,7 @@ export function renderGreeting(g) {
     const by = 12;
     s += `<g class="greeting-banner"><rect x="${round(x)}" y="${by}" width="${round(pw)}" height="${h}" rx="${h / 2}" fill="#FDFBF7" opacity=".93"/><rect x="${round(x)}" y="${by}" width="${round(pw)}" height="${h}" rx="${h / 2}" fill="none" stroke="#E8DCBE" stroke-width="1.5"/>${sparkle(x + 26, by + h / 2, '#B90C17')}${sparkle(x + pw - 26, by + h / 2, '#B90C17')}<text x="${W / 2}" y="${round(by + h / 2 + size * 0.36)}" text-anchor="middle" font-family="Epilogue, 'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="${size}" fill="${g.color || '#0E472A'}">${escapeHtml(text)}</text></g>`;
   }
-  const parts = [g.name ? `With love, ${g.name.trim()}` : '', (g.date || '').trim()].filter(Boolean);
+  const parts = [g.name ? `Thân gửi từ ${g.name.trim()}` : '', (g.date || '').trim()].filter(Boolean);
   if (parts.length) {
     const line = parts.join('  ·  ');
     const size = 16;
@@ -388,7 +421,7 @@ export function renderGreeting(g) {
    ========================================================= */
 export function renderDesignSVG(design, lib, { uid: u = uid('d'), extraStyle = '', className = '', title = '' } = {}) {
   const deco = design.decorations.map((d) => renderDecoration(d, lib, u + '-')).join('');
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" class="${className}" role="img" aria-label="${escapeHtml(title || design.name || 'Christmas tree')}">${extraStyle ? `<style>${extraStyle}</style>` : ''}<g class="layer-bg">${renderBackground(design.background, u + 'b')}</g><g class="layer-tree">${renderTree(design.tree, u + 't')}</g><g class="layer-decos">${deco}</g><g class="layer-greeting">${renderGreeting(design.greeting)}</g></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" class="${className}" role="img" aria-label="${escapeHtml(title || design.name || 'Cây thông Noel')}">${extraStyle ? `<style>${extraStyle}</style>` : ''}<g class="layer-bg">${renderBackground(design.background, u + 'b')}</g><g class="layer-tree">${renderTree(design.tree, u + 't')}</g><g class="layer-decos">${deco}</g><g class="layer-greeting">${renderGreeting(design.greeting)}</g></svg>`;
 }
 
 /* ---------------- PNG export ---------------- */
@@ -416,27 +449,38 @@ async function embeddedFontCss() {
   return fontCssPromise;
 }
 
+/** An SVG loaded into <img> cannot fetch external files, so raster decorations are inlined as data URIs. */
+async function rasterDataUrl(asset) {
+  if (asset.dataUrl) return asset.dataUrl;
+  const blob = await (await fetch(asset.image)).blob();
+  asset.dataUrl = await new Promise((res, rej) => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.onerror = () => rej(new Error('Không đọc được ảnh sản phẩm')); fr.readAsDataURL(blob); });
+  return asset.dataUrl;
+}
+
 export async function designToPngBlob(design, lib, scale = 2) {
   try { await document.fonts.ready; } catch { /* ignore */ }
   const css = await embeddedFontCss();
-  const svg = renderDesignSVG(design, lib, { uid: 'x', extraStyle: css });
+  let svg = renderDesignSVG(design, lib, { uid: 'x', extraStyle: css });
+  const rasters = [...new Set(design.decorations.map((d) => lib.byId[d.assetId]).filter((a) => a && a.type === 'image'))];
+  const dataUrls = await Promise.all(rasters.map(rasterDataUrl));
+  rasters.forEach((a, i) => { svg = svg.split(`href="${a.image}"`).join(`href="${dataUrls[i]}"`); });
   const url = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml;charset=utf-8' }));
   try {
     const img = new Image();
     img.decoding = 'async';
-    await new Promise((res, rej) => { img.onload = res; img.onerror = () => rej(new Error('Could not render the image')); img.src = url; });
+    await new Promise((res, rej) => { img.onload = res; img.onerror = () => rej(new Error('Không thể tạo ảnh')); img.src = url; });
     const canvas = document.createElement('canvas');
     canvas.width = W * scale; canvas.height = H * scale;
     const ctx = canvas.getContext('2d');
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    return await new Promise((res, rej) => canvas.toBlob((b) => (b ? res(b) : rej(new Error('PNG encoding failed'))), 'image/png'));
+    return await new Promise((res, rej) => canvas.toBlob((b) => (b ? res(b) : rej(new Error('Không mã hoá được ảnh PNG'))), 'image/png'));
   } finally { URL.revokeObjectURL(url); }
 }
 
 /* =========================================================
    RANDOM DECORATOR
    ========================================================= */
-const ORNAMENT_CATS = ['balls', 'ribbons', 'characters', 'extras'];
+const ORNAMENT_CATS = ['products', 'balls', 'ribbons', 'characters', 'extras'];
 
 export function placeTopper(tree, asset) {
   const geo = treeGeometry(tree);

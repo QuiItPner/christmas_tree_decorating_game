@@ -6,14 +6,14 @@ import {
   loadLibrary, defaultDesign, normalizeDesign, loadCurrent, saveCurrent,
   getGalleryItem, upsertGalleryItem, decodeDesign, shareLink, copyText, downloadBlob, fileSafe,
   toast, confirmDialog, promptDialog, alertDialog, mountChrome, showFatal,
-} from './core.js';
+} from './core.js?v=20261110';
 import {
   W, H, TREE_STYLES, BACKGROUNDS, treeGeometry, renderTree, renderBackground, renderDecoration,
   renderGreeting, transformOf, assetSVG, designToPngBlob, generateDecorations, suggestPosition,
-} from './render.js';
-import { THEMES, themeById, designFromTheme } from './themes-data.js';
+} from './render.js?v=20261110';
+import { THEMES, themeById, designFromTheme } from './themes-data.js?v=20261110';
 
-mountChrome('studio', { share: true, noFooter: true, primary: { label: 'Export PNG', icon: 'download', id: 'hdr-export' } });
+mountChrome('studio', { share: true, noFooter: true, primary: { label: 'Xuất PNG', icon: 'download', id: 'hdr-export' } });
 
 /* ---------------- state ---------------- */
 const S = {
@@ -74,13 +74,13 @@ function undo() {
   if (!S.history.length) return;
   S.future.push(S.snap);
   restore(S.history.pop());
-  toast('Undone', 'undo');
+  toast('Đã hoàn tác', 'undo');
 }
 function redo() {
   if (!S.future.length) return;
   S.history.push(S.snap);
   restore(S.future.pop());
-  toast('Redone', 'redo');
+  toast('Đã làm lại', 'redo');
 }
 function updateHistoryButtons() {
   $('#btn-undo').disabled = !S.history.length;
@@ -199,7 +199,7 @@ function positionFloatBar(points) {
   const lockBtn = bar.querySelector('[data-act="lock"]');
   lockBtn.classList.toggle('on', !!d?.locked);
   lockBtn.querySelector('.ms').textContent = d?.locked ? 'lock' : 'lock_open';
-  lockBtn.title = d?.locked ? 'Unlock' : 'Lock in place';
+  lockBtn.title = d?.locked ? 'Mở khoá' : 'Khoá vị trí';
   bar.querySelectorAll('[data-act="rotate"],[data-act="forward"],[data-act="duplicate"]').forEach((b) => { b.disabled = !!d?.locked && b.dataset.act === 'rotate'; });
 }
 
@@ -226,7 +226,7 @@ function addAsset(assetId, pos = null) {
   S.selected = deco.instanceId;
   drawSelection(); renderItemEditor(); renderLayers();
   commit();
-  if (isMobile()) toast(`${a.name} added`, 'add_circle');
+  if (isMobile()) toast(`Đã thêm ${a.name}`, 'add_circle');
 }
 function removeSelected() {
   const d = sel();
@@ -235,7 +235,7 @@ function removeSelected() {
   S.selected = null;
   renderDecos(); drawSelection(); renderItemEditor(); renderLayers();
   commit();
-  toast(`${assetOf(d)?.name || 'Decoration'} removed — Undo is in the toolbar`, 'delete');
+  toast(`Đã xoá ${assetOf(d)?.name || 'đồ trang trí'} — có thể Hoàn tác trên thanh công cụ`, 'delete');
 }
 function duplicateSelected() {
   const d = sel();
@@ -393,7 +393,7 @@ document.addEventListener('keydown', (e) => {
 
 /* ---------------- library ---------------- */
 function renderCats() {
-  const cats = [{ id: 'all', short: 'All' }, ...S.lib.categories];
+  const cats = [{ id: 'all', short: 'Tất cả' }, ...S.lib.categories];
   $('#lib-cats').innerHTML = cats.map((c) => `<button type="button" class="chip ${S.cat === c.id ? 'active' : ''}" data-cat="${c.id}" aria-pressed="${S.cat === c.id}">${escapeHtml(c.short)}</button>`).join('');
 }
 function renderLibrary() {
@@ -401,14 +401,13 @@ function renderLibrary() {
   const catName = Object.fromEntries(S.lib.categories.map((c) => [c.id, c.name.toLowerCase()]));
   const list = S.lib.decorations.filter((a) => (S.cat === 'all' || a.category === S.cat)
     && (!q || `${a.name} ${a.keywords || ''} ${catName[a.category] || ''}`.toLowerCase().includes(q)));
-  $('#lib-count').textContent = `${S.lib.decorations.length} items`;
+  $('#lib-count').textContent = `${S.lib.decorations.length} món`;
   $('#lib-grid').innerHTML = list.length
-    ? list.map((a) => `<div class="asset-tile" data-asset="${a.id}" role="button" tabindex="0" aria-label="Add ${escapeHtml(a.name)}" title="Drag onto the tree, or click to add">
+    ? list.map((a) => `<div class="asset-tile" data-asset="${a.id}" role="button" tabindex="0" aria-label="Thêm ${escapeHtml(a.name)}" title="${escapeHtml(a.name)} — kéo lên cây hoặc bấm để thêm">
         <div class="thumb">${assetSVG(a, a.defaultColor, 'lib')}</div>
-        <span class="name">${escapeHtml(a.name)}</span>
-        <button class="add" type="button" data-add tabindex="-1"><span class="ms">add</span>Add</button>
+        <button class="add" type="button" data-add tabindex="-1"><span class="ms">add</span>Thêm</button>
       </div>`).join('')
-    : `<div class="no-results">No decorations match “${escapeHtml(S.query)}”.</div>`;
+    : `<div class="no-results">Không có món nào khớp “${escapeHtml(S.query)}”.</div>`;
 }
 $('#lib-cats').addEventListener('click', (e) => {
   const b = e.target.closest('[data-cat]');
@@ -500,9 +499,9 @@ function colorField(host, { label, swatches, get, onInput, onCommit }) {
   host.innerHTML = `
     ${label ? `<div class="sub"><span>${escapeHtml(label)}</span><small data-hexlabel></small></div>` : ''}
     <div class="swatches">
-      ${swatches.map((c) => `<button type="button" class="swatch" style="background:${c}" data-c="${c}" title="${c}" aria-label="${escapeHtml(label || 'Color')} ${c}"></button>`).join('')}
-      <label class="swatch-custom" title="Custom color"><input type="color" aria-label="Custom ${escapeHtml(label || '')} color"><span class="ms">colorize</span></label>
-      <input class="field hex-input" maxlength="7" spellcheck="false" aria-label="${escapeHtml(label || 'Color')} HEX value">
+      ${swatches.map((c) => `<button type="button" class="swatch" style="background:${c}" data-c="${c}" title="${c}" aria-label="${escapeHtml(label || 'Màu')} ${c}"></button>`).join('')}
+      <label class="swatch-custom" title="Màu tuỳ chọn"><input type="color" aria-label="Màu tuỳ chọn ${escapeHtml(label || '')}"><span class="ms">colorize</span></label>
+      <input class="field hex-input" maxlength="7" spellcheck="false" aria-label="Mã HEX ${escapeHtml(label || 'màu')}">
     </div>`;
   const picker = host.querySelector('input[type=color]');
   const hex = host.querySelector('.hex-input');
@@ -524,7 +523,7 @@ function colorField(host, { label, swatches, get, onInput, onCommit }) {
     let v = hex.value.trim();
     if (v && v[0] !== '#') v = '#' + v;
     const c = safeColor(v, null);
-    if (c) { onCommit(c); set(c); } else { hex.value = get(); toast('Use a HEX colour like #D62828', 'palette'); }
+    if (c) { onCommit(c); set(c); } else { hex.value = get(); toast('Hãy nhập mã HEX, ví dụ #D62828', 'palette'); }
   };
   hex.addEventListener('change', fromHex);
   hex.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); hex.blur(); } });
@@ -539,8 +538,8 @@ function renderItemEditor() {
   const d = sel();
   itemColorField = null;
   if (!d) {
-    host.innerHTML = `<div class="box"><div class="empty-sel"><span class="ms">touch_app</span><b>No decoration selected</b><br>Click a decoration on the tree to move, resize, rotate or recolor it — or add one from the library.</div>
-      <div class="btn-grid"><button type="button" data-act="random"><span class="ms">auto_fix_high</span>Random decorate</button><button type="button" data-act="library"><span class="ms">category</span>Open library</button></div></div>`;
+    host.innerHTML = `<div class="box"><div class="empty-sel"><span class="ms">touch_app</span><b>Chưa chọn đồ trang trí</b><br>Bấm vào một món trên cây để di chuyển, đổi kích thước, xoay hoặc đổi màu — hoặc thêm món mới từ thư viện.</div>
+      <div class="btn-grid"><button type="button" data-act="random"><span class="ms">auto_fix_high</span>Trang trí ngẫu nhiên</button><button type="button" data-act="library"><span class="ms">category</span>Mở thư viện</button></div></div>`;
     return;
   }
   const a = assetOf(d);
@@ -550,32 +549,32 @@ function renderItemEditor() {
     <div class="box">
       <div class="item-summary">
         <div class="thumb">${assetSVG(a, d.color, 'insp')}</div>
-        <div class="txt"><b>${escapeHtml(a.name)}</b><span>Layer #${idx + 1} of ${list.length} · ${d.locked ? 'Locked' : 'Active'}</span></div>
-        <button class="icon-btn sm ${d.locked ? 'on' : ''}" type="button" data-act="lock" title="${d.locked ? 'Unlock' : 'Lock in place'}" aria-label="${d.locked ? 'Unlock' : 'Lock'}"><span class="ms">${d.locked ? 'lock' : 'lock_open'}</span></button>
-        <button class="icon-btn sm danger" type="button" data-act="delete" title="Delete" aria-label="Delete decoration"><span class="ms">delete</span></button>
+        <div class="txt"><b>${escapeHtml(a.name)}</b><span>Lớp #${idx + 1}/${list.length} · ${d.locked ? 'Đã khoá' : 'Đang chọn'}</span></div>
+        <button class="icon-btn sm ${d.locked ? 'on' : ''}" type="button" data-act="lock" title="${d.locked ? 'Mở khoá' : 'Khoá vị trí'}" aria-label="${d.locked ? 'Mở khoá' : 'Khoá'}"><span class="ms">${d.locked ? 'lock' : 'lock_open'}</span></button>
+        <button class="icon-btn sm danger" type="button" data-act="delete" title="Xoá" aria-label="Xoá đồ trang trí"><span class="ms">delete</span></button>
       </div>
     </div>
     <div class="box" ${d.locked ? 'style="opacity:.55;pointer-events:none" aria-disabled="true"' : ''}>
-      <h3>Transform &amp; size</h3>
-      <div class="slider-row"><div class="top"><span><span class="ms">aspect_ratio</span>Scale</span><b id="it-scale-v"></b></div><input type="range" id="it-scale" min="30" max="300" step="1" aria-label="Scale"></div>
-      <div class="slider-row"><div class="top"><span><span class="ms">rotate_right</span>Rotation</span><b id="it-rot-v"></b></div><input type="range" id="it-rot" min="-180" max="180" step="1" aria-label="Rotation"></div>
-      <div class="sub"><span>Move</span><small id="it-pos"></small></div>
+      <h3>Biến đổi &amp; kích thước</h3>
+      <div class="slider-row"><div class="top"><span><span class="ms">aspect_ratio</span>Kích thước</span><b id="it-scale-v"></b></div><input type="range" id="it-scale" min="30" max="300" step="1" aria-label="Kích thước"></div>
+      <div class="slider-row"><div class="top"><span><span class="ms">rotate_right</span>Góc xoay</span><b id="it-rot-v"></b></div><input type="range" id="it-rot" min="-180" max="180" step="1" aria-label="Góc xoay"></div>
+      <div class="sub"><span>Di chuyển</span><small id="it-pos"></small></div>
       <div class="nudge">
-        <button type="button" class="up" data-nudge="0,-1" aria-label="Move up"><span class="ms">keyboard_arrow_up</span></button>
-        <button type="button" class="left" data-nudge="-1,0" aria-label="Move left"><span class="ms">keyboard_arrow_left</span></button>
-        <button type="button" class="down" data-nudge="0,1" aria-label="Move down"><span class="ms">keyboard_arrow_down</span></button>
-        <button type="button" class="right" data-nudge="1,0" aria-label="Move right"><span class="ms">keyboard_arrow_right</span></button>
+        <button type="button" class="up" data-nudge="0,-1" aria-label="Lên trên"><span class="ms">keyboard_arrow_up</span></button>
+        <button type="button" class="left" data-nudge="-1,0" aria-label="Sang trái"><span class="ms">keyboard_arrow_left</span></button>
+        <button type="button" class="down" data-nudge="0,1" aria-label="Xuống dưới"><span class="ms">keyboard_arrow_down</span></button>
+        <button type="button" class="right" data-nudge="1,0" aria-label="Sang phải"><span class="ms">keyboard_arrow_right</span></button>
       </div>
       <div class="btn-grid">
-        <button type="button" data-act="duplicate"><span class="ms">content_copy</span>Duplicate</button>
-        <button type="button" data-act="flip"><span class="ms">flip</span>Flip</button>
-        <button type="button" data-act="forward" ${idx === list.length - 1 ? 'disabled' : ''}><span class="ms">flip_to_front</span>Bring forward</button>
-        <button type="button" data-act="backward" ${idx === 0 ? 'disabled' : ''}><span class="ms">flip_to_back</span>Send backward</button>
-        <button type="button" data-act="front" ${idx === list.length - 1 ? 'disabled' : ''}><span class="ms">vertical_align_top</span>To front</button>
-        <button type="button" data-act="back" ${idx === 0 ? 'disabled' : ''}><span class="ms">vertical_align_bottom</span>To back</button>
+        <button type="button" data-act="duplicate"><span class="ms">content_copy</span>Nhân bản</button>
+        <button type="button" data-act="flip"><span class="ms">flip</span>Lật ngang</button>
+        <button type="button" data-act="forward" ${idx === list.length - 1 ? 'disabled' : ''}><span class="ms">flip_to_front</span>Đưa lên</button>
+        <button type="button" data-act="backward" ${idx === 0 ? 'disabled' : ''}><span class="ms">flip_to_back</span>Đưa xuống</button>
+        <button type="button" data-act="front" ${idx === list.length - 1 ? 'disabled' : ''}><span class="ms">vertical_align_top</span>Lên trên cùng</button>
+        <button type="button" data-act="back" ${idx === 0 ? 'disabled' : ''}><span class="ms">vertical_align_bottom</span>Xuống dưới cùng</button>
       </div>
     </div>
-    ${a.colorable ? `<div class="box"><h3><span>Festive color glaze</span><button class="link" type="button" data-act="color-reset"><span class="ms">format_color_reset</span>Default</button></h3><div id="it-color"></div></div>` : `<div class="box"><h3>Color</h3><p style="margin:0;font-size:13px;color:var(--ink-2)">This decoration keeps its hand-painted colours.</p></div>`}`;
+    ${a.colorable ? `<div class="box"><h3><span>Màu sắc</span><button class="link" type="button" data-act="color-reset"><span class="ms">format_color_reset</span>Mặc định</button></h3><div id="it-color"></div></div>` : `<div class="box"><h3>Màu sắc</h3><p style="margin:0;font-size:13px;color:var(--ink-2)">Món này giữ nguyên màu vẽ tay.</p></div>`}`;
   const sc = $('#it-scale'), ro = $('#it-rot');
   sc.addEventListener('input', () => patchSelected({ scale: sc.value / 100 }, true));
   sc.addEventListener('change', commit);
@@ -631,13 +630,13 @@ function renderLayers() {
   $('#layers').innerHTML = list.length
     ? [...list].reverse().map((d) => {
       const a = assetOf(d);
-      return `<div class="layer ${d.instanceId === S.selected ? 'active' : ''}" data-id="${d.instanceId}" role="button" tabindex="0" aria-label="Select ${escapeHtml(a.name)}">
+      return `<div class="layer ${d.instanceId === S.selected ? 'active' : ''}" data-id="${d.instanceId}" role="button" tabindex="0" aria-label="Chọn ${escapeHtml(a.name)}">
         <span class="lthumb">${assetSVG(a, d.color, 'ly-' + d.instanceId)}</span><span class="lname">${escapeHtml(a.name)}</span>
-        <button class="lbtn ${d.locked ? 'on' : ''}" type="button" data-lact="lock" aria-label="${d.locked ? 'Unlock' : 'Lock'} ${escapeHtml(a.name)}" title="${d.locked ? 'Unlock' : 'Lock'}"><span class="ms">${d.locked ? 'lock' : 'lock_open'}</span></button>
-        <button class="lbtn" type="button" data-lact="delete" aria-label="Delete ${escapeHtml(a.name)}" title="Delete"><span class="ms">close</span></button>
+        <button class="lbtn ${d.locked ? 'on' : ''}" type="button" data-lact="lock" aria-label="${d.locked ? 'Mở khoá' : 'Khoá'} ${escapeHtml(a.name)}" title="${d.locked ? 'Mở khoá' : 'Khoá'}"><span class="ms">${d.locked ? 'lock' : 'lock_open'}</span></button>
+        <button class="lbtn" type="button" data-lact="delete" aria-label="Xoá ${escapeHtml(a.name)}" title="Xoá"><span class="ms">close</span></button>
       </div>`;
     }).join('')
-    : `<p style="margin:0;font-size:13px;color:var(--muted)">No decorations yet — your tree is waiting!</p>`;
+    : `<p style="margin:0;font-size:13px;color:var(--muted)">Chưa có đồ trang trí — cây đang chờ bạn!</p>`;
 }
 $('#layers').addEventListener('click', (e) => {
   const row = e.target.closest('.layer');
@@ -690,47 +689,47 @@ function buildTreePanel() {
   $('#tree-lights').addEventListener('change', (e) => setTree({ lights: e.target.checked }));
 
   fields.leaves = colorField($('#cs-leaves'), {
-    label: 'Leaves', swatches: ['#0E472A', '#176B45', '#2E8B57', '#88C9A1', '#4F7F7A', '#F2F5F3', '#F7C6D9', '#B9D7EA'],
+    label: 'Lá', swatches: ['#0E472A', '#176B45', '#2E8B57', '#88C9A1', '#4F7F7A', '#F2F5F3', '#F7C6D9', '#B9D7EA'],
     get: () => D().tree.leavesColor, onInput: (c) => setTree({ leavesColor: c }, true), onCommit: (c) => setTree({ leavesColor: c }),
   });
   const br = $('#cs-branches');
-  br.innerHTML = `<label class="switch" style="margin-bottom:8px"><span style="font-weight:600;font-size:13px">Branches linked to leaves</span><input type="checkbox" id="br-link"></label><div id="cs-branches-f"></div>`;
+  br.innerHTML = `<label class="switch" style="margin-bottom:8px"><span style="font-weight:600;font-size:13px">Cành cùng màu với lá</span><input type="checkbox" id="br-link"></label><div id="cs-branches-f"></div>`;
   $('#br-link').addEventListener('change', (e) => setTree({ branchesLinked: e.target.checked }));
   fields.branches = colorField($('#cs-branches-f'), {
-    label: 'Branches', swatches: ['#002111', '#0A3A22', '#1F5136', '#5E7F5E', '#3E5C76', '#8B5A2B'],
+    label: 'Cành', swatches: ['#002111', '#0A3A22', '#1F5136', '#5E7F5E', '#3E5C76', '#8B5A2B'],
     get: () => D().tree.branchesColor, onInput: (c) => setTree({ branchesColor: c, branchesLinked: false }, true), onCommit: (c) => setTree({ branchesColor: c, branchesLinked: false }),
   });
   fields.trunk = colorField($('#cs-trunk'), {
-    label: 'Trunk', swatches: ['#5E3A1A', '#795548', '#A0714F', '#C49A6C', '#3E2C23'],
+    label: 'Thân', swatches: ['#5E3A1A', '#795548', '#A0714F', '#C49A6C', '#3E2C23'],
     get: () => D().tree.trunkColor, onInput: (c) => setTree({ trunkColor: c }, true), onCommit: (c) => setTree({ trunkColor: c }),
   });
   const sk = $('#cs-skirt');
-  sk.innerHTML = `<label class="switch" style="margin-bottom:8px"><span style="font-weight:600;font-size:13px">Tree skirt</span><input type="checkbox" id="sk-on"></label><div id="cs-skirt-f"></div>`;
+  sk.innerHTML = `<label class="switch" style="margin-bottom:8px"><span style="font-weight:600;font-size:13px">Váy gốc cây</span><input type="checkbox" id="sk-on"></label><div id="cs-skirt-f"></div>`;
   $('#sk-on').addEventListener('change', (e) => setTree({ skirt: e.target.checked }));
   fields.skirt = colorField($('#cs-skirt-f'), {
-    label: 'Skirt', swatches: ['#B90C17', '#176B45', '#FFFFFF', '#E9A93B', '#1E2A4A', '#F7C6D9', '#D9C7A7'],
+    label: 'Váy gốc', swatches: ['#B90C17', '#176B45', '#FFFFFF', '#E9A93B', '#1E2A4A', '#F7C6D9', '#D9C7A7'],
     get: () => D().tree.skirtColor, onInput: (c) => setTree({ skirtColor: c }, true), onCommit: (c) => setTree({ skirtColor: c, skirt: true }),
   });
   fields.snow = colorField($('#cs-snow'), {
-    label: 'Snow', swatches: ['#FFFFFF', '#EAF4FB', '#FDF1F6', '#FFF6D6', '#DDE7F0'],
+    label: 'Tuyết', swatches: ['#FFFFFF', '#EAF4FB', '#FDF1F6', '#FFF6D6', '#DDE7F0'],
     get: () => D().tree.snowColor, onInput: (c) => setTree({ snowColor: c }, true),
     onCommit: (c) => setTree(D().tree.snow ? { snowColor: c } : { snowColor: c, snow: 40 }),
   });
   $('#btn-reset-colors').addEventListener('click', () => {
     const def = defaultDesign().tree;
     setTree({ leavesColor: def.leavesColor, trunkColor: def.trunkColor, branchesColor: def.branchesColor, branchesLinked: true, skirtColor: def.skirtColor, snowColor: def.snowColor, skirt: true });
-    toast('Tree colours reset', 'format_color_reset');
+    toast('Đã đặt lại màu cây', 'format_color_reset');
   });
-  $('#theme-minis').innerHTML = THEMES.map((t) => `<button type="button" class="theme-mini" data-theme="${t.id}" title="Apply ${escapeHtml(t.name)}"><span>${escapeHtml(t.name)}</span><span class="dots">${t.palette.map((c) => `<i style="background:${c}"></i>`).join('')}</span></button>`).join('');
+  $('#theme-minis').innerHTML = THEMES.map((t) => `<button type="button" class="theme-mini" data-theme="${t.id}" title="Áp dụng ${escapeHtml(t.name)}"><span>${escapeHtml(t.name)}</span><span class="dots">${t.palette.map((c) => `<i style="background:${c}"></i>`).join('')}</span></button>`).join('');
   $('#theme-minis').addEventListener('click', async (e) => {
     const b = e.target.closest('[data-theme]');
     if (!b) return;
     const t = themeById(b.dataset.theme);
-    if (D().decorations.length > 1 && !(await confirmDialog(`Apply “${t.name}”?`, 'This replaces the tree colours, background and decorations. You can always Undo.', 'Apply theme', false))) return;
+    if (D().decorations.length > 1 && !(await confirmDialog(`Áp dụng “${t.name}”?`, 'Màu cây, nền và đồ trang trí sẽ được thay thế. Bạn luôn có thể Hoàn tác.', 'Áp dụng', false))) return;
     applyTheme(t, true);
   });
 }
-function snowLabel(v) { return v === 0 ? 'None' : v <= 40 ? `Light · ${v}%` : v <= 70 ? `Medium · ${v}%` : `Heavy · ${v}%`; }
+function snowLabel(v) { return v === 0 ? 'Không' : v <= 40 ? `Nhẹ · ${v}%` : v <= 70 ? `Vừa · ${v}%` : `Dày · ${v}%`; }
 function syncTreePanel() {
   const t = D().tree;
   $$('#tree-styles .style-btn').forEach((b) => { b.classList.toggle('active', b.dataset.style === t.style); b.setAttribute('aria-pressed', String(b.dataset.style === t.style)); });
@@ -757,13 +756,13 @@ function setScene(fn, live = false, parts = ['bg']) {
   if (!live) commit();
 }
 function buildScenePanel() {
-  $('#bg-grid').innerHTML = BACKGROUNDS.map((b) => `<button type="button" class="bg-btn" data-bg="${b.id}" title="${b.label}" aria-label="${b.label}"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice"></svg><span>${b.label.replace(/^(Cozy|Warm|Christmas) /, '')}</span></button>`).join('');
+  $('#bg-grid').innerHTML = BACKGROUNDS.map((b) => `<button type="button" class="bg-btn" data-bg="${b.id}" title="${b.label}" aria-label="${b.label}"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice"></svg><span>${b.short || b.label}</span></button>`).join('');
   $('#bg-grid').addEventListener('click', (e) => {
     const b = e.target.closest('[data-bg]');
     if (b) setScene((d) => { d.background.theme = b.dataset.bg; });
   });
   sceneFields.bg = colorField($('#bg-color'), {
-    label: 'Minimal colour', swatches: ['#FBE9D7', '#FBE0EA', '#E3F1EA', '#DCE8F5', '#F4EBD9', '#1E2A4A', '#3A2418'],
+    label: 'Màu nền tối giản', swatches: ['#FBE9D7', '#FBE0EA', '#E3F1EA', '#DCE8F5', '#F4EBD9', '#1E2A4A', '#3A2418'],
     get: () => D().background.color,
     onInput: (c) => setScene((d) => { d.background.color = c; d.background.theme = 'minimal'; }, true),
     onCommit: (c) => setScene((d) => { d.background.color = c; d.background.theme = 'minimal'; }),
@@ -776,7 +775,7 @@ function buildScenePanel() {
   bind('#gr-text', 'text'); bind('#gr-name', 'name'); bind('#gr-date', 'date');
   $('#gr-visible').addEventListener('change', (e) => setScene((d) => { d.greeting.visible = e.target.checked; }, false, ['greet']));
   sceneFields.greet = colorField($('#gr-color'), {
-    label: 'Text colour', swatches: ['#0E472A', '#B90C17', '#7C5700', '#1E2A4A', '#231A11', '#C2185B'],
+    label: 'Màu chữ', swatches: ['#0E472A', '#B90C17', '#7C5700', '#1E2A4A', '#231A11', '#C2185B'],
     get: () => D().greeting.color,
     onInput: (c) => setScene((d) => { d.greeting.color = c; }, true, ['greet']),
     onCommit: (c) => setScene((d) => { d.greeting.color = c; d.greeting.visible = true; }, false, ['greet']),
@@ -787,7 +786,7 @@ function buildScenePanel() {
   $('#tg-twinkle').addEventListener('change', (e) => setScene((d) => { d.effects.twinkle = e.target.checked; }, false, ['fx']));
   const nm = $('#design-name');
   nm.addEventListener('input', () => { D().name = nm.value.slice(0, 60); commitSoon(700); });
-  nm.addEventListener('change', () => { if (!nm.value.trim()) { D().name = 'My Christmas Tree'; nm.value = D().name; } commit(); });
+  nm.addEventListener('change', () => { if (!nm.value.trim()) { D().name = 'Cây thông của tôi'; nm.value = D().name; } commit(); });
 }
 function syncScenePanel() {
   const d = D();
@@ -861,7 +860,7 @@ function applyTheme(theme, keepWords) {
   S.design = designFromTheme(theme, S.lib, { base, seed: Math.floor(Math.random() * 1e9) });
   S.selected = null;
   renderAll(); commit();
-  toast(`“${theme.name}” applied — keep customizing!`, 'palette');
+  toast(`Đã áp dụng “${theme.name}” — tiếp tục tuỳ chỉnh nhé!`, 'palette');
 }
 const PALETTES = [
   ['#C9182B', '#E9A93B', '#FFFFFF'], ['#4E9BE0', '#E8EEF3', '#B9C6D3'], ['#F7A8C4', '#A8E6CF', '#FCE7B2'],
@@ -880,7 +879,7 @@ function randomDecorate() {
   S.selected = null;
   renderDecos(); drawSelection(); renderItemEditor(); renderLayers();
   commit();
-  toast('Magic wand! Decked the tree with new cheer', 'auto_fix_high');
+  toast('Phép màu! Cây vừa được trang trí mới', 'auto_fix_high');
 }
 
 /* ---------------- toolbar ---------------- */
@@ -888,16 +887,16 @@ $('#btn-undo').addEventListener('click', undo);
 $('#btn-redo').addEventListener('click', redo);
 $('#btn-random').addEventListener('click', randomDecorate);
 $('#btn-reset').addEventListener('click', async () => {
-  if (!(await confirmDialog('Reset to the default tree?', 'This clears your decorations and colours. You can bring them back with Undo.', 'Reset'))) return;
+  if (!(await confirmDialog('Đặt lại cây mặc định?', 'Đồ trang trí và màu sắc sẽ bị xoá. Bạn có thể khôi phục bằng Hoàn tác.', 'Đặt lại'))) return;
   S.design = defaultDesign();
   S.galleryId = null;
   S.selected = null;
   renderAll(); commit();
-  toast('Fresh tree ready to decorate', 'restart_alt');
+  toast('Cây mới đã sẵn sàng để trang trí', 'restart_alt');
 });
 $('#btn-clear').addEventListener('click', async () => {
-  if (!D().decorations.length) return toast('There are no decorations to clear', 'info');
-  if (D().decorations.length > 3 && !(await confirmDialog('Remove all decorations?', 'Your tree, colours and greeting stay. Undo brings the decorations back.', 'Clear decorations'))) return;
+  if (!D().decorations.length) return toast('Không có đồ trang trí nào để xoá', 'info');
+  if (D().decorations.length > 3 && !(await confirmDialog('Xoá tất cả đồ trang trí?', 'Cây, màu sắc và lời chúc được giữ nguyên. Hoàn tác sẽ mang đồ trang trí trở lại.', 'Xoá đồ trang trí'))) return;
   D().decorations = [];
   S.selected = null;
   renderDecos(); drawSelection(); renderItemEditor(); renderLayers();
@@ -917,16 +916,16 @@ function setPreview(on, shared = false) {
   document.body.classList.toggle('preview', on);
   document.body.classList.toggle('shared', on && shared);
   $('#pv-new').hidden = !shared;
-  $('#pv-exit').querySelector('span:last-child').textContent = shared ? 'Edit a copy' : 'Exit preview';
+  $('#pv-exit').querySelector('span:last-child').textContent = shared ? 'Chỉnh sửa bản sao' : 'Thoát xem trước';
   closeSheets();
   drawSelection();
   requestAnimationFrame(fit);
 }
-$('#btn-preview').addEventListener('click', () => { setPreview(true); toast('Preview mode — press Esc to edit again', 'visibility'); });
+$('#btn-preview').addEventListener('click', () => { setPreview(true); toast('Chế độ xem trước — nhấn Esc để chỉnh sửa tiếp', 'visibility'); });
 $('#pv-exit').addEventListener('click', () => {
   const shared = document.body.classList.contains('shared');
   setPreview(false);
-  if (shared) toast('This is now your own copy — decorate away!', 'edit');
+  if (shared) toast('Đây là bản sao của bạn — trang trí thoải mái nhé!', 'edit');
 });
 $('#pv-new').addEventListener('click', () => {
   S.design = defaultDesign(); S.galleryId = null; S.selected = null;
@@ -943,44 +942,44 @@ async function saveDesign(asNew = false) {
   try {
     if (existing) {
       upsertGalleryItem({ id: existing.id, name: D().name, design: clone(D()) });
-      toast(`Saved “${D().name}” to My Gallery`, 'bookmark_added');
+      toast(`Đã lưu “${D().name}” vào Bộ sưu tập`, 'bookmark_added');
     } else {
-      const name = await promptDialog('Name your Christmas tree', asNew ? `${D().name} (copy)` : D().name, 'Save to gallery');
+      const name = await promptDialog('Đặt tên cho cây thông', asNew ? `${D().name} (bản sao)` : D().name, 'Lưu vào bộ sưu tập');
       if (name === null) return;
-      D().name = (name || 'My Christmas Tree').slice(0, 60);
+      D().name = (name || 'Cây thông của tôi').slice(0, 60);
       const item = upsertGalleryItem({ id: uid('tree'), name: D().name, design: clone(D()) });
       S.galleryId = item.id;
       commit();
       syncScenePanel();
-      toast(`“${D().name}” saved to My Gallery`, 'bookmark_added');
+      toast(`Đã lưu “${D().name}” vào Bộ sưu tập`, 'bookmark_added');
     }
     autosave();
   } catch (err) {
-    alertDialog('Could not save', err.message);
+    alertDialog('Không lưu được', err.message);
   }
 }
 let exporting = false;
 async function exportPng() {
   if (exporting) return;
   exporting = true;
-  toast('Wrapping up your festive PNG…', 'hourglass_top');
+  toast('Đang tạo ảnh PNG…', 'hourglass_top');
   try {
     const blob = await designToPngBlob(D(), S.lib, 2);
     downloadBlob(blob, `${fileSafe(D().name)}.png`);
-    toast('PNG downloaded — Merry Christmas!', 'download_done');
+    toast('Đã tải ảnh PNG — Giáng Sinh vui vẻ!', 'download_done');
   } catch (err) {
-    alertDialog('Export failed', err.message || String(err));
+    alertDialog('Xuất ảnh thất bại', err.message || String(err));
   } finally { exporting = false; }
 }
 async function share() {
   try {
     const url = await shareLink(D());
     if (navigator.share && isMobile()) {
-      try { await navigator.share({ title: D().name, text: 'Look at the Christmas tree I decorated!', url }); return; } catch (e) { if (e.name === 'AbortError') return; }
+      try { await navigator.share({ title: D().name, text: 'Xem cây thông Noel mình vừa trang trí nè!', url }); return; } catch (e) { if (e.name === 'AbortError') return; }
     }
     const ok = await copyText(url);
-    toast(ok ? 'Share link copied — paste it to a friend!' : 'Could not copy the link', ok ? 'link' : 'error');
-  } catch (err) { alertDialog('Could not create a link', err.message); }
+    toast(ok ? 'Đã sao chép link — gửi cho bạn bè nhé!' : 'Không sao chép được link', ok ? 'link' : 'error');
+  } catch (err) { alertDialog('Không tạo được link', err.message); }
 }
 $('#btn-save').addEventListener('click', () => saveDesign());
 $('#btn-save-as').addEventListener('click', () => saveDesign(true));
@@ -994,10 +993,10 @@ function updateSaveStatus() {
   const time = $('#save-time');
   if (item) {
     const dirty = JSON.stringify(item.design) !== JSON.stringify(D());
-    state.textContent = dirty ? 'Unsaved changes' : 'Saved in My Gallery';
-    time.textContent = dirty ? `autosaved ${timeAgo(S.autosavedAt)}` : `“${item.name}”`;
+    state.textContent = dirty ? 'Có thay đổi chưa lưu' : 'Đã lưu trong Bộ sưu tập';
+    time.textContent = dirty ? `tự lưu ${timeAgo(S.autosavedAt)}` : `“${item.name}”`;
   } else {
-    state.textContent = 'Autosaved in this browser';
+    state.textContent = 'Tự động lưu trên trình duyệt';
     time.textContent = S.autosavedAt ? timeAgo(S.autosavedAt) : '';
   }
   $('#btn-save-as').hidden = !item;
@@ -1044,7 +1043,7 @@ $$('[data-close-sheet]').forEach((b) => b.addEventListener('click', closeSheets)
 /* ---------------- boot ---------------- */
 async function boot() {
   S.lib = await loadLibrary();
-  try { await Promise.race([document.fonts.load('800 26px Epilogue'), new Promise((r) => setTimeout(r, 1200))]); } catch { /* ignore */ }
+  try { await Promise.race([document.fonts.load('800 26px Epilogue', 'Giáng Sinh ăâđêôơư'), new Promise((r) => setTimeout(r, 1200))]); } catch { /* ignore */ }
   const saved = loadCurrent();
   S.design = saved?.design ? normalizeDesign(saved.design, S.lib) : defaultDesign();
   S.galleryId = saved?.galleryId && getGalleryItem(saved.galleryId) ? saved.galleryId : null;
@@ -1065,15 +1064,15 @@ async function boot() {
     try {
       const raw = await decodeDesign(hash.get('share'));
       S.design = normalizeDesign(raw, S.lib); S.galleryId = null; shared = true;
-    } catch { toast('That share link looks broken', 'link_off'); }
+    } catch { toast('Link chia sẻ bị lỗi', 'link_off'); }
   } else if (params.get('id')) {
     const item = getGalleryItem(params.get('id'));
-    if (item) { S.design = normalizeDesign(item.design, S.lib); S.galleryId = item.id; toast(`Opened “${item.name}”`, 'park'); }
-    else toast('That tree is no longer in your gallery', 'search_off');
+    if (item) { S.design = normalizeDesign(item.design, S.lib); S.galleryId = item.id; toast(`Đã mở “${item.name}”`, 'park'); }
+    else toast('Cây này không còn trong bộ sưu tập', 'search_off');
   } else if (params.get('theme') && themeById(params.get('theme'))) {
     const t = themeById(params.get('theme'));
     S.design = designFromTheme(t, S.lib, { seed: Math.floor(Math.random() * 1e9) }); S.galleryId = null;
-    toast(`“${t.name}” applied — make it yours!`, 'palette');
+    toast(`Đã áp dụng “${t.name}” — hãy biến nó thành của riêng bạn!`, 'palette');
   } else if (params.get('blend')) {
     const [style, leaves, snow] = params.get('blend').split('~');
     const old = clone(S.design.tree);
@@ -1083,10 +1082,10 @@ async function boot() {
     S.design.tree.branchesLinked = true;
     const o = treeGeometry(old).apex, n = treeGeometry(S.design.tree).apex;
     S.design.decorations.forEach((d) => { if (assetOf(d)?.category === 'toppers' && Math.hypot(d.x - o[0], d.y - o[1]) < 95) { d.x += n[0] - o[0]; d.y += n[1] - o[1]; } });
-    toast('Your custom blend is loaded', 'tune');
+    toast('Đã nạp bản phối màu của bạn', 'tune');
   } else if (params.get('new')) {
     S.design = defaultDesign(); S.galleryId = null;
-    toast('A fresh tree is ready to decorate', 'park');
+    toast('Cây mới đã sẵn sàng để trang trí', 'park');
   }
   if (params.toString() || location.hash) {
     renderAll(); commit();

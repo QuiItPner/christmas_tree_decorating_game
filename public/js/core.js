@@ -4,7 +4,7 @@
    dialogs, share links and the (muted-by-default) jingle.
    ========================================================= */
 
-export const APP_NAME = 'My Little Christmas Tree';
+export const APP_NAME = 'Cây Thông Phú Nông';
 export const GALLERY_LIMIT = 20;
 
 const KEY_CURRENT = 'mlct:current';
@@ -41,22 +41,22 @@ const str = (v, fallback = '', max = 120) => (typeof v === 'string' ? v.slice(0,
 export function timeAgo(ts) {
   if (!ts) return '';
   const s = Math.round((Date.now() - ts) / 1000);
-  if (s < 10) return 'just now';
-  if (s < 60) return `${s}s ago`;
+  if (s < 10) return 'vừa xong';
+  if (s < 60) return `${s} giây trước`;
   const m = Math.round(s / 60);
-  if (m < 60) return `${m} min ago`;
+  if (m < 60) return `${m} phút trước`;
   const h = Math.round(m / 60);
-  if (h < 24) return `${h} h ago`;
+  if (h < 24) return `${h} giờ trước`;
   return formatDate(ts);
 }
 export function formatDate(ts) {
   const d = new Date(ts);
   const today = new Date();
   const yest = new Date(); yest.setDate(today.getDate() - 1);
-  const time = d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
-  if (d.toDateString() === today.toDateString()) return `Today, ${time}`;
-  if (d.toDateString() === yest.toDateString()) return `Yesterday, ${time}`;
-  return d.toLocaleDateString(undefined, { month: 'short', day: '2-digit', year: 'numeric' });
+  const time = d.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+  if (d.toDateString() === today.toDateString()) return `Hôm nay, ${time}`;
+  if (d.toDateString() === yest.toDateString()) return `Hôm qua, ${time}`;
+  return d.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
 }
 
 /* ---------------- safe localStorage ---------------- */
@@ -84,11 +84,17 @@ export function loadLibrary() {
   if (libPromise) return libPromise;
   libPromise = (async () => {
     const res = await fetch('assets/manifest.json', { cache: 'no-cache' });
-    if (!res.ok) throw new Error('Could not load assets/manifest.json');
+    if (!res.ok) throw new Error('Không tải được assets/manifest.json');
     const manifest = await res.json();
     const byId = {};
     await Promise.all(manifest.decorations.map(async (a) => {
       try {
+        if (a.type === 'image') {
+          // raster decoration (PNG/WebP): wrapped in an <image> so it behaves like every other asset
+          const w = Number(a.width) || 48, h = Number(a.height) || 48;
+          byId[a.id] = { ...a, colorable: false, viewBox: `0 0 ${w} ${h}`, inner: `<image href="${a.image}" width="${w}" height="${h}" preserveAspectRatio="xMidYMid meet"/>` };
+          return;
+        }
         const r = await fetch(a.image);
         const text = await r.text();
         const m = text.match(/<svg[^>]*viewBox="([^"]+)"[^>]*>([\s\S]*)<\/svg>/i);
@@ -107,12 +113,12 @@ export function loadLibrary() {
 
 /* ---------------- design model ---------------- */
 export const TREE_STYLE_IDS = ['classic', 'mini', 'snowy', 'minimalist'];
-export const BACKGROUND_IDS = ['cozy-room', 'fireplace', 'snowy-forest', 'night-sky', 'minimal'];
+export const BACKGROUND_IDS = ['rice-field', 'cozy-room', 'fireplace', 'snowy-forest', 'night-sky', 'minimal'];
 
 export function defaultDesign() {
   return {
     version: 1,
-    name: 'My Christmas Tree',
+    name: 'Cây thông của tôi',
     themeId: null,
     tree: {
       style: 'classic',
@@ -127,12 +133,12 @@ export function defaultDesign() {
       skirtColor: '#B90C17',
       lights: true,
     },
-    background: { theme: 'cozy-room', color: '#FBE9D7' },
+    background: { theme: 'rice-field', color: '#FBE9D7' },
     effects: { snow: true, twinkle: true },
     decorations: [
       { instanceId: 'placed-star', assetId: 'star-topper', x: 300, y: 104, width: 84, height: 84, rotation: 0, scale: 1, color: '#FFB703', locked: false, flip: false },
     ],
-    greeting: { text: 'Merry Christmas & Happy Holidays!', name: '', date: '', visible: true, color: '#0E472A' },
+    greeting: { text: 'Giáng Sinh an lành — Mùa vàng bội thu!', name: '', date: '', visible: true, color: '#0E472A' },
   };
 }
 
@@ -187,6 +193,9 @@ export function normalizeDesign(raw, lib) {
         flip: !!o.flip,
       };
     });
+  // migrate the old English defaults to Vietnamese
+  if (d.greeting.text === 'Merry Christmas & Happy Holidays!' || d.greeting.text === 'Chúc Mừng Giáng Sinh & Năm Mới!') d.greeting.text = defaultDesign().greeting.text;
+  if (d.name === 'My Christmas Tree') d.name = defaultDesign().name;
   // keep instance ids unique
   const seen = new Set();
   d.decorations.forEach((o) => { if (seen.has(o.instanceId)) o.instanceId = uid('placed'); seen.add(o.instanceId); });
@@ -203,7 +212,7 @@ export function listGallery() {
   return Array.isArray(list) ? list : [];
 }
 function writeGallery(list) {
-  if (!store.set(KEY_GALLERY, list)) throw new Error('Browser storage is full or blocked.');
+  if (!store.set(KEY_GALLERY, list)) throw new Error('Bộ nhớ trình duyệt đã đầy hoặc bị chặn.');
 }
 export function getGalleryItem(id) { return listGallery().find((x) => x.id === id) || null; }
 export function upsertGalleryItem(item) {
@@ -213,7 +222,7 @@ export function upsertGalleryItem(item) {
   if (i >= 0) {
     list[i] = { ...list[i], ...item, updatedAt: now };
   } else {
-    if (list.length >= GALLERY_LIMIT) throw new Error(`Your gallery is full (${GALLERY_LIMIT} trees). Delete one to save a new tree.`);
+    if (list.length >= GALLERY_LIMIT) throw new Error(`Bộ sưu tập đã đầy (${GALLERY_LIMIT} cây). Hãy xoá bớt một cây để lưu cây mới.`);
     list.unshift({ id: item.id || uid('tree'), favorite: false, createdAt: now, updatedAt: now, ...item });
   }
   writeGallery(list);
@@ -303,7 +312,7 @@ export function toast(message, icon = 'auto_awesome') {
 }
 
 /* ---------------- dialogs ---------------- */
-function openDialog({ title, body = '', input = null, okLabel = 'OK', cancelLabel = 'Cancel', danger = false }) {
+function openDialog({ title, body = '', input = null, okLabel = 'OK', cancelLabel = 'Huỷ', danger = false }) {
   return new Promise((resolve) => {
     const wrap = document.createElement('div');
     wrap.className = 'modal-backdrop';
@@ -334,9 +343,9 @@ function openDialog({ title, body = '', input = null, okLabel = 'OK', cancelLabe
     f.focus(); if (f.select) f.select();
   });
 }
-export const confirmDialog = (title, body, okLabel = 'Confirm', danger = true) => openDialog({ title, body, okLabel, danger });
-export const promptDialog = (title, value = '', okLabel = 'Save') => openDialog({ title, input: value, okLabel });
-export const alertDialog = (title, body) => openDialog({ title, body, okLabel: 'Got it', cancelLabel: '' });
+export const confirmDialog = (title, body, okLabel = 'Xác nhận', danger = true) => openDialog({ title, body, okLabel, danger });
+export const promptDialog = (title, value = '', okLabel = 'Lưu') => openDialog({ title, input: value, okLabel });
+export const alertDialog = (title, body) => openDialog({ title, body, okLabel: 'Đã hiểu', cancelLabel: '' });
 
 /* ---------------- holiday jingle (Web Audio, muted by default) ---------------- */
 // "Jingle Bells" chorus (James Lord Pierpont, 1857 — public domain).
@@ -385,13 +394,12 @@ export function toggleMusic() {
 
 /* ---------------- page chrome ---------------- */
 const NAV = [
-  { id: 'studio', href: 'studio.html', label: 'Tree Studio', icon: 'park' },
-  { id: 'themes', href: 'themes.html', label: 'Themes & Styles', icon: 'palette' },
-  { id: 'gallery', href: 'gallery.html', label: 'My Gallery', icon: 'collections_bookmark' },
-  { id: 'about', href: 'index.html', label: 'About & Greetings', icon: 'celebration' },
+  { id: 'about', href: 'index.html', label: 'Giới thiệu & Lời chúc', icon: 'celebration' },
+  { id: 'studio', href: 'studio.html', label: 'Trang trí cây', icon: 'park' },
+  { id: 'themes', href: 'themes.html', label: 'Chủ đề & Phong cách', icon: 'palette' },
+  { id: 'gallery', href: 'gallery.html', label: 'Bộ sưu tập', icon: 'collections_bookmark' },
 ];
 
-export const LOGO_SVG = `<svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#176B45"/><path d="M20 8l7 11h-3.5l5 8h-17l5-8H13z" fill="#A4F4C3"/><path d="M20 12.5l4.6 6.5h-9.2zM16 22h8l3.4 5h-14.8z" fill="#fff" opacity=".25"/><rect x="18" y="27" width="4" height="5" rx="1" fill="#F4A261"/><path d="M20 3.6l1.3 2.7 3 .4-2.2 2 .6 3-2.7-1.5-2.7 1.5.6-3-2.2-2 3-.4z" fill="#FFBA27"/><circle cx="16.6" cy="21" r="1.3" fill="#E63946"/><circle cx="23.6" cy="24.6" r="1.3" fill="#FFBA27"/><circle cx="21" cy="16.4" r="1.1" fill="#E63946"/></svg>`;
 
 /**
  * Injects the shared header + footer.
@@ -401,23 +409,22 @@ export const LOGO_SVG = `<svg viewBox="0 0 40 40" aria-hidden="true"><rect width
 export function mountChrome(active, opts = {}) {
   const header = document.createElement('header');
   header.className = 'site-header';
-  const primary = opts.primary || { label: 'Start Decorating', icon: 'brush', href: 'studio.html', id: 'hdr-primary' };
+  const primary = opts.primary || { label: 'Bắt đầu trang trí', icon: 'brush', href: 'studio.html', id: 'hdr-primary' };
   header.innerHTML = `
     <div class="hdr-inner">
-      <a class="brand" href="index.html" aria-label="${APP_NAME} home">
-        <span class="brand-logo">${LOGO_SVG}</span>
-        <span class="brand-text"><span class="brand-name">${APP_NAME}</span><span class="brand-tag">Build your own Christmas tree</span></span>
+      <a class="brand" href="index.html" aria-label="${APP_NAME} – trang chủ">
+        <img class="brand-logo" src="assets/brand/logo.png" alt="Phu Nong — Mang đến sự khác biệt" width="486" height="139">
       </a>
-      <nav class="main-nav" id="main-nav" aria-label="Main">
+      <nav class="main-nav" id="main-nav" aria-label="Menu chính">
         ${NAV.map((n) => `<a href="${n.href}" class="${n.id === active ? 'active' : ''}" ${n.id === active ? 'aria-current="page"' : ''}><span class="ms">${n.icon}</span><span>${n.label}</span></a>`).join('')}
       </nav>
       <div class="hdr-actions">
-        <button class="icon-btn" id="btn-music" type="button" aria-label="Play holiday music" aria-pressed="false" title="Holiday music (off)"><span class="ms">volume_off</span></button>
-        ${opts.share ? `<button class="btn btn-soft hide-sm" id="hdr-share" type="button"><span class="ms">share</span><span>Share</span></button>` : ''}
+        <button class="icon-btn" id="btn-music" type="button" aria-label="Bật nhạc Giáng sinh" aria-pressed="false" title="Nhạc Giáng sinh (tắt)"><span class="ms">volume_off</span></button>
+        ${opts.share ? `<button class="btn btn-soft hide-sm" id="hdr-share" type="button"><span class="ms">share</span><span>Chia sẻ</span></button>` : ''}
         ${primary.href
           ? `<a class="btn btn-berry" id="${primary.id}" href="${primary.href}"><span class="ms">${primary.icon}</span><span class="hide-xs">${primary.label}</span></a>`
           : `<button class="btn btn-berry" id="${primary.id}" type="button"><span class="ms">${primary.icon}</span><span class="hide-xs">${primary.label}</span></button>`}
-        <button class="icon-btn nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav"><span class="ms">menu</span></button>
+        <button class="icon-btn nav-toggle" id="nav-toggle" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="main-nav"><span class="ms">menu</span></button>
       </div>
     </div>`;
   document.body.prepend(header);
@@ -426,8 +433,8 @@ export function mountChrome(active, opts = {}) {
   footer.className = 'site-footer';
   footer.innerHTML = `
     <div class="ftr-inner">
-      <div class="ftr-note"><span class="ms">park</span><span>Handcrafted with warm holiday cheer © ${new Date().getFullYear()} ${APP_NAME}.</span></div>
-      <div class="ftr-links"><a href="index.html#how">How it works</a><span>•</span><a href="themes.html">Themes</a><span>•</span><a href="gallery.html">My Gallery</a></div>
+      <div class="ftr-note"><span class="ms">park</span><span>Phú Nông — Mang đến sự khác biệt · Chúc bà con mùa vàng bội thu © ${new Date().getFullYear()}.</span></div>
+      <div class="ftr-links"><a href="index.html#how">Cách chơi</a><span>•</span><a href="themes.html">Chủ đề</a><span>•</span><a href="gallery.html">Bộ sưu tập</a></div>
     </div>`;
   if (!opts.noFooter) document.body.appendChild(footer);
 
@@ -442,7 +449,8 @@ export function mountChrome(active, opts = {}) {
   btnMusic.addEventListener('click', () => {
     const on = toggleMusic();
     btnMusic.setAttribute('aria-pressed', String(on));
-    btnMusic.title = on ? 'Holiday music (on)' : 'Holiday music (off)';
+    btnMusic.title = on ? 'Nhạc Giáng sinh (bật)' : 'Nhạc Giáng sinh (tắt)';
+    btnMusic.setAttribute('aria-label', on ? 'Tắt nhạc Giáng sinh' : 'Bật nhạc Giáng sinh');
     btnMusic.querySelector('.ms').textContent = on ? 'music_note' : 'volume_off';
     btnMusic.classList.toggle('on', on);
   });
@@ -453,6 +461,6 @@ export function showFatal(err) {
   console.error(err);
   const box = document.createElement('div');
   box.className = 'fatal';
-  box.innerHTML = `<span class="ms">error</span><div><strong>Something went wrong loading the decorations.</strong><br>${escapeHtml(err?.message || err)}<br><small>Tip: serve the <code>public/</code> folder over HTTP (e.g. <code>npm start</code>) — opening the HTML file directly blocks asset loading.</small></div>`;
+  box.innerHTML = `<span class="ms">error</span><div><strong>Đã xảy ra lỗi khi tải đồ trang trí.</strong><br>${escapeHtml(err?.message || err)}<br><small>Mẹo: hãy chạy thư mục <code>public/</code> qua HTTP (vd. <code>npm start</code>) — mở trực tiếp file HTML sẽ không tải được asset.</small></div>`;
   document.body.appendChild(box);
 }

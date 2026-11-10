@@ -2,381 +2,805 @@
   "version": 1,
   "categories": [
     {
+      "id": "products",
+      "name": "Sản phẩm Phú Nông",
+      "short": "Phú Nông",
+      "icon": "science"
+    },
+    {
       "id": "balls",
-      "name": "Christmas Balls",
-      "short": "Baubles",
+      "name": "Quả châu Giáng Sinh",
+      "short": "Quả châu",
       "icon": "circle"
     },
     {
       "id": "toppers",
-      "name": "Tree Toppers",
-      "short": "Toppers",
+      "name": "Ngôi sao đỉnh cây",
+      "short": "Đỉnh cây",
       "icon": "star"
     },
     {
       "id": "ribbons",
-      "name": "Ribbons & Bells",
-      "short": "Ribbons",
+      "name": "Nơ & chuông",
+      "short": "Nơ & chuông",
       "icon": "notifications"
     },
     {
       "id": "characters",
-      "name": "Cute Characters",
-      "short": "Characters",
+      "name": "Nhân vật dễ thương",
+      "short": "Nhân vật",
       "icon": "mood"
     },
     {
       "id": "lights",
-      "name": "Christmas Lights",
-      "short": "Lights",
+      "name": "Đèn Giáng Sinh",
+      "short": "Đèn",
       "icon": "lightbulb"
     },
     {
       "id": "gifts",
-      "name": "Gift Boxes",
-      "short": "Gifts",
+      "name": "Hộp quà",
+      "short": "Quà",
       "icon": "redeem"
     },
     {
       "id": "extras",
-      "name": "Seasonal Extras",
-      "short": "Extras",
+      "name": "Phụ kiện mùa lễ",
+      "short": "Phụ kiện",
       "icon": "ac_unit"
     }
   ],
   "decorations": [
     {
+      "id": "pn-airforce-300sc",
+      "name": "Airforce 300SC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/airforce-300sc.png",
+      "colorable": false,
+      "width": 39.4,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 100ml"
+    },
+    {
+      "id": "pn-anti-one-200sc",
+      "name": "Anti-One 200SC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/anti-one-200sc.png",
+      "colorable": false,
+      "width": 36.3,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 240ml"
+    },
+    {
+      "id": "pn-biona-organic",
+      "name": "Biona Organic",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/biona-organic.png",
+      "colorable": false,
+      "width": 33.3,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai phân bón dinh dưỡng"
+    },
+    {
+      "id": "pn-butapro-550ec",
+      "name": "Butapro 550EC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/butapro-550ec.png",
+      "colorable": false,
+      "width": 33.6,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 480ml-1lit"
+    },
+    {
+      "id": "pn-clicks-500sc",
+      "name": "Clicks 500SC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/clicks-500sc.png",
+      "colorable": false,
+      "width": 36.3,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 200ml"
+    },
+    {
+      "id": "pn-emasuper-1-9ec",
+      "name": "Emasuper 1.9EC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/emasuper-1-9ec.png",
+      "colorable": false,
+      "width": 33.3,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 480ml"
+    },
+    {
+      "id": "pn-fan-pro-250sc",
+      "name": "Fan-pro 250SC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/fan-pro-250sc.png",
+      "colorable": false,
+      "width": 36.3,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 100-200ml"
+    },
+    {
+      "id": "pn-fanmax-350sc",
+      "name": "Fanmax 350SC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/fanmax-350sc.png",
+      "colorable": false,
+      "width": 39.4,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 16ml-100ml"
+    },
+    {
+      "id": "pn-fertiplant-1",
+      "name": "Fertiplant 1",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/fertiplant-1.png",
+      "colorable": false,
+      "width": 33.8,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai phân bón dinh dưỡng 500ml"
+    },
+    {
+      "id": "pn-fertiplus-1",
+      "name": "Fertiplus 1",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/fertiplus-1.png",
+      "colorable": false,
+      "width": 33.8,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai phân bón dinh dưỡng 500ml"
+    },
+    {
+      "id": "pn-forataras-top-247sc",
+      "name": "Forataras top 247SC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/forataras-top-247sc.png",
+      "colorable": false,
+      "width": 36.3,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 12ml-100ml-240ml"
+    },
+    {
+      "id": "pn-fortamin-3sl",
+      "name": "Fortamin 3SL",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/fortamin-3sl.png",
+      "colorable": false,
+      "width": 33.3,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai phân bón dinh dưỡng 450ml"
+    },
+    {
+      "id": "pn-forvilnew-250sc",
+      "name": "ForvilNew 250SC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/forvilnew-250sc.png",
+      "colorable": false,
+      "width": 33.6,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 480ml-1lit"
+    },
+    {
+      "id": "pn-futitan-30sc",
+      "name": "Futitan 30SC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/futitan-30sc.png",
+      "colorable": false,
+      "width": 36.0,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 240ml"
+    },
+    {
+      "id": "pn-g3-top-3-33sl",
+      "name": "G3 Top 3.33SL",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/g3-top-3-33sl.png",
+      "colorable": false,
+      "width": 34.7,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai phân bón dinh dưỡng 50ml"
+    },
+    {
+      "id": "pn-goldstar-450sc",
+      "name": "GoldStar 450SC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/goldstar-450sc.png",
+      "colorable": false,
+      "width": 36.3,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 200ml"
+    },
+    {
+      "id": "pn-humi-first-te-wg",
+      "name": "Humi first TE WG",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/humi-first-te-wg.png",
+      "colorable": false,
+      "width": 62.9,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai phân bón dinh dưỡng 100g"
+    },
+    {
+      "id": "pn-humi-first-wg",
+      "name": "Humi first WG",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/humi-first-wg.png",
+      "colorable": false,
+      "width": 62.9,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai phân bón dinh dưỡng 100g"
+    },
+    {
+      "id": "pn-kali-aiphos-720vf",
+      "name": "Kali-Aiphos 720VF",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/kali-aiphos-720vf.png",
+      "colorable": false,
+      "width": 33.6,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai phân bón dinh dưỡng 500ml-1lit"
+    },
+    {
+      "id": "pn-miceo-620ec",
+      "name": "Miceo 620EC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/miceo-620ec.png",
+      "colorable": false,
+      "width": 33.6,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 480ml-1lit"
+    },
+    {
+      "id": "pn-microcombi-s",
+      "name": "Microcombi S",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/microcombi-s.png",
+      "colorable": false,
+      "width": 61.5,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai phân bón dinh dưỡng"
+    },
+    {
+      "id": "pn-new-vario-250sc",
+      "name": "New Vario 250SC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/new-vario-250sc.png",
+      "colorable": false,
+      "width": 36.3,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 200ml"
+    },
+    {
+      "id": "pn-new-fuze-200sc",
+      "name": "New fuze 200SC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/new-fuze-200sc.png",
+      "colorable": false,
+      "width": 39.4,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 100ml"
+    },
+    {
+      "id": "pn-nutrinew-1",
+      "name": "Nutrinew 1",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/nutrinew-1.png",
+      "colorable": false,
+      "width": 33.8,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai phân bón dinh dưỡng 500ml"
+    },
+    {
+      "id": "pn-nuxim-super-20sl",
+      "name": "Nuxim Super 20SL",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/nuxim-super-20sl.png",
+      "colorable": false,
+      "width": 33.6,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 1lit"
+    },
+    {
+      "id": "pn-nuximgold-40ec",
+      "name": "NuximGold 40EC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/nuximgold-40ec.png",
+      "colorable": false,
+      "width": 33.3,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 450ml"
+    },
+    {
+      "id": "pn-picoros-300sc",
+      "name": "Picoros 300SC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/picoros-300sc.png",
+      "colorable": false,
+      "width": 36.3,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 200ml"
+    },
+    {
+      "id": "pn-quizalo-50ec",
+      "name": "QuiZalo 50EC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/quizalo-50ec.png",
+      "colorable": false,
+      "width": 33.3,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 450ml"
+    },
+    {
+      "id": "pn-raykat-final",
+      "name": "Raykat Final",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/raykat-final.png",
+      "colorable": false,
+      "width": 18.8,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai phân bón dinh dưỡng"
+    },
+    {
+      "id": "pn-raykat-growth-1-lit",
+      "name": "Raykat Growth",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/raykat-growth-1-lit.png",
+      "colorable": false,
+      "width": 18.8,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai phân bón dinh dưỡng"
+    },
+    {
+      "id": "pn-raykat",
+      "name": "RayKat",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/raykat.png",
+      "colorable": false,
+      "width": 18.6,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai phân bón dinh dưỡng"
+    },
+    {
+      "id": "pn-resvo-200sc",
+      "name": "Resvo 200SC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/resvo-200sc.png",
+      "colorable": false,
+      "width": 39.4,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 100ml"
+    },
+    {
+      "id": "pn-saisen-xo-200sc",
+      "name": "Saisen-XO 200SC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/saisen-xo-200sc.png",
+      "colorable": false,
+      "width": 36.3,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 200ml"
+    },
+    {
+      "id": "pn-superkumi-200sc",
+      "name": "Superkumi 200SC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/superkumi-200sc.png",
+      "colorable": false,
+      "width": 39.4,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 80ml"
+    },
+    {
+      "id": "pn-teacher-400sc",
+      "name": "Teacher 400SC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/teacher-400sc.png",
+      "colorable": false,
+      "width": 33.3,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 240ml-480ml"
+    },
+    {
+      "id": "pn-trobin-plus-400sc",
+      "name": "Trobin Plus 400SC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/trobin-plus-400sc.png",
+      "colorable": false,
+      "width": 36.3,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 20ml-240ml"
+    },
+    {
+      "id": "pn-trobin-super-250sc",
+      "name": "Trobin Super 250SC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/trobin-super-250sc.png",
+      "colorable": false,
+      "width": 24.3,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 240ml"
+    },
+    {
+      "id": "pn-trobin-top-325sc",
+      "name": "Trobin Top 325SC",
+      "category": "products",
+      "type": "image",
+      "image": "assets/decorations/products/trobin-top-325sc.png",
+      "colorable": false,
+      "width": 36.3,
+      "height": 54,
+      "keywords": "phú nông sản phẩm chai thuốc bvtv bảo vệ thực vật 30ml-240ml"
+    },
+    {
       "id": "ruby-bauble",
-      "name": "Ruby Bauble",
+      "name": "Quả châu đỏ ruby",
       "category": "balls",
       "image": "assets/decorations/balls/ruby-bauble.svg",
       "colorable": true,
       "defaultColor": "#C9182B",
       "width": 46,
       "height": 46,
-      "keywords": "ball red classic"
+      "keywords": "quả châu đỏ ruby bauble ball red classic"
     },
     {
       "id": "peppermint-ball",
-      "name": "Peppermint Ball",
+      "name": "Quả châu kẹo bạc hà",
       "category": "balls",
       "image": "assets/decorations/balls/peppermint-ball.svg",
       "colorable": true,
       "defaultColor": "#C9182B",
       "width": 46,
       "height": 46,
-      "keywords": "ball candy stripe"
+      "keywords": "kẹo sọc peppermint ball ball candy stripe"
     },
     {
       "id": "gold-bauble",
-      "name": "Gilded Bauble",
+      "name": "Quả châu mạ vàng",
       "category": "balls",
       "image": "assets/decorations/balls/gold-bauble.svg",
       "colorable": true,
       "defaultColor": "#E9A93B",
       "width": 46,
       "height": 46,
-      "keywords": "ball gold band"
+      "keywords": "vàng gilded bauble ball gold band"
     },
     {
       "id": "frost-bauble",
-      "name": "Frost Bauble",
+      "name": "Quả châu băng giá",
       "category": "balls",
       "image": "assets/decorations/balls/frost-bauble.svg",
       "colorable": true,
       "defaultColor": "#4E9BE0",
       "width": 46,
       "height": 46,
-      "keywords": "ball blue snowflake winter"
+      "keywords": "xanh bông tuyết frost bauble ball blue snowflake winter"
     },
     {
       "id": "teardrop",
-      "name": "Glass Finial",
+      "name": "Châu thuỷ tinh giọt lệ",
       "category": "balls",
       "image": "assets/decorations/balls/teardrop.svg",
       "colorable": true,
       "defaultColor": "#B9C6D3",
       "width": 38,
       "height": 56,
-      "keywords": "drop glass silver icicle"
+      "keywords": "thuỷ tinh bạc glass finial drop glass silver icicle"
     },
     {
       "id": "polka-bauble",
-      "name": "Polka Bauble",
+      "name": "Quả châu chấm bi",
       "category": "balls",
       "image": "assets/decorations/balls/polka-bauble.svg",
       "colorable": true,
       "defaultColor": "#1E7F4F",
       "width": 46,
       "height": 46,
-      "keywords": "ball dots green"
+      "keywords": "chấm bi xanh lá polka bauble ball dots green"
     },
     {
       "id": "star-topper",
-      "name": "Starlight Topper",
+      "name": "Ngôi sao lấp lánh",
       "category": "toppers",
       "image": "assets/decorations/toppers/star-topper.svg",
       "colorable": true,
       "defaultColor": "#FFB703",
       "width": 84,
       "height": 84,
-      "keywords": "star gold top"
+      "keywords": "ngôi sao vàng đỉnh starlight topper star gold top"
     },
     {
       "id": "angel-topper",
-      "name": "Little Angel",
+      "name": "Thiên thần nhỏ",
       "category": "toppers",
       "image": "assets/decorations/toppers/angel-topper.svg",
       "colorable": true,
       "defaultColor": "#FFF6E0",
       "width": 80,
       "height": 80,
-      "keywords": "angel top wings"
+      "keywords": "thiên thần cánh little angel angel top wings"
     },
     {
       "id": "bow-topper",
-      "name": "Grand Bow",
+      "name": "Nơ lớn đỉnh cây",
       "category": "toppers",
       "image": "assets/decorations/toppers/bow-topper.svg",
       "colorable": true,
       "defaultColor": "#C9182B",
       "width": 86,
       "height": 86,
-      "keywords": "bow ribbon top big"
+      "keywords": "nơ ruy băng grand bow bow ribbon top big"
     },
     {
       "id": "north-star",
-      "name": "North Star",
+      "name": "Sao Bắc Đẩu",
       "category": "toppers",
       "image": "assets/decorations/toppers/north-star.svg",
       "colorable": true,
       "defaultColor": "#FFD54F",
       "width": 86,
       "height": 86,
-      "keywords": "star burst shine top celestial"
+      "keywords": "ngôi sao toả sáng north star star burst shine top celestial"
     },
     {
       "id": "velvet-bow",
-      "name": "Velvet Bow",
+      "name": "Nơ nhung",
       "category": "ribbons",
       "image": "assets/decorations/ribbons/velvet-bow.svg",
       "colorable": true,
       "defaultColor": "#B90C17",
       "width": 46,
       "height": 46,
-      "keywords": "bow ribbon red"
+      "keywords": "nơ đỏ velvet bow bow ribbon red"
     },
     {
       "id": "jingle-bells",
-      "name": "Jingle Bells",
+      "name": "Chuông leng keng",
       "category": "ribbons",
       "image": "assets/decorations/ribbons/jingle-bells.svg",
       "colorable": false,
       "width": 50,
       "height": 50,
-      "keywords": "bell gold jingle"
+      "keywords": "chuông vàng jingle bells bell gold jingle"
     },
     {
       "id": "candy-cane",
-      "name": "Candy Cane",
+      "name": "Gậy kẹo",
       "category": "ribbons",
       "image": "assets/decorations/ribbons/candy-cane.svg",
       "colorable": true,
       "defaultColor": "#D62828",
       "width": 40,
       "height": 60,
-      "keywords": "candy cane stripe sweet"
+      "keywords": "kẹo sọc candy cane candy cane stripe sweet"
     },
     {
       "id": "golden-bell",
-      "name": "Golden Bell",
+      "name": "Chuông vàng",
       "category": "ribbons",
       "image": "assets/decorations/ribbons/golden-bell.svg",
       "colorable": true,
       "defaultColor": "#F2B33D",
       "width": 48,
       "height": 48,
-      "keywords": "bell single gold"
+      "keywords": "chuông golden bell bell single gold"
     },
     {
       "id": "ribbon-swag",
-      "name": "Ribbon Swag",
+      "name": "Dải ruy băng",
       "category": "ribbons",
       "image": "assets/decorations/ribbons/ribbon-swag.svg",
       "colorable": true,
       "defaultColor": "#C9182B",
       "width": 190,
       "height": 57,
-      "keywords": "garland ribbon drape"
+      "keywords": "ruy băng vòng ribbon swag garland ribbon drape"
     },
     {
       "id": "gingerbread",
-      "name": "Ginger Cookie",
+      "name": "Bánh gừng",
       "category": "characters",
       "image": "assets/decorations/characters/gingerbread.svg",
       "colorable": false,
       "width": 48,
       "height": 48,
-      "keywords": "cookie gingerbread man"
+      "keywords": "người bánh gừng ginger cookie cookie gingerbread man"
     },
     {
       "id": "tiny-santa",
-      "name": "Tiny Santa",
+      "name": "Ông già Noel tí hon",
       "category": "characters",
       "image": "assets/decorations/characters/tiny-santa.svg",
       "colorable": false,
       "width": 50,
       "height": 50,
-      "keywords": "santa claus"
+      "keywords": "ông già noel tiny santa santa claus"
     },
     {
       "id": "snowman",
-      "name": "Snowman",
+      "name": "Người tuyết",
       "category": "characters",
       "image": "assets/decorations/characters/snowman.svg",
       "colorable": true,
       "defaultColor": "#C9182B",
       "width": 52,
       "height": 52,
-      "keywords": "snowman frosty scarf"
+      "keywords": "khăn quàng snowman snowman frosty scarf"
     },
     {
       "id": "reindeer",
-      "name": "Little Reindeer",
+      "name": "Tuần lộc nhỏ",
       "category": "characters",
       "image": "assets/decorations/characters/reindeer.svg",
       "colorable": false,
       "width": 52,
       "height": 52,
-      "keywords": "reindeer deer rudolph antlers"
+      "keywords": "tuần lộc rudolph sừng little reindeer reindeer deer rudolph antlers"
     },
     {
       "id": "fairy-strand",
-      "name": "Fairy Strand",
+      "name": "Dây đèn nhiều màu",
       "category": "lights",
       "image": "assets/decorations/lights/fairy-strand.svg",
       "colorable": false,
       "width": 180,
       "height": 54,
-      "keywords": "lights string multicolor"
+      "keywords": "đèn dây fairy strand lights string multicolor"
     },
     {
       "id": "glow-bulb",
-      "name": "Glow Bulb",
+      "name": "Bóng đèn phát sáng",
       "category": "lights",
       "image": "assets/decorations/lights/glow-bulb.svg",
       "colorable": true,
       "defaultColor": "#FFC93C",
       "width": 40,
       "height": 52,
-      "keywords": "bulb light c9 retro"
+      "keywords": "bóng đèn glow bulb bulb light c9 retro"
     },
     {
       "id": "warm-garland",
-      "name": "Warm Light Garland",
+      "name": "Dây đèn vàng ấm",
       "category": "lights",
       "image": "assets/decorations/lights/warm-garland.svg",
       "colorable": true,
       "defaultColor": "#FFE08A",
       "width": 210,
       "height": 63,
-      "keywords": "lights garland warm white string"
+      "keywords": "đèn dây vàng warm light garland lights garland warm white string"
     },
     {
       "id": "pine-present",
-      "name": "Pine Present",
+      "name": "Hộp quà xanh thông",
       "category": "gifts",
       "image": "assets/decorations/gifts/pine-present.svg",
       "colorable": true,
       "defaultColor": "#176B45",
       "width": 72,
       "height": 72,
-      "keywords": "gift box present green"
+      "keywords": "quà hộp xanh pine present gift box present green"
     },
     {
       "id": "striped-gift",
-      "name": "Candy Stripe Gift",
+      "name": "Hộp quà sọc kẹo",
       "category": "gifts",
       "image": "assets/decorations/gifts/striped-gift.svg",
       "colorable": true,
       "defaultColor": "#C9182B",
       "width": 70,
       "height": 70,
-      "keywords": "gift box present stripe red"
+      "keywords": "quà hộp sọc đỏ candy stripe gift gift box present stripe red"
     },
     {
       "id": "tall-gift",
-      "name": "Tall Gift",
+      "name": "Hộp quà cao",
       "category": "gifts",
       "image": "assets/decorations/gifts/tall-gift.svg",
       "colorable": true,
       "defaultColor": "#3A7BD5",
       "width": 54,
       "height": 72,
-      "keywords": "gift box tall present blue"
+      "keywords": "quà hộp xanh dương tall gift gift box tall present blue"
     },
     {
       "id": "gift-stack",
-      "name": "Gift Stack",
+      "name": "Chồng quà",
       "category": "gifts",
       "image": "assets/decorations/gifts/gift-stack.svg",
       "colorable": false,
       "width": 84,
       "height": 84,
-      "keywords": "gifts presents pile stack"
+      "keywords": "quà chồng nhiều gift stack gifts presents pile stack"
     },
     {
       "id": "frost-flake",
-      "name": "Frost Flake",
+      "name": "Bông tuyết",
       "category": "extras",
       "image": "assets/decorations/extras/frost-flake.svg",
       "colorable": true,
       "defaultColor": "#9FD3F0",
       "width": 44,
       "height": 44,
-      "keywords": "snowflake snow ice"
+      "keywords": "tuyết băng frost flake snowflake snow ice"
     },
     {
       "id": "holly",
-      "name": "Holly Sprig",
+      "name": "Nhành nhựa ruồi",
       "category": "extras",
       "image": "assets/decorations/extras/holly.svg",
       "colorable": false,
       "width": 48,
       "height": 48,
-      "keywords": "holly berries leaves"
+      "keywords": "lá quả đỏ holly sprig holly berries leaves"
     },
     {
       "id": "pine-cone",
-      "name": "Pine Cone",
+      "name": "Quả thông",
       "category": "extras",
       "image": "assets/decorations/extras/pine-cone.svg",
       "colorable": false,
       "width": 40,
       "height": 50,
-      "keywords": "pinecone nature rustic"
+      "keywords": "thiên nhiên mộc mạc pine cone pinecone nature rustic"
     },
     {
       "id": "tiny-star",
-      "name": "Tiny Star",
+      "name": "Ngôi sao nhỏ",
       "category": "extras",
       "image": "assets/decorations/extras/tiny-star.svg",
       "colorable": true,
       "defaultColor": "#FFD54F",
       "width": 30,
       "height": 30,
-      "keywords": "star small sparkle"
+      "keywords": "sao lấp lánh tiny star star small sparkle"
     },
     {
       "id": "stocking",
-      "name": "Cozy Stocking",
+      "name": "Chiếc tất Noel",
       "category": "extras",
       "image": "assets/decorations/extras/stocking.svg",
       "colorable": true,
       "defaultColor": "#C9182B",
       "width": 52,
       "height": 56,
-      "keywords": "stocking sock fireplace"
+      "keywords": "tất vớ lò sưởi cozy stocking stocking sock fireplace"
     }
   ]
 }

@@ -2,9 +2,9 @@ import {
   $, mountChrome, loadLibrary, showFatal, escapeHtml, formatDate, uid, clone,
   listGallery, upsertGalleryItem, patchGalleryItem, deleteGalleryItem, normalizeDesign, GALLERY_LIMIT,
   toast, confirmDialog, promptDialog, alertDialog, shareLink, copyText, downloadBlob, fileSafe, prefs,
-} from './core.js';
-import { renderDesignSVG, designToPngBlob, bgLabel, TREE_STYLES } from './render.js';
-import { THEMES, themeById, designFromTheme } from './themes-data.js';
+} from './core.js?v=20261110';
+import { renderDesignSVG, designToPngBlob, bgLabel, TREE_STYLES } from './render.js?v=20261110';
+import { THEMES, themeById, designFromTheme } from './themes-data.js?v=20261110';
 
 mountChrome('gallery');
 
@@ -13,23 +13,23 @@ const view = { filter: 'all', q: '', sort: prefs.get('gallerySort', 'newest'), l
 
 const hasGreeting = (d) => d.greeting?.visible && (d.greeting.text || d.greeting.name);
 function feature(d) {
-  if (hasGreeting(d)) return ['mail', 'Greeting Attached'];
-  if (d.decorations.some((x) => x.locked)) return ['lock', 'Locked Layering'];
-  if (!d.tree.branchesLinked) return ['tune', 'Custom Branches'];
-  if (d.effects?.twinkle) return ['auto_awesome', 'Twinkle Enabled'];
-  return ['park', TREE_STYLES.find((s) => s.id === d.tree.style)?.label || 'Custom Tree'];
+  if (hasGreeting(d)) return ['mail', 'Có lời chúc'];
+  if (d.decorations.some((x) => x.locked)) return ['lock', 'Có lớp khoá'];
+  if (!d.tree.branchesLinked) return ['tune', 'Cành tuỳ chỉnh'];
+  if (d.effects?.twinkle) return ['auto_awesome', 'Đèn nhấp nháy'];
+  return ['park', TREE_STYLES.find((s) => s.id === d.tree.style)?.label || 'Cây tuỳ chỉnh'];
 }
 
 function renderMeter(n) {
-  $('#meter-text').innerHTML = `Stored locally in your browser · <b>${n} of ${GALLERY_LIMIT}</b> trees`;
+  $('#meter-text').innerHTML = `Lưu trên trình duyệt này · <b>${n}/${GALLERY_LIMIT}</b> cây`;
   $('#meter-bar').style.width = `${Math.min(100, (n / GALLERY_LIMIT) * 100)}%`;
 }
 function renderFilters(items) {
   const favs = items.filter((x) => x.favorite).length;
   const greets = items.filter((x) => hasGreeting(x.design)).length;
   const F = [
-    ['all', 'park', `All Saved Trees (${items.length})`], ['recent', 'schedule', 'Recent'],
-    ['greetings', 'mail', `Holiday Greetings (${greets})`], ['favorites', 'favorite', `Favorites (${favs})`],
+    ['all', 'park', `Tất cả (${items.length})`], ['recent', 'schedule', 'Gần đây'],
+    ['greetings', 'mail', `Thiệp chúc (${greets})`], ['favorites', 'favorite', `Yêu thích (${favs})`],
   ];
   $('#filters').innerHTML = F.map(([id, ic, label]) => `<button type="button" class="chip ${view.filter === id ? 'active' : ''}" data-filter="${id}" aria-pressed="${view.filter === id}"><span class="ms">${ic}</span>${label}</button>`).join('');
 }
@@ -51,16 +51,16 @@ function render() {
   const grid = $('#grid');
   grid.classList.toggle('list', view.layout === 'list');
   $('#btn-view .ms').textContent = view.layout === 'list' ? 'grid_view' : 'view_agenda';
-  $('#btn-view').title = view.layout === 'list' ? 'Switch to grid view' : 'Switch to list view';
-  $('#btn-sort').title = view.sort === 'name' ? 'Sort: A–Z' : 'Sort: newest first';
+  $('#btn-view').title = view.layout === 'list' ? 'Chuyển sang dạng lưới' : 'Chuyển sang dạng danh sách';
+  $('#btn-sort').title = view.sort === 'name' ? 'Sắp xếp: A–Z' : 'Sắp xếp: mới nhất';
   $('#btn-sort .ms').textContent = view.sort === 'name' ? 'sort_by_alpha' : 'sort';
 
   if (!items.length) {
-    grid.innerHTML = `<div class="empty" style="grid-column:1/-1"><span class="ms">forest</span><h3>Your gallery is waiting for its first tree</h3><p>Decorate a tree in the studio and press <b>Save Design</b> — it will appear here, stored privately in this browser.</p><div class="row"><a class="btn btn-berry" href="studio.html?new=1"><span class="ms">brush</span>Start Decorating</a><button class="btn btn-ghost" type="button" id="btn-samples"><span class="ms">auto_awesome</span>Add 3 sample trees</button></div></div>`;
+    grid.innerHTML = `<div class="empty" style="grid-column:1/-1"><span class="ms">forest</span><h3>Bộ sưu tập đang chờ cây đầu tiên</h3><p>Trang trí một cây rồi bấm <b>Lưu thiết kế</b> — cây sẽ xuất hiện ở đây, được lưu riêng trên trình duyệt này.</p><div class="row"><a class="btn btn-berry" href="studio.html?new=1"><span class="ms">brush</span>Bắt đầu trang trí</a><button class="btn btn-ghost" type="button" id="btn-samples"><span class="ms">auto_awesome</span>Thêm 3 cây mẫu</button></div></div>`;
     return;
   }
   if (!list.length) {
-    grid.innerHTML = `<div class="empty" style="grid-column:1/-1"><span class="ms">search_off</span><h3>No trees match</h3><p>Try another filter or search word.</p></div>`;
+    grid.innerHTML = `<div class="empty" style="grid-column:1/-1"><span class="ms">search_off</span><h3>Không có cây nào phù hợp</h3><p>Hãy thử bộ lọc hoặc từ khoá khác.</p></div>`;
     return;
   }
   grid.innerHTML = list.map((x) => {
@@ -69,21 +69,21 @@ function render() {
     const [fi, ft] = feature(d);
     const svg = lib ? renderDesignSVG(d, lib, { uid: `g-${x.id}`, title: x.name }).replace(/viewBox="0 0 600 720"/, 'viewBox="0 60 600 600" preserveAspectRatio="xMidYMid slice"') : '';
     return `<article class="card tree-card" data-id="${x.id}">
-      <div class="thumb" data-act="card" role="button" tabindex="0" aria-label="View ${escapeHtml(x.name)} as a card">${svg}
-        <span class="theme-chip"><span class="ms">${theme ? theme.icon : 'palette'}</span>${escapeHtml(theme ? theme.name : 'Custom Design')}</span>
+      <div class="thumb" data-act="card" role="button" tabindex="0" aria-label="Xem ${escapeHtml(x.name)} dạng thiệp">${svg}
+        <span class="theme-chip"><span class="ms">${theme ? theme.icon : 'palette'}</span>${escapeHtml(theme ? theme.name : 'Thiết kế riêng')}</span>
         <span class="corner">
-          <button class="icon-btn fav ${x.favorite ? 'on' : ''}" type="button" data-act="fav" aria-pressed="${!!x.favorite}" aria-label="${x.favorite ? 'Remove from' : 'Add to'} favorites" title="Favorite"><span class="ms">favorite</span></button>
-          <button class="icon-btn" type="button" data-act="menu" aria-haspopup="menu" aria-label="More actions for ${escapeHtml(x.name)}" title="More"><span class="ms">more_vert</span></button>
+          <button class="icon-btn fav ${x.favorite ? 'on' : ''}" type="button" data-act="fav" aria-pressed="${!!x.favorite}" aria-label="${x.favorite ? 'Bỏ khỏi' : 'Thêm vào'} yêu thích" title="Yêu thích"><span class="ms">favorite</span></button>
+          <button class="icon-btn" type="button" data-act="menu" aria-haspopup="menu" aria-label="Thêm thao tác cho ${escapeHtml(x.name)}" title="Thêm"><span class="ms">more_vert</span></button>
         </span>
       </div>
       <div class="info">
-        <div class="title-row"><h3 title="${escapeHtml(x.name)}">${escapeHtml(x.name)}</h3><span class="count">${d.decorations.length} Ornament${d.decorations.length === 1 ? '' : 's'}</span></div>
-        <div class="meta">Last modified ${escapeHtml(formatDate(x.updatedAt))} · ${escapeHtml(bgLabel(d.background.theme))}</div>
+        <div class="title-row"><h3 title="${escapeHtml(x.name)}">${escapeHtml(x.name)}</h3><span class="count">${d.decorations.length} món</span></div>
+        <div class="meta">Sửa lần cuối ${escapeHtml(formatDate(x.updatedAt))} · ${escapeHtml(bgLabel(d.background.theme))}</div>
         <div class="foot">
           <span class="feat"><span class="ms">${fi}</span>${escapeHtml(ft)}</span>
           <span class="btns">
-            <button class="btn btn-ghost btn-sm" type="button" data-act="card"><span class="ms">visibility</span>Card</button>
-            <a class="btn btn-pine btn-sm" href="studio.html?id=${encodeURIComponent(x.id)}"><span class="ms">edit</span>Edit</a>
+            <button class="btn btn-ghost btn-sm" type="button" data-act="card"><span class="ms">visibility</span>Thiệp</button>
+            <a class="btn btn-pine btn-sm" href="studio.html?id=${encodeURIComponent(x.id)}"><span class="ms">edit</span>Sửa</a>
           </span>
         </div>
       </div>
@@ -94,30 +94,30 @@ function render() {
 /* ---------------- actions ---------------- */
 const byId = (id) => listGallery().find((x) => x.id === id);
 async function exportItem(item) {
-  toast('Wrapping up your festive PNG…', 'hourglass_top');
+  toast('Đang tạo ảnh PNG…', 'hourglass_top');
   try {
     const blob = await designToPngBlob(normalizeDesign(item.design, lib), lib, 2);
     downloadBlob(blob, `${fileSafe(item.name)}.png`);
-    toast('PNG downloaded — Merry Christmas!', 'download_done');
-  } catch (err) { alertDialog('Export failed', err.message); }
+    toast('Đã tải ảnh PNG — Giáng Sinh vui vẻ!', 'download_done');
+  } catch (err) { alertDialog('Xuất ảnh thất bại', err.message); }
 }
 async function copyLink(item) {
   const url = await shareLink(normalizeDesign(item.design, lib));
   const ok = await copyText(url);
-  toast(ok ? 'Card link copied — paste it to a friend!' : 'Could not copy the link', ok ? 'link' : 'error');
+  toast(ok ? 'Đã sao chép link thiệp — gửi cho bạn bè nhé!' : 'Không sao chép được link', ok ? 'link' : 'error');
 }
 function openViewer(item) {
   const v = document.createElement('div');
   v.className = 'viewer';
   v.setAttribute('role', 'dialog');
   v.setAttribute('aria-modal', 'true');
-  v.setAttribute('aria-label', `${item.name} card`);
+  v.setAttribute('aria-label', `Thiệp ${item.name}`);
   v.innerHTML = `<div class="art twinkle-on">${renderDesignSVG(normalizeDesign(item.design, lib), lib, { uid: 'view', title: item.name })}</div>
     <div class="row">
-      <button class="btn btn-ghost" type="button" data-v="close"><span class="ms">close</span>Close</button>
-      <button class="btn btn-soft" type="button" data-v="link"><span class="ms">link</span>Copy card link</button>
-      <button class="btn btn-berry" type="button" data-v="png"><span class="ms">download</span>Export PNG</button>
-      <a class="btn btn-pine" href="studio.html?id=${encodeURIComponent(item.id)}"><span class="ms">edit</span>Edit</a>
+      <button class="btn btn-ghost" type="button" data-v="close"><span class="ms">close</span>Đóng</button>
+      <button class="btn btn-soft" type="button" data-v="link"><span class="ms">link</span>Sao chép link thiệp</button>
+      <button class="btn btn-berry" type="button" data-v="png"><span class="ms">download</span>Xuất PNG</button>
+      <a class="btn btn-pine" href="studio.html?id=${encodeURIComponent(item.id)}"><span class="ms">edit</span>Sửa</a>
     </div>`;
   const close = () => { v.remove(); document.removeEventListener('keydown', onKey); };
   const onKey = (e) => { if (e.key === 'Escape') close(); };
@@ -138,9 +138,9 @@ function openMenu(btn, item) {
   m.className = 'menu';
   m.setAttribute('role', 'menu');
   m.innerHTML = [
-    ['rename', 'drive_file_rename_outline', 'Rename'], ['duplicate', 'content_copy', 'Duplicate'],
-    ['png', 'image', 'Export PNG'], ['link', 'link', 'Copy share link'], ['json', 'file_download', 'Download design file'],
-    ['delete', 'delete', 'Delete', 'danger'],
+    ['rename', 'drive_file_rename_outline', 'Đổi tên'], ['duplicate', 'content_copy', 'Nhân bản'],
+    ['png', 'image', 'Xuất PNG'], ['link', 'link', 'Sao chép link chia sẻ'], ['json', 'file_download', 'Tải file thiết kế'],
+    ['delete', 'delete', 'Xoá', 'danger'],
   ].map(([a, ic, l, cls]) => `<button type="button" role="menuitem" data-m="${a}" class="${cls || ''}"><span class="ms">${ic}</span>${l}</button>`).join('');
   document.body.appendChild(m);
   const r = btn.getBoundingClientRect();
@@ -161,12 +161,12 @@ function openMenu(btn, item) {
     closeMenu();
     try {
       if (a === 'rename') {
-        const name = await promptDialog('Rename this tree', item.name, 'Rename');
+        const name = await promptDialog('Đổi tên cây', item.name, 'Đổi tên');
         if (name) { const d = clone(item.design); d.name = name.slice(0, 60); patchGalleryItem(item.id, { name: d.name, design: d }, true); render(); }
       }
       if (a === 'duplicate') {
-        const d = clone(item.design); d.name = `${item.name} (copy)`.slice(0, 60);
-        upsertGalleryItem({ id: uid('tree'), name: d.name, design: d, favorite: false }); render(); toast('Tree duplicated', 'content_copy');
+        const d = clone(item.design); d.name = `${item.name} (bản sao)`.slice(0, 60);
+        upsertGalleryItem({ id: uid('tree'), name: d.name, design: d, favorite: false }); render(); toast('Đã nhân bản cây', 'content_copy');
       }
       if (a === 'png') exportItem(item);
       if (a === 'link') copyLink(item);
@@ -175,11 +175,11 @@ function openMenu(btn, item) {
         downloadBlob(blob, `${fileSafe(item.name)}.json`);
       }
       if (a === 'delete') {
-        if (await confirmDialog(`Delete “${item.name}”?`, 'This removes it from your gallery in this browser. It cannot be undone.', 'Delete tree')) {
-          deleteGalleryItem(item.id); render(); toast('Tree deleted', 'delete');
+        if (await confirmDialog(`Xoá “${item.name}”?`, 'Cây sẽ bị xoá khỏi bộ sưu tập trên trình duyệt này và không thể khôi phục.', 'Xoá cây')) {
+          deleteGalleryItem(item.id); render(); toast('Đã xoá cây', 'delete');
         }
       }
-    } catch (err) { alertDialog('Something went wrong', err.message); }
+    } catch (err) { alertDialog('Đã xảy ra lỗi', err.message); }
   });
 }
 document.addEventListener('click', (e) => { if (!e.target.closest('.menu') && !e.target.closest('[data-act="menu"]')) closeMenu(); });
@@ -203,7 +203,7 @@ $('#grid').addEventListener('keydown', (e) => {
 $('#filters').addEventListener('click', (e) => { const b = e.target.closest('[data-filter]'); if (b) { view.filter = b.dataset.filter; render(); } });
 $('#search').addEventListener('input', (e) => { view.q = e.target.value; render(); });
 $('#btn-view').addEventListener('click', () => { view.layout = view.layout === 'list' ? 'grid' : 'list'; prefs.set('galleryLayout', view.layout); render(); });
-$('#btn-sort').addEventListener('click', () => { view.sort = view.sort === 'name' ? 'newest' : 'name'; prefs.set('gallerySort', view.sort); render(); toast(view.sort === 'name' ? 'Sorted A–Z' : 'Newest first', 'sort'); });
+$('#btn-sort').addEventListener('click', () => { view.sort = view.sort === 'name' ? 'newest' : 'name'; prefs.set('gallerySort', view.sort); render(); toast(view.sort === 'name' ? 'Đã sắp xếp A–Z' : 'Mới nhất trước', 'sort'); });
 
 $('#btn-import').addEventListener('click', () => $('#import-file').click());
 $('#import-file').addEventListener('change', async (e) => {
@@ -211,30 +211,30 @@ $('#import-file').addEventListener('change', async (e) => {
   e.target.value = '';
   if (!file) return;
   try {
-    if (file.size > 1_000_000) throw new Error('That file is too large to be a tree design.');
+    if (file.size > 1_000_000) throw new Error('File quá lớn, không phải file thiết kế cây.');
     const json = JSON.parse(await file.text());
     const d = normalizeDesign(json.design || json, lib);
     const it = upsertGalleryItem({ id: uid('tree'), name: d.name, design: d });
     render();
-    toast(`Imported “${it.name}”`, 'upload');
+    toast(`Đã nhập “${it.name}”`, 'upload');
   } catch (err) {
-    alertDialog('Could not import', err instanceof SyntaxError ? 'That file is not a valid design file (.json).' : err.message);
+    alertDialog('Không nhập được', err instanceof SyntaxError ? 'File này không phải file thiết kế hợp lệ (.json).' : err.message);
   }
 });
 
 function addSamples() {
-  const names = ["Grandma's Cozy Fir", 'Christmas Eve Sparkle', 'Candy Wonderland'];
-  [THEMES[0], THEMES[5], THEMES[2]].forEach((t, i) => {
+  const names = ['Cây thông mùa vàng Phú Nông', 'Đêm Giáng Sinh lấp lánh', 'Xứ sở kẹo ngọt'];
+  [THEMES[0], THEMES[6], THEMES[3]].forEach((t, i) => {
     const d = designFromTheme(t, lib, { seed: `sample-${t.id}` });
     d.name = names[i];
     upsertGalleryItem({ id: uid('tree'), name: d.name, design: d, favorite: i === 0 });
   });
   render();
-  toast('Three sample trees added', 'auto_awesome');
+  toast('Đã thêm 3 cây mẫu', 'auto_awesome');
 }
 
 (async () => {
   lib = await loadLibrary();
-  try { await Promise.race([document.fonts.load('800 26px Epilogue'), new Promise((r) => setTimeout(r, 1000))]); } catch { /* ignore */ }
+  try { await Promise.race([document.fonts.load('800 26px Epilogue', 'Giáng Sinh ăâđêôơư'), new Promise((r) => setTimeout(r, 1000))]); } catch { /* ignore */ }
   render();
 })().catch(showFatal);

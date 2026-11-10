@@ -1,6 +1,6 @@
-# My Little Christmas Tree
+# Cây Thông Phú Nông
 
-Website trang trí cây thông Noel. Đây là site tĩnh viết bằng HTML/CSS/JS thuần, không có backend và không cần bước build.
+Website trang trí cây thông Noel mang màu sắc nông nghiệp: treo chai thuốc BVTV và phân bón Phú Nông lên cây thông giữa cánh đồng lúa. Đây là site tĩnh viết bằng HTML/CSS/JS thuần, không có backend và không cần bước build.
 Thiết kế dựa trên [My_Little_Christmas_Tree_Project_Blueprint.md](My_Little_Christmas_Tree_Project_Blueprint.md) và các mockup trong [store/](store/).
 
 ## Chạy ở máy
@@ -38,7 +38,27 @@ public/
     └── fonts/          Epilogue + Plus Jakarta Sans, có bản tiếng Việt (nhúng vào khi xuất PNG)
 ```
 
-## Thêm đồ trang trí mới
+## Thêm sản phẩm Phú Nông mới
+
+Ảnh sản phẩm (chai thuốc, gói phân bón…) là PNG nền trong suốt, đặt trong `public/assets/decorations/products/`. Nên thu nhỏ về cao ~360px trước khi đưa vào (ảnh gốc 4000px sẽ làm web nặng). Sau đó thêm vào `public/assets/manifest.json`:
+
+```json
+{
+  "id": "pn-ten-san-pham",
+  "name": "Tên sản phẩm 300SC",
+  "category": "products",
+  "type": "image",
+  "image": "assets/decorations/products/ten-san-pham.png",
+  "colorable": false,
+  "width": 39.5,
+  "height": 54,
+  "keywords": "phú nông thuốc bvtv 100ml"
+}
+```
+
+`width`/`height` là kích thước mặc định trên cây, giữ đúng tỉ lệ ảnh (ảnh 263×360 → 39.5×54). Script đã dùng để xử lý 38 ảnh ban đầu nằm ở `store/products` (ảnh gốc).
+
+## Thêm đồ trang trí vẽ tay mới
 
 Không cần sửa code của editor:
 
@@ -69,7 +89,8 @@ Không cần sửa code của editor:
 
 - Cây gồm 4 kiểu: Classic, Mini, Snowy, Minimalist. Lá, cành, thân, váy cây và tuyết đổi màu riêng được, chọn bằng swatch, color picker hoặc nhập HEX.
 - Có thể chỉnh kích thước cây, độ phủ tuyết và bật/tắt dây đèn.
-- Thư viện có 31 đồ trang trí trong 7 nhóm, tìm kiếm được.
+- Thư viện có 38 sản phẩm Phú Nông (thuốc BVTV, phân bón) và 31 đồ trang trí vẽ tay trong 8 nhóm, tìm kiếm được.
+- Nền "Cánh đồng lúa mùa vàng" và chủ đề "Mùa Vàng Phú Nông" treo sản phẩm lên cây tự động.
 - Đặt đồ trang trí bằng kéo-thả (chuột, hoặc nhấn giữ trên màn hình cảm ứng) hay nút Add.
 - Với đồ đã đặt: di chuyển, scale, xoay (bằng handle, slider hoặc pinch 2 ngón), nhân bản, lật, đổi lớp, khoá, xoá, đổi màu. Có bảng Layers.
 - Phím tắt: Undo/Redo, Reset, Clear, Random Decorate, Preview, Zoom, `Del`, `Ctrl+D`, phím mũi tên, `[` `]`.
