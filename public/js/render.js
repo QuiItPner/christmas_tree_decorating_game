@@ -3,7 +3,7 @@
    full-design markup, PNG export and the random decorator.
    Stage coordinate system: 600 × 720 units.
    ========================================================= */
-import { escapeHtml, round, uid, clamp } from './core.js?v=20261111a';
+import { escapeHtml, round, uid, clamp } from './core.js?v=20261111f';
 
 export const W = 600;
 export const H = 720;
@@ -224,6 +224,102 @@ function pine(x, y, h, fill) {
   return `<path d="M${x} ${y - h}L${x + w * 0.55} ${y - h * 0.55}H${x + w * 0.3}L${x + w} ${y}H${x - w}L${x - w * 0.3} ${y - h * 0.55}H${x - w * 0.55}Z" fill="${fill}"/>`;
 }
 
+/* ---------------- "Cánh đồng lúa mùa vàng" — golden-hour Vietnamese countryside ---------------- */
+function cloud(x, y, s, o) {
+  return `<g transform="translate(${x} ${y}) scale(${s})" fill="#FFF9EC" opacity="${o}"><ellipse cx="0" cy="0" rx="46" ry="14"/><ellipse cx="-16" cy="-9" rx="20" ry="15"/><ellipse cx="12" cy="-13" rx="24" ry="19"/><ellipse cx="34" cy="-4" rx="16" ry="11"/></g>`;
+}
+function coconut(x, y, h, lean, fill) {
+  // curved trunk + a crown of drooping leaflets, as filled shapes
+  const tx = x + lean, ty = y - h;
+  let g = `<path d="M${x - 3} ${y}Q${x + lean * 0.2} ${y - h * 0.55} ${tx - 1.6} ${ty}L${tx + 1.6} ${ty}Q${x + lean * 0.2 + 4} ${y - h * 0.55} ${x + 3} ${y}Z" fill="${fill}"/>`;
+  [-168, -138, -108, -72, -42, -12, 18, 160].forEach((a, i) => {
+    const rad = (a * Math.PI) / 180, len = h * (0.48 + (i % 3) * 0.05);
+    const ex = tx + Math.cos(rad) * len, ey = ty + Math.sin(rad) * len * 0.55 + len * 0.28;
+    const cx = tx + Math.cos(rad) * len * 0.55, cy = ty + Math.sin(rad) * len * 0.5 - 6;
+    g += `<path d="M${round(tx)} ${round(ty)}Q${round(cx)} ${round(cy - 3)} ${round(ex)} ${round(ey)}Q${round(cx)} ${round(cy + 4)} ${round(tx)} ${round(ty + 2)}Z" fill="${fill}"/>`;
+  });
+  return g;
+}
+function riceClump(x, y, h, dir, r) {
+  // a few stalks bowing under heavy golden heads (foreground framing)
+  let g = '';
+  for (let k = 0; k < 4; k++) {
+    const sx = x + (k - 1.5) * 7 + (r() - 0.5) * 3;
+    const hh = h * (0.78 + r() * 0.3);
+    const bend = dir * (14 + r() * 10);
+    const tx = sx + bend, ty = y - hh;
+    // leaf blade, then the stalk
+    g += `<path d="M${round(sx)} ${y}Q${round(sx - dir * 18)} ${round(y - hh * 0.45)} ${round(sx - dir * 26)} ${round(y - hh * 0.62)}Q${round(sx - dir * 8)} ${round(y - hh * 0.4)} ${round(sx + dir * 2)} ${y}Z" fill="#8CA845"/>`;
+    g += `<path d="M${round(sx)} ${y}Q${round(sx + bend * 0.1)} ${round(y - hh * 0.62)} ${round(tx)} ${round(ty)}" stroke="#7F9A3C" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+    // the drooping panicle: one smooth tapered shape + a light grain edge
+    const ex = tx + dir * 16, ey = ty + 26;
+    g += `<path d="M${round(tx)} ${round(ty)}Q${round(tx + dir * 14)} ${round(ty + 2)} ${round(ex)} ${round(ey)}Q${round(tx + dir * 6)} ${round(ty + 12)} ${round(tx)} ${round(ty)}Z" fill="#DDAF3A"/>`;
+    g += `<path d="M${round(tx + dir * 2)} ${round(ty + 1)}Q${round(tx + dir * 12)} ${round(ty + 4)} ${round(ex - dir * 1)} ${round(ey - 3)}" stroke="#F4D46A" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-dasharray="2.6 1.8"/>`;
+  }
+  return g;
+}
+function riceField(id) {
+  const r = rng(71);
+  let d = `<linearGradient id="${id('sky')}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6CF9B"/><stop offset=".45" stop-color="#FBE3BE"/><stop offset="1" stop-color="#FFF3D8"/></linearGradient>`;
+  d += `<radialGradient id="${id('sun')}" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFF4CF" stop-opacity=".95"/><stop offset=".35" stop-color="#FFE3A0" stop-opacity=".55"/><stop offset="1" stop-color="#FFE3A0" stop-opacity="0"/></radialGradient>`;
+  d += `<linearGradient id="${id('far')}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D9CBA8"/><stop offset="1" stop-color="#EBDDBA"/></linearGradient>`;
+  d += `<linearGradient id="${id('mid')}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B8C99A"/><stop offset="1" stop-color="#CBD6A8"/></linearGradient>`;
+  d += `<linearGradient id="${id('mound')}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A9C25E"/><stop offset=".5" stop-color="#8FAE4C"/><stop offset="1" stop-color="#6F9140"/></linearGradient>`;
+  d += `<linearGradient id="${id('haze')}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF3D8" stop-opacity="0"/><stop offset="1" stop-color="#FFF3D8" stop-opacity=".75"/></linearGradient>`;
+  // rice texture at four perspective scales (far → near)
+  [0.55, 0.8, 1.15, 1.7].forEach((k, i) => {
+    d += `<pattern id="${id('stalk' + i)}" width="16" height="11" patternUnits="userSpaceOnUse" patternTransform="scale(${k})"><path d="M3 11q.6-5 3.6-8.6M10 11q.2-4.4 3.2-7.6" stroke="#A8822A" stroke-opacity=".32" stroke-width="1.1" fill="none" stroke-linecap="round"/><path d="M6.4 2.6q1.2-1 2.6-1M13.2 3.6q1-.8 2.2-.8" stroke="#FFF0B3" stroke-opacity=".5" stroke-width="1" fill="none" stroke-linecap="round"/></pattern>`;
+  });
+
+  let s = `<defs>${d}</defs><rect width="${W}" height="${H}" fill="url(#${id('sky')})"/>`;
+  // sun low over the hills, soft glow and a few clouds
+  s += `<circle cx="462" cy="318" r="190" fill="url(#${id('sun')})"/><circle cx="462" cy="318" r="40" fill="#FFF1C4"/>`;
+  s += cloud(92, 150, 1, 0.75) + cloud(512, 118, 0.85, 0.7) + cloud(250, 74, 0.6, 0.5) + cloud(560, 238, 0.55, 0.55);
+  // distant ranges
+  s += `<path d="M0 312Q70 270 140 300T280 286T420 296T600 278V380H0Z" fill="url(#${id('far')})"/>`;
+  s += `<path d="M0 344Q90 312 180 336T360 330T600 322V392H0Z" fill="url(#${id('mid')})"/>`;
+  // village grove on the horizon (rounded clumps), with palms and a farmhouse
+  let grove = '';
+  for (let x = -10; x < W + 20; x += 18 + r() * 14) {
+    const h = 14 + r() * 16;
+    grove += `<ellipse cx="${round(x)}" cy="${round(392 - h * 0.35)}" rx="${round(14 + r() * 10)}" ry="${round(h * 0.7)}"/>`;
+  }
+  s += `<g fill="#7C9F5A">${grove}</g><rect y="384" width="${W}" height="16" fill="#7C9F5A"/>`;
+  s += coconut(40, 392, 92, -10, '#5E8448') + coconut(74, 394, 70, 8, '#668C4E') + coconut(538, 392, 98, 12, '#5E8448') + coconut(574, 394, 72, -6, '#668C4E');
+  s += `<g transform="translate(128 392)"><rect x="-30" y="-24" width="60" height="24" fill="#F6E6C8"/><path d="M-38 -22L-24 -44H24L38 -22Z" fill="#B65A30"/><path d="M-38 -22H38" stroke="#8E4322" stroke-width="2"/><path d="M-30 -36H30M-34 -29H34" stroke="#9E4A26" stroke-opacity=".45" stroke-width="1"/><rect x="-6" y="-15" width="12" height="15" fill="#8A5428"/><rect x="12" y="-16" width="10" height="8" fill="#FBE3A6"/><rect x="-22" y="-16" width="10" height="8" fill="#FBE3A6"/></g>`;
+  // haystack (đống rơm)
+  s += `<g transform="translate(474 394)"><path d="M0 -38V2" stroke="#7A5A2E" stroke-width="2"/><path d="M-24 2Q-26 -24 0 -34Q26 -24 24 2Z" fill="#D9A742"/><path d="M-18 -8Q0 -16 18 -8M-21 -18Q0 -26 21 -18" stroke="#B88528" stroke-width="1.4" fill="none"/></g>`;
+  s += `<rect y="352" width="${W}" height="48" fill="url(#${id('haze')})"/>`;
+  // terraced paddies: bands get taller toward the viewer
+  const rows = [398, 412, 431, 458, 494, 541, 650];
+  const fills = ['#D3BE54', '#E2C251', '#D8B444', '#E6C459', '#DBB23F', '#E9C860'];
+  for (let i = 0; i < rows.length - 1; i++) {
+    const a = rows[i], b = rows[i + 1], dip = 6 + i * 4;
+    const band = `M0 ${a}Q300 ${a - dip} 600 ${a + 2}V${b + 2}Q300 ${b - dip - 4} 0 ${b}Z`;
+    s += `<path d="${band}" fill="${fills[i]}"/><path d="${band}" fill="url(#${id('stalk' + Math.min(3, Math.floor(i * 0.7)))})"/>`;
+    // the bờ ruộng (dyke) between two paddies: sunlit top + shadow
+    const w = 1 + i * 0.6;
+    s += `<path d="M0 ${b}Q300 ${b - dip - 4} 600 ${b + 2}" stroke="#F6E3A0" stroke-width="${round(w + 1)}" fill="none"/><path d="M0 ${b + w}Q300 ${b - dip - 4 + w} 600 ${b + 2 + w}" stroke="#A9842D" stroke-opacity=".35" stroke-width="${round(w)}" fill="none"/>`;
+  }
+  // a few water glints between the rows
+  for (let i = 0; i < 18; i++) s += `<ellipse cx="${round(r() * W)}" cy="${round(404 + r() * 120)}" rx="${round(2 + r() * 5)}" ry=".9" fill="#FFF8DD" opacity="${round(0.35 + r() * 0.35)}"/>`;
+  // birds heading home
+  s += `<g stroke="#8B6A45" stroke-width="1.6" fill="none" stroke-linecap="round"><path d="M352 212q7-6 13 0q6-6 13 0"/><path d="M388 190q5-4 10 0q5-4 10 0"/><path d="M410 228q4-3 8 0q4-3 8 0"/></g>`;
+  // grassy mound the tree stands on
+  s += `<path d="M0 612Q150 570 300 574T600 610V720H0Z" fill="url(#${id('mound')})"/>`;
+  let tufts = '';
+  for (let x = 6; x < W; x += 13 + r() * 10) {
+    const y = 612 - 40 * Math.sin((x / W) * Math.PI) + 2;
+    tufts += `<path d="M${round(x)} ${round(y + 4)}l-3 -9M${round(x + 3)} ${round(y + 4)}l1 -11M${round(x + 6)} ${round(y + 4)}l4 -8"/>`;
+  }
+  s += `<g stroke="#B9D06C" stroke-width="1.6" stroke-linecap="round" opacity=".9">${tufts}</g>`;
+  s += `<path d="M0 648Q300 610 600 648" stroke="#6F9140" stroke-opacity=".35" stroke-width="2" fill="none"/>`;
+  // foreground rice framing both bottom corners
+  s += riceClump(18, 720, 110, 1, r) + riceClump(58, 724, 86, 1, r) + riceClump(98, 726, 62, 1, r);
+  s += riceClump(582, 720, 112, -1, r) + riceClump(542, 724, 84, -1, r) + riceClump(504, 726, 58, -1, r);
+  return s;
+}
+
 export function renderBackground(bg, u = 'b') {
   const id = (k) => `${u}-${k}`;
   const theme = bg.theme;
@@ -301,38 +397,7 @@ export function renderBackground(bg, u = 'b') {
     s += snowDots(r, 30, 0, 600, 0.6);
     return s;
   }
-  if (theme === 'rice-field') {
-    const r = rng(71);
-    let s = `<defs><linearGradient id="${id('sky')}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD9A3"/><stop offset=".55" stop-color="#FFEFD2"/><stop offset="1" stop-color="#FFF8E6"/></linearGradient><radialGradient id="${id('sun')}"><stop offset="0" stop-color="#FFE48A" stop-opacity=".9"/><stop offset="1" stop-color="#FFE48A" stop-opacity="0"/></radialGradient><linearGradient id="${id('paddy')}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9B542"/><stop offset="1" stop-color="#E0B93A"/></linearGradient><linearGradient id="${id('ground')}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C98F4C"/><stop offset="1" stop-color="#9D6A33"/></linearGradient></defs>`;
-    s += `<rect width="${W}" height="${H}" fill="url(#${id('sky')})"/><circle cx="470" cy="150" r="120" fill="url(#${id('sun')})"/><circle cx="470" cy="150" r="42" fill="#FFE48A"/>`;
-    // far hills + palm silhouettes
-    s += `<path d="M0 330Q90 270 190 310T380 290T600 320V400H0Z" fill="#B9D4A6"/><path d="M0 360Q120 320 240 350T470 335T600 360V420H0Z" fill="#9CC48A"/>`;
-    [[62, 346, 38], [548, 350, 44]].forEach(([x, y, h]) => {
-      s += `<path d="M${x} ${y}q2 -${h * 0.6} -1 -${h}" stroke="#5E7F43" stroke-width="4" fill="none" stroke-linecap="round"/>`;
-      for (let k = 0; k < 6; k++) { const a = -150 + k * 36; s += `<path d="M${x - 1} ${y - h}q${round(18 * Math.cos((a * Math.PI) / 180))} ${round(12 * Math.sin((a * Math.PI) / 180) - 6)} ${round(30 * Math.cos((a * Math.PI) / 180))} ${round(26 * Math.sin((a * Math.PI) / 180) + 2)}" stroke="#4F7A3A" stroke-width="3.5" fill="none" stroke-linecap="round"/>`; }
-    });
-    // village house
-    s += `<g transform="translate(118 378)"><rect x="-34" y="-28" width="68" height="34" fill="#F4E3C7"/><path d="M-42 -28L0 -58L42 -28Z" fill="#B5542C"/><rect x="-8" y="-14" width="16" height="20" fill="#7C4A22"/><rect x="16" y="-18" width="12" height="10" fill="#9ED1F0"/><rect x="-28" y="-18" width="12" height="10" fill="#9ED1F0"/></g>`;
-    // paddy rows in golden-green
-    s += `<rect y="400" width="${W}" height="200" fill="url(#${id('paddy')})"/>`;
-    for (let row = 0; row < 7; row++) {
-      const y = 412 + row * 27;
-      const sp = 14 + row * 5;
-      for (let x = (row % 2) * sp / 2; x < W; x += sp) {
-        const hh = 9 + row * 3.4;
-        s += `<path d="M${round(x)} ${y + hh}q-3 -${round(hh * 0.6)} 0 -${round(hh)}q3 ${round(hh * 0.4)} 0 ${round(hh)}" fill="#6E9A3A" opacity="${round(0.55 + row * 0.06)}"/><path d="M${round(x)} ${y + 2}q2 -8 5 -11" stroke="#E9C64A" stroke-width="2" fill="none" stroke-linecap="round" opacity="${round(0.6 + row * 0.05)}"/>`;
-      }
-    }
-    // field divider paths + water glints
-    s += `<path d="M0 468Q300 452 600 470" stroke="#B59334" stroke-opacity=".5" stroke-width="2" fill="none"/><path d="M0 536Q300 520 600 540" stroke="#B59334" stroke-opacity=".5" stroke-width="2.5" fill="none"/>`;
-    for (let i = 0; i < 26; i++) s += `<ellipse cx="${round(r() * W)}" cy="${round(430 + r() * 150)}" rx="${round(3 + r() * 6)}" ry="1.2" fill="#fff" opacity="${round(0.25 + r() * 0.3)}"/>`;
-    // dirt yard where the tree stands
-    s += `<path d="M0 596Q300 560 600 596V720H0Z" fill="url(#${id('ground')})"/><path d="M0 596Q300 560 600 596" stroke="#8F5D2B" stroke-opacity=".5" stroke-width="3" fill="none"/>`;
-    for (let i = 0; i < 40; i++) s += `<circle cx="${round(r() * W)}" cy="${round(610 + r() * 100)}" r="${round(1 + r() * 2.2)}" fill="#6B4320" opacity="${round(0.15 + r() * 0.25)}"/>`;
-    // dragonflies / birds
-    s += `<path d="M330 120q10-8 20 0M350 120q10-8 20 0M400 92q8-6 16 0M416 92q8-6 16 0" stroke="#7A5C3A" stroke-width="1.8" fill="none" stroke-linecap="round"/>`;
-    return s;
-  }
+  if (theme === 'rice-field') return riceField(id);
   // minimal
   const c = bg.color || '#FBE9D7';
   const light = luminance(c) > 0.35;

@@ -1,6 +1,6 @@
-import { $, $$, mountChrome, loadLibrary, showFatal, escapeHtml } from './core.js?v=20261111a';
-import { renderDesignSVG } from './render.js?v=20261111a';
-import { THEMES, designFromTheme } from './themes-data.js?v=20261111a';
+import { $, $$, mountChrome, loadLibrary, showFatal, escapeHtml } from './core.js?v=20261111f';
+import { renderDesignSVG } from './render.js?v=20261111f';
+import { THEMES, designFromTheme } from './themes-data.js?v=20261111f';
 
 mountChrome('about');
 
@@ -47,18 +47,15 @@ const DROPS = [12, 40, 22, 50, 16, 34, 26, 46];
 // Phú Nông theme products first, so the garland matches the hero tree
 const FEATURED = THEMES[0].pool.filter((id) => id.startsWith('pn-'));
 
-let garlandFilter = 'all';
 let garlandCount = 0;
 let products = [];
 
-function pickProducts(filter) {
+function pickProducts() {
   const ordered = [...products].sort((a, b) => {
     const ia = FEATURED.indexOf(a.id), ib = FEATURED.indexOf(b.id);
     return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
   });
-  if (filter === 'bvtv') return ordered.filter((a) => !isFert(a));
-  if (filter === 'fert') return ordered.filter(isFert);
-  // "all": two pesticides, one fertiliser, repeat — both families stay visible
+  // two pesticides, one fertiliser, repeat — both families stay visible
   const b = ordered.filter((a) => !isFert(a)), f = ordered.filter(isFert), out = [];
   while (b.length || f.length) {
     if (b.length) out.push(b.shift());
@@ -96,7 +93,7 @@ function layoutGarland() {
 function renderGarland() {
   const list = $('#garland');
   const n = slotsFor(window.innerWidth);
-  const all = pickProducts(garlandFilter);
+  const all = pickProducts();
   const items = all.slice(0, n);
   garlandCount = n;
   $('#garland-track').style.setProperty('--n', items.length);
@@ -125,17 +122,6 @@ function renderGarland() {
 
 function setupGarland() {
   products = lib.decorations.filter((a) => a.category === 'products' && isBottle(a));
-  const counts = { all: products.length, bvtv: products.filter((a) => !isFert(a)).length, fert: products.filter(isFert).length };
-  $$('[data-count]').forEach((n) => { n.textContent = counts[n.dataset.count]; });
-  $$('#garland-filter button').forEach((btn) => {
-    btn.hidden = counts[btn.dataset.filter] === 0;
-    btn.addEventListener('click', () => {
-      if (btn.dataset.filter === garlandFilter) return;
-      garlandFilter = btn.dataset.filter;
-      $$('#garland-filter button').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
-      renderGarland();
-    });
-  });
   renderGarland();
   let timer = 0;
   window.addEventListener('resize', () => {

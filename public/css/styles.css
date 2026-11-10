@@ -335,12 +335,6 @@ body.page-home {
 .home-garland-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
 .home-garland h2 { color: #fff; max-width: 640px; }
 .home-garland-head p { margin: 12px 0 0; max-width: 580px; color: #C9DDD0; font-size: 16.5px; line-height: 1.6; }
-.home-filter { display: flex; gap: 6px; padding: 5px; border-radius: 999px; background: rgba(255, 255, 255, .07); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14); }
-.home-filter button { display: inline-flex; align-items: center; gap: 8px; border: 0; background: transparent; color: #E6F1E9; padding: 9px 16px; min-height: 40px; border-radius: 999px; font: 600 14px/1.2 var(--font-body); transition: background .18s, color .18s; }
-.home-filter button span { font-size: 12px; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(255, 255, 255, .12); }
-.home-filter button:hover { background: rgba(255, 255, 255, .1); }
-.home-filter button[aria-pressed="true"] { background: var(--hm-gold); color: var(--hm-green-950); }
-.home-filter button[aria-pressed="true"] span { background: rgba(5, 42, 24, .14); }
 
 .home-garland-scroller { margin-top: 10px; }
 .home-garland-track { position: relative; height: 370px; }
@@ -453,9 +447,6 @@ body.page-home {
 }
 @media (max-width: 759px) {
   .home-garland { padding: 48px 0 40px; }
-  .home-filter { width: 100%; }
-  .home-filter button { flex: 1 1 auto; justify-content: center; gap: 6px; padding: 8px 8px; font-size: 13.5px; white-space: nowrap; }
-  .home-filter button span { padding: 2px 6px; }
   .home-garland-scroller { display: flex; padding: 0 16px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: rgba(224, 185, 58, .6) transparent; -webkit-overflow-scrolling: touch; }
   .home-garland-track { flex: none; height: 300px; width: calc(var(--n, 12) * 100px); max-width: none; }
   .home-orn { width: 96px; margin-left: -48px; }

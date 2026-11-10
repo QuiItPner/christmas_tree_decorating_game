@@ -1,13 +1,13 @@
 /* Ready-made Christmas themes. Each one sets coordinated colours,
    a background and a decoration pool, then the random decorator
    lays them out. Users can keep editing afterwards. */
-import { defaultDesign, clone } from './core.js?v=20261111a';
-import { generateDecorations } from './render.js?v=20261111a';
+import { defaultDesign, clone } from './core.js?v=20261111f';
+import { generateDecorations } from './render.js?v=20261111f';
 
 export const THEMES = [
   {
     id: 'phu-nong-harvest', name: 'Mùa Vàng Phú Nông', group: 'traditional',
-    badge: 'Phú Nông', badgeIcon: 'eco', photo: 'assets/themes/phu-nong-harvest.jpg', photoPosition: 'center 35%', photoLabel: 'Đồng lúa', icon: 'agriculture',
+    badge: 'Phú Nông', badgeIcon: 'eco', photo: 'assets/themes/phu-nong-harvest.jpg?v=2', photoPosition: 'center 35%', photoLabel: 'Đồng lúa', icon: 'agriculture',
     description: 'Cây thông mùa gặt: chai thuốc BVTV và phân bón Phú Nông treo lên cành, quả châu vàng lúa chín, đỏ thắm, ngôi sao sáng giữa cánh đồng bội thu.',
     tags: ['Nông nghiệp', 'Thuốc BVTV', 'Bội thu'],
     palette: ['#176B45', '#E0B93A', '#C9182B', '#FFF8E6'],
