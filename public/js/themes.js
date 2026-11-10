@@ -1,6 +1,6 @@
-import { $, $$, mountChrome, loadLibrary, showFatal, escapeHtml, safeColor, toast, defaultDesign } from './core.js?v=20261110';
-import { renderDesignSVG, renderTree, renderBackground, TREE_STYLES, W, H } from './render.js?v=20261110';
-import { THEMES, designFromTheme, themeById } from './themes-data.js?v=20261110';
+import { $, $$, mountChrome, loadLibrary, showFatal, escapeHtml } from './core.js?v=20261110u';
+import { renderDesignSVG } from './render.js?v=20261110u';
+import { THEMES, designFromTheme, themeById } from './themes-data.js?v=20261110u';
 
 mountChrome('themes');
 
@@ -34,7 +34,6 @@ function renderGrid() {
         <div class="palette">BẢNG MÀU: ${t.palette.map((c) => `<i style="background:${c}" title="${c}"></i>`).join('')}</div>
         <div class="theme-actions">
           <a class="btn btn-berry btn-sm" href="studio.html?theme=${t.id}"><span class="ms">palette</span>Áp dụng</a>
-          <button class="btn btn-soft btn-sm" type="button" data-act="customize"><span class="ms">tune</span>Tuỳ chỉnh</button>
         </div>
       </div>
     </article>`).join('');
@@ -78,65 +77,8 @@ $('#theme-grid').addEventListener('click', (e) => {
     b.setAttribute('aria-pressed', String(on));
     b.querySelector('.ms').textContent = on ? 'photo' : 'park';
   }
-  if (b.dataset.act === 'customize') {
-    mixer.style = t.tree.style;
-    mixer.color = t.tree.leavesColor;
-    mixer.snow = t.tree.snow;
-    mixer.preset = t;
-    syncMixer();
-    $('#mixer').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    toast(`Đã nạp “${t.name}” vào bộ trộn màu`, 'tune');
-  }
 });
-
-/* ---------------- mixer ---------------- */
-const NEEDLES = {
-  classic: 'Linh sam Douglas', mini: 'Nordmann mini', snowy: 'Phủ tuyết', minimalist: 'Tuyết tùng vàng',
-};
-const DEFAULT_MIX = { style: 'classic', color: '#0E472A', snow: 45, preset: null };
-const mixer = { ...DEFAULT_MIX };
-let colorSet = null;
-
-function buildMixer() {
-  $('#mx-needles').innerHTML = TREE_STYLES.map((s) => `<button type="button" class="needle" data-style="${s.id}"><span class="ms">${s.icon}</span>${NEEDLES[s.id]}</button>`).join('');
-  $('#mx-needles').addEventListener('click', (e) => {
-    const b = e.target.closest('[data-style]');
-    if (!b) return;
-    mixer.style = b.dataset.style;
-    if (mixer.style === 'snowy' && mixer.snow < 40) mixer.snow = 70;
-    syncMixer();
-  });
-  const swatches = ['#0E472A', '#005131', '#176B45', '#88D7A8', '#4F7F7A', '#F2F5F3', '#F7C6D9', '#6B4F12'];
-  $('#mx-colors').innerHTML = `<div class="swatches">${swatches.map((c) => `<button type="button" class="swatch lg" style="background:${c}" data-c="${c}" aria-label="Màu lá ${c}"></button>`).join('')}<label class="swatch-custom" style="width:40px;height:40px" title="Màu tuỳ chọn"><input type="color" id="mx-custom" aria-label="Màu lá tuỳ chọn"><span class="ms">colorize</span></label></div>`;
-  $('#mx-colors').addEventListener('click', (e) => {
-    const b = e.target.closest('[data-c]');
-    if (!b) return;
-    mixer.color = b.dataset.c;
-    syncMixer();
-  });
-  $('#mx-custom').addEventListener('input', (e) => { mixer.color = safeColor(e.target.value); syncMixer(); });
-  $('#mx-snow').addEventListener('input', (e) => { mixer.snow = Number(e.target.value); syncMixer(); });
-  $('#mx-reset').addEventListener('click', () => { Object.assign(mixer, DEFAULT_MIX); syncMixer(); toast('Đã đặt lại màu mặc định', 'refresh'); });
-  colorSet = swatches;
-}
-function snowWord(v) { return v === 0 ? 'Không tuyết' : v <= 40 ? 'Tuyết nhẹ' : v <= 70 ? 'Tuyết vừa' : 'Bão tuyết'; }
-function syncMixer() {
-  $$('#mx-needles .needle').forEach((b) => { const on = b.dataset.style === mixer.style; b.classList.toggle('active', on); b.setAttribute('aria-pressed', String(on)); });
-  $$('#mx-colors .swatch').forEach((b) => b.classList.toggle('active', b.dataset.c.toUpperCase() === mixer.color.toUpperCase()));
-  $('#mx-custom').value = mixer.color.toLowerCase();
-  $('#mx-snow').value = mixer.snow;
-  $('#mx-hex').textContent = mixer.color;
-  $('#mx-snow-label').textContent = `${mixer.snow}% (${snowWord(mixer.snow)})`;
-  $('#mx-style-label').textContent = NEEDLES[mixer.style];
-  $('#mx-tag').textContent = NEEDLES[mixer.style];
-  $('#mx-summary').textContent = mixer.preset ? `${mixer.preset.name} · ${mixer.color}` : `${NEEDLES[mixer.style]} + ${snowWord(mixer.snow)}`;
-  const tree = { ...defaultDesign().tree, style: mixer.style, leavesColor: mixer.color, snow: mixer.snow, lights: true };
-  $('#mx-stage').innerHTML = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">${renderBackground({ theme: 'minimal', color: '#FDEEE4' }, 'mxb')}${renderTree(tree, 'mxt')}</svg>`;
-  $('#mx-launch').href = `studio.html?blend=${mixer.style}~${encodeURIComponent(mixer.color)}~${mixer.snow}`;
-}
 
 renderFilter();
 renderGrid();
-buildMixer();
-syncMixer();
 loadLibrary().then((l) => { lib = l; fillTreeCards(); }).catch(showFatal);

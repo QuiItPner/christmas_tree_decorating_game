@@ -5,10 +5,8 @@
    ========================================================= */
 
 export const APP_NAME = 'Cây Thông Phú Nông';
-export const GALLERY_LIMIT = 20;
 
 const KEY_CURRENT = 'mlct:current';
-const KEY_GALLERY = 'mlct:gallery';
 const KEY_PREFS = 'mlct:prefs';
 
 /* ---------------- small utils ---------------- */
@@ -80,6 +78,19 @@ export const prefs = {
 
 /* ---------------- asset library ---------------- */
 let libPromise = null;
+/** Small local/static servers sometimes drop a request when many load at once — retry before giving up. */
+async function fetchText(url, tries = 3) {
+  for (let i = 1; ; i++) {
+    try {
+      const r = await fetch(url);
+      if (r.ok) return await r.text();
+      if (r.status === 404 || i >= tries) throw new Error(`${r.status} ${url}`);
+    } catch (err) {
+      if (i >= tries) throw err;
+    }
+    await new Promise((res) => setTimeout(res, 150 * i));
+  }
+}
 export function loadLibrary() {
   if (libPromise) return libPromise;
   libPromise = (async () => {
@@ -95,15 +106,14 @@ export function loadLibrary() {
           byId[a.id] = { ...a, colorable: false, viewBox: `0 0 ${w} ${h}`, inner: `<image href="${a.image}" width="${w}" height="${h}" preserveAspectRatio="xMidYMid meet"/>` };
           return;
         }
-        const r = await fetch(a.image);
-        const text = await r.text();
+        const text = await fetchText(a.image);
         const m = text.match(/<svg[^>]*viewBox="([^"]+)"[^>]*>([\s\S]*)<\/svg>/i);
         if (!m) return;
         const [, viewBox, inner] = m;
         // never inline scripts / event handlers from asset files
         const clean = inner.replace(/<script[\s\S]*?<\/script>/gi, '').replace(/\son\w+="[^"]*"/gi, '');
         byId[a.id] = { ...a, viewBox, inner: clean };
-      } catch { /* skip broken asset */ }
+      } catch (err) { console.warn('Skipped decoration', a.id, err); }
     }));
     const decorations = manifest.decorations.filter((a) => byId[a.id]).map((a) => byId[a.id]);
     return { categories: manifest.categories, decorations, byId };
@@ -112,7 +122,7 @@ export function loadLibrary() {
 }
 
 /* ---------------- design model ---------------- */
-export const TREE_STYLE_IDS = ['classic', 'mini', 'snowy', 'minimalist'];
+export const TREE_STYLE_IDS = ['classic', 'mini', 'snowy'];
 export const BACKGROUND_IDS = ['rice-field', 'cozy-room', 'fireplace', 'snowy-forest', 'night-sky', 'minimal'];
 
 export function defaultDesign() {
@@ -204,39 +214,7 @@ export function normalizeDesign(raw, lib) {
 
 /* ---------------- working copy (autosave) ---------------- */
 export function loadCurrent() { return store.get(KEY_CURRENT, null); }
-export function saveCurrent(design, galleryId = null) { return store.set(KEY_CURRENT, { design, galleryId, savedAt: Date.now() }); }
-
-/* ---------------- gallery ---------------- */
-export function listGallery() {
-  const list = store.get(KEY_GALLERY, []);
-  return Array.isArray(list) ? list : [];
-}
-function writeGallery(list) {
-  if (!store.set(KEY_GALLERY, list)) throw new Error('Bộ nhớ trình duyệt đã đầy hoặc bị chặn.');
-}
-export function getGalleryItem(id) { return listGallery().find((x) => x.id === id) || null; }
-export function upsertGalleryItem(item) {
-  const list = listGallery();
-  const i = list.findIndex((x) => x.id === item.id);
-  const now = Date.now();
-  if (i >= 0) {
-    list[i] = { ...list[i], ...item, updatedAt: now };
-  } else {
-    if (list.length >= GALLERY_LIMIT) throw new Error(`Bộ sưu tập đã đầy (${GALLERY_LIMIT} cây). Hãy xoá bớt một cây để lưu cây mới.`);
-    list.unshift({ id: item.id || uid('tree'), favorite: false, createdAt: now, updatedAt: now, ...item });
-  }
-  writeGallery(list);
-  return i >= 0 ? list[i] : list[0];
-}
-export function patchGalleryItem(id, patch, touch = false) {
-  const list = listGallery();
-  const i = list.findIndex((x) => x.id === id);
-  if (i < 0) return null;
-  list[i] = { ...list[i], ...patch, ...(touch ? { updatedAt: Date.now() } : {}) };
-  writeGallery(list);
-  return list[i];
-}
-export function deleteGalleryItem(id) { writeGallery(listGallery().filter((x) => x.id !== id)); }
+export function saveCurrent(design) { return store.set(KEY_CURRENT, { design, savedAt: Date.now() }); }
 
 /* ---------------- share links ---------------- */
 const b64url = {
@@ -394,10 +372,9 @@ export function toggleMusic() {
 
 /* ---------------- page chrome ---------------- */
 const NAV = [
-  { id: 'about', href: 'index.html', label: 'Giới thiệu & Lời chúc', icon: 'celebration' },
+  { id: 'about', href: 'index.html', label: 'Giới thiệu', icon: 'celebration' },
   { id: 'studio', href: 'studio.html', label: 'Trang trí cây', icon: 'park' },
-  { id: 'themes', href: 'themes.html', label: 'Chủ đề & Phong cách', icon: 'palette' },
-  { id: 'gallery', href: 'gallery.html', label: 'Bộ sưu tập', icon: 'collections_bookmark' },
+  { id: 'themes', href: 'themes.html', label: 'Chủ đề', icon: 'palette' },
 ];
 
 
@@ -432,10 +409,7 @@ export function mountChrome(active, opts = {}) {
   const footer = document.createElement('footer');
   footer.className = 'site-footer';
   footer.innerHTML = `
-    <div class="ftr-inner">
-      <div class="ftr-note"><span class="ms">park</span><span>Phú Nông — Mang đến sự khác biệt · Chúc bà con mùa vàng bội thu © ${new Date().getFullYear()}.</span></div>
-      <div class="ftr-links"><a href="index.html#how">Cách chơi</a><span>•</span><a href="themes.html">Chủ đề</a><span>•</span><a href="gallery.html">Bộ sưu tập</a></div>
-    </div>`;
+    <div class="ftr-inner">Copyright© IT PHU NONG - All Reserved.</div>`;
   if (!opts.noFooter) document.body.appendChild(footer);
 
   const navToggle = $('#nav-toggle');

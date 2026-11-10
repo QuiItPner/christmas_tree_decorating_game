@@ -3,7 +3,7 @@
    full-design markup, PNG export and the random decorator.
    Stage coordinate system: 600 × 720 units.
    ========================================================= */
-import { escapeHtml, round, uid, clamp } from './core.js?v=20261110';
+import { escapeHtml, round, uid, clamp } from './core.js?v=20261110u';
 
 export const W = 600;
 export const H = 720;
@@ -11,10 +11,9 @@ const CX = 300;
 const ANCHOR_Y = 640; // tree scales around the skirt centre
 
 export const TREE_STYLES = [
-  { id: 'classic', label: 'Thông cổ điển', icon: 'park' },
-  { id: 'mini', label: 'Vân sam mini', icon: 'nature' },
-  { id: 'snowy', label: 'Linh sam phủ tuyết', icon: 'ac_unit' },
-  { id: 'minimalist', label: 'Tối giản', icon: 'change_history' },
+  { id: 'classic', label: 'Cổ điển', icon: 'park' },
+  { id: 'mini', label: 'Mini', icon: 'nature' },
+  { id: 'snowy', label: 'Phủ tuyết', icon: 'ac_unit' },
 ];
 export const BACKGROUNDS = [
   { id: 'rice-field', label: 'Cánh đồng lúa mùa vàng', short: 'Đồng lúa', icon: 'grass' },
@@ -60,7 +59,6 @@ const GEOM = {
   classic: { edge: 'round', depth: 14, tiers: [[118, 250, 10, 95, 3], [200, 360, 46, 140, 4], [300, 470, 66, 180, 5], [410, 572, 86, 215, 6]] },
   mini: { edge: 'round', depth: 17, tiers: [[262, 372, 10, 96, 3], [330, 468, 44, 138, 4], [418, 572, 64, 176, 5]] },
   snowy: { edge: 'spiky', depth: 16, tiers: [[112, 245, 8, 92, 4], [195, 355, 40, 138, 5], [295, 468, 60, 178, 6], [405, 572, 80, 214, 7]] },
-  minimalist: { edge: 'flat', depth: 0, tiers: [[116, 300, 0, 88, 3], [196, 432, 0, 132, 4], [292, 572, 0, 176, 5]] },
 };
 
 export function treeGeometry(tree) {

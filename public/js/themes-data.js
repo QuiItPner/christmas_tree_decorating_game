@@ -1,8 +1,8 @@
 /* Ready-made Christmas themes. Each one sets coordinated colours,
    a background and a decoration pool, then the random decorator
    lays them out. Users can keep editing afterwards. */
-import { defaultDesign, clone } from './core.js?v=20261110';
-import { generateDecorations } from './render.js?v=20261110';
+import { defaultDesign, clone } from './core.js?v=20261110u';
+import { generateDecorations } from './render.js?v=20261110u';
 
 export const THEMES = [
   {
@@ -68,7 +68,7 @@ export const THEMES = [
     description: 'Quả thông tự nhiên, tuần lộc gỗ, dây vải bố, đèn trắng ấm và ngôi sao gỗ tối giản.',
     tags: ['Hygge', 'Gỗ mộc', 'Thủ công'],
     palette: ['#0E472A', '#8B5A2B', '#E8DCBE', '#F2E8E1'],
-    tree: { style: 'minimalist', leavesColor: '#2F5D3A', trunkColor: '#7A5230', snow: 10, skirtColor: '#D9C7A7', lights: false },
+    tree: { style: 'mini', leavesColor: '#2F5D3A', trunkColor: '#7A5230', snow: 10, skirtColor: '#D9C7A7', lights: false },
     background: { theme: 'cozy-room' },
     topper: { assetId: 'star-topper', color: '#C49A6C' },
     pool: ['pine-cone', 'reindeer', 'holly', 'frost-flake', 'tiny-star', 'warm-garland', 'gift-stack', 'pine-present'],

@@ -2,16 +2,16 @@
    Tree Studio — the editor
    ========================================================= */
 import {
-  $, $$, clamp, round, clone, uid, escapeHtml, safeColor, prefersReducedMotion, timeAgo,
+  $, $$, clamp, round, clone, uid, escapeHtml, safeColor, prefersReducedMotion,
   loadLibrary, defaultDesign, normalizeDesign, loadCurrent, saveCurrent,
-  getGalleryItem, upsertGalleryItem, decodeDesign, shareLink, copyText, downloadBlob, fileSafe,
-  toast, confirmDialog, promptDialog, alertDialog, mountChrome, showFatal,
-} from './core.js?v=20261110';
+  decodeDesign, shareLink, copyText, downloadBlob, fileSafe,
+  toast, confirmDialog, alertDialog, mountChrome, showFatal,
+} from './core.js?v=20261110u';
 import {
   W, H, TREE_STYLES, BACKGROUNDS, treeGeometry, renderTree, renderBackground, renderDecoration,
   renderGreeting, transformOf, assetSVG, designToPngBlob, generateDecorations, suggestPosition,
-} from './render.js?v=20261110';
-import { THEMES, themeById, designFromTheme } from './themes-data.js?v=20261110';
+} from './render.js?v=20261110u';
+import { THEMES, themeById, designFromTheme } from './themes-data.js?v=20261110u';
 
 mountChrome('studio', { share: true, noFooter: true, primary: { label: 'Xuất PNG', icon: 'download', id: 'hdr-export' } });
 
@@ -19,7 +19,6 @@ mountChrome('studio', { share: true, noFooter: true, primary: { label: 'Xuất P
 const S = {
   lib: null,
   design: null,
-  galleryId: null,
   selected: null,
   snap: '',
   history: [],
@@ -46,11 +45,10 @@ const el = {
 };
 
 /* ---------------- history ---------------- */
-const snapshot = () => JSON.stringify({ d: S.design, g: S.galleryId });
+const snapshot = () => JSON.stringify({ d: S.design });
 function restore(snap) {
   const o = JSON.parse(snap);
   S.design = o.d;
-  S.galleryId = o.g;
   S.snap = snap;
   if (!sel()) S.selected = null;
   renderAll();
@@ -65,7 +63,6 @@ function commit() {
   S.snap = now;
   autosave();
   updateHistoryButtons();
-  updateSaveStatus();
 }
 let commitTimer = null;
 const commitSoon = (ms = 450) => { clearTimeout(commitTimer); commitTimer = setTimeout(commit, ms); };
@@ -87,8 +84,7 @@ function updateHistoryButtons() {
   $('#btn-redo').disabled = !S.future.length;
 }
 function autosave() {
-  if (saveCurrent(S.design, S.galleryId)) S.autosavedAt = Date.now();
-  updateSaveStatus();
+  if (saveCurrent(S.design)) S.autosavedAt = Date.now();
 }
 
 /* ---------------- rendering ---------------- */
@@ -105,7 +101,6 @@ function renderAll() {
   renderLayers();
   drawSelection();
   updateHistoryButtons();
-  updateSaveStatus();
 }
 
 function updateDecoNode(d) {
@@ -538,8 +533,7 @@ function renderItemEditor() {
   const d = sel();
   itemColorField = null;
   if (!d) {
-    host.innerHTML = `<div class="box"><div class="empty-sel"><span class="ms">touch_app</span><b>Chưa chọn đồ trang trí</b><br>Bấm vào một món trên cây để di chuyển, đổi kích thước, xoay hoặc đổi màu — hoặc thêm món mới từ thư viện.</div>
-      <div class="btn-grid"><button type="button" data-act="random"><span class="ms">auto_fix_high</span>Trang trí ngẫu nhiên</button><button type="button" data-act="library"><span class="ms">category</span>Mở thư viện</button></div></div>`;
+    host.innerHTML = '';
     return;
   }
   const a = assetOf(d);
@@ -606,8 +600,6 @@ $('#item-editor').addEventListener('click', (e) => {
   if (!b) return;
   const d = sel();
   const act = b.dataset.act;
-  if (act === 'random') return randomDecorate();
-  if (act === 'library') return isMobile() ? openSheet('library') : $('#lib-search').focus();
   if (!d) return;
   if (b.dataset.nudge) {
     const [dx, dy] = b.dataset.nudge.split(',').map(Number);
@@ -889,7 +881,6 @@ $('#btn-random').addEventListener('click', randomDecorate);
 $('#btn-reset').addEventListener('click', async () => {
   if (!(await confirmDialog('Đặt lại cây mặc định?', 'Đồ trang trí và màu sắc sẽ bị xoá. Bạn có thể khôi phục bằng Hoàn tác.', 'Đặt lại'))) return;
   S.design = defaultDesign();
-  S.galleryId = null;
   S.selected = null;
   renderAll(); commit();
   toast('Cây mới đã sẵn sàng để trang trí', 'restart_alt');
@@ -928,7 +919,7 @@ $('#pv-exit').addEventListener('click', () => {
   if (shared) toast('Đây là bản sao của bạn — trang trí thoải mái nhé!', 'edit');
 });
 $('#pv-new').addEventListener('click', () => {
-  S.design = defaultDesign(); S.galleryId = null; S.selected = null;
+  S.design = defaultDesign(); S.selected = null;
   setPreview(false);
   renderAll(); commit();
 });
@@ -936,28 +927,6 @@ $('#pv-export').addEventListener('click', () => exportPng());
 $('#pv-share').addEventListener('click', () => share());
 
 /* ---------------- save / export / share ---------------- */
-async function saveDesign(asNew = false) {
-  clearTimeout(commitTimer); commit();
-  const existing = !asNew && S.galleryId ? getGalleryItem(S.galleryId) : null;
-  try {
-    if (existing) {
-      upsertGalleryItem({ id: existing.id, name: D().name, design: clone(D()) });
-      toast(`Đã lưu “${D().name}” vào Bộ sưu tập`, 'bookmark_added');
-    } else {
-      const name = await promptDialog('Đặt tên cho cây thông', asNew ? `${D().name} (bản sao)` : D().name, 'Lưu vào bộ sưu tập');
-      if (name === null) return;
-      D().name = (name || 'Cây thông của tôi').slice(0, 60);
-      const item = upsertGalleryItem({ id: uid('tree'), name: D().name, design: clone(D()) });
-      S.galleryId = item.id;
-      commit();
-      syncScenePanel();
-      toast(`Đã lưu “${D().name}” vào Bộ sưu tập`, 'bookmark_added');
-    }
-    autosave();
-  } catch (err) {
-    alertDialog('Không lưu được', err.message);
-  }
-}
 let exporting = false;
 async function exportPng() {
   if (exporting) return;
@@ -981,27 +950,9 @@ async function share() {
     toast(ok ? 'Đã sao chép link — gửi cho bạn bè nhé!' : 'Không sao chép được link', ok ? 'link' : 'error');
   } catch (err) { alertDialog('Không tạo được link', err.message); }
 }
-$('#btn-save').addEventListener('click', () => saveDesign());
-$('#btn-save-as').addEventListener('click', () => saveDesign(true));
-$('#btn-export').addEventListener('click', exportPng);
 $('#hdr-export').addEventListener('click', exportPng);
 $('#hdr-share')?.addEventListener('click', share);
 
-function updateSaveStatus() {
-  const item = S.galleryId ? getGalleryItem(S.galleryId) : null;
-  const state = $('#save-state');
-  const time = $('#save-time');
-  if (item) {
-    const dirty = JSON.stringify(item.design) !== JSON.stringify(D());
-    state.textContent = dirty ? 'Có thay đổi chưa lưu' : 'Đã lưu trong Bộ sưu tập';
-    time.textContent = dirty ? `tự lưu ${timeAgo(S.autosavedAt)}` : `“${item.name}”`;
-  } else {
-    state.textContent = 'Tự động lưu trên trình duyệt';
-    time.textContent = S.autosavedAt ? timeAgo(S.autosavedAt) : '';
-  }
-  $('#btn-save-as').hidden = !item;
-}
-setInterval(updateSaveStatus, 30000);
 
 /* ---------------- tabs & mobile sheets ---------------- */
 function setTab(tab) {
@@ -1012,7 +963,6 @@ function setTab(tab) {
 }
 $$('.tab').forEach((t) => t.addEventListener('click', () => setTab(t.dataset.tab)));
 function openSheet(which) {
-  if (which === 'save') { saveDesign(); return; }
   const isLib = which === 'library';
   const target = isLib ? el.left : el.right;
   const alreadyOpen = target.classList.contains('open') && (isLib || S.tab === which);
@@ -1046,7 +996,6 @@ async function boot() {
   try { await Promise.race([document.fonts.load('800 26px Epilogue', 'Giáng Sinh ăâđêôơư'), new Promise((r) => setTimeout(r, 1200))]); } catch { /* ignore */ }
   const saved = loadCurrent();
   S.design = saved?.design ? normalizeDesign(saved.design, S.lib) : defaultDesign();
-  S.galleryId = saved?.galleryId && getGalleryItem(saved.galleryId) ? saved.galleryId : null;
   S.autosavedAt = saved?.savedAt || null;
   S.snap = snapshot();
 
@@ -1063,15 +1012,11 @@ async function boot() {
   if (hash.get('share')) {
     try {
       const raw = await decodeDesign(hash.get('share'));
-      S.design = normalizeDesign(raw, S.lib); S.galleryId = null; shared = true;
+      S.design = normalizeDesign(raw, S.lib); shared = true;
     } catch { toast('Link chia sẻ bị lỗi', 'link_off'); }
-  } else if (params.get('id')) {
-    const item = getGalleryItem(params.get('id'));
-    if (item) { S.design = normalizeDesign(item.design, S.lib); S.galleryId = item.id; toast(`Đã mở “${item.name}”`, 'park'); }
-    else toast('Cây này không còn trong bộ sưu tập', 'search_off');
   } else if (params.get('theme') && themeById(params.get('theme'))) {
     const t = themeById(params.get('theme'));
-    S.design = designFromTheme(t, S.lib, { seed: Math.floor(Math.random() * 1e9) }); S.galleryId = null;
+    S.design = designFromTheme(t, S.lib, { seed: Math.floor(Math.random() * 1e9) });
     toast(`Đã áp dụng “${t.name}” — hãy biến nó thành của riêng bạn!`, 'palette');
   } else if (params.get('blend')) {
     const [style, leaves, snow] = params.get('blend').split('~');
@@ -1084,7 +1029,7 @@ async function boot() {
     S.design.decorations.forEach((d) => { if (assetOf(d)?.category === 'toppers' && Math.hypot(d.x - o[0], d.y - o[1]) < 95) { d.x += n[0] - o[0]; d.y += n[1] - o[1]; } });
     toast('Đã nạp bản phối màu của bạn', 'tune');
   } else if (params.get('new')) {
-    S.design = defaultDesign(); S.galleryId = null;
+    S.design = defaultDesign();
     toast('Cây mới đã sẵn sàng để trang trí', 'park');
   }
   if (params.toString() || location.hash) {

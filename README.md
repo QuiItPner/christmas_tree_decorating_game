@@ -24,13 +24,12 @@ public/
 ├── index.html        Trang chủ, mục About & Greetings
 ├── studio.html       Tree Studio (trình chỉnh sửa)
 ├── themes.html       Themes & Styles + bộ trộn màu
-├── gallery.html      My Gallery (lưu trong LocalStorage)
 ├── css/styles.css
 ├── js/
 │   ├── core.js         lưu trữ, thư viện asset, model design, header/footer, toast, dialog, nhạc, share link
 │   ├── render.js       render SVG: cây, nền, đồ trang trí, lời chúc, xuất PNG, Random Decorate
 │   ├── themes-data.js  6 theme dựng sẵn
-│   └── studio.js / themes.js / gallery.js / home.js
+│   └── studio.js / themes.js / home.js
 └── assets/
     ├── manifest.json   danh mục đồ trang trí
     ├── decorations/<category>/*.svg
@@ -87,7 +86,7 @@ Không cần sửa code của editor:
 
 ## Tính năng
 
-- Cây gồm 4 kiểu: Classic, Mini, Snowy, Minimalist. Lá, cành, thân, váy cây và tuyết đổi màu riêng được, chọn bằng swatch, color picker hoặc nhập HEX.
+- Cây gồm 3 kiểu: Cổ điển, Mini, Phủ tuyết. Lá, cành, thân, váy cây và tuyết đổi màu riêng được, chọn bằng swatch, color picker hoặc nhập HEX.
 - Có thể chỉnh kích thước cây, độ phủ tuyết và bật/tắt dây đèn.
 - Thư viện có 38 sản phẩm Phú Nông (thuốc BVTV, phân bón) và 31 đồ trang trí vẽ tay trong 8 nhóm, tìm kiếm được.
 - Nền "Cánh đồng lúa mùa vàng" và chủ đề "Mùa Vàng Phú Nông" treo sản phẩm lên cây tự động.
@@ -97,6 +96,6 @@ Không cần sửa code của editor:
 - 5 kiểu nền, tuyết rơi, đèn nhấp nháy. Nhạc nền tắt sẵn (tự bật lên).
 - Lời chúc gồm nội dung, tên và ngày hoặc lời đề tặng.
 - 6 theme dựng sẵn, cùng bộ trộn màu để tự tạo theme.
-- Thiết kế đang làm được tự động lưu. My Gallery chứa tối đa 20 cây: đánh dấu yêu thích, đổi tên, nhân bản, import/export JSON, xem dạng thiệp.
+- Thiết kế đang làm được tự động lưu trên trình duyệt, tải lại trang không mất.
 - Xuất PNG độ phân giải 1200×1440.
 - Link chia sẻ chứa toàn bộ design, nén trong phần `#hash` của URL, nên không cần server.
