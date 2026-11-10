@@ -335,11 +335,22 @@ const MELODY = [
   [F5, 1], [F5, 1], [F5, 1.5], [F5, 0.5], [F5, 1], [E5, 1], [E5, 1], [E5, 0.5], [E5, 0.5], [G5, 1], [G5, 1], [F5, 1], [D5, 1], [C5, 4],
 ];
 const music = { ctx: null, gain: null, timer: null, playing: false };
-function scheduleLoop() {
+const BEAT = 0.3;
+const GAP_MS = 1200; // pause between two passes of the chorus
+const LOOP_MS = MELODY.reduce((s, [, len]) => s + len, 0) * BEAT * 1000 + GAP_MS;
+// The on/off choice and the song clock live in localStorage, so every page of the site
+// keeps the music on and picks the chorus up where the previous page left it.
+const MUSIC_ON = 'musicOn';
+const MUSIC_T0 = 'musicT0';
+
+/** Schedules one pass of the melody, starting `fromMs` into it (used to resume mid-song). */
+function scheduleLoop(fromMs = 0) {
   const { ctx, gain } = music;
-  const beat = 0.3;
+  const beat = BEAT;
   let t = ctx.currentTime + 0.08;
+  let skip = fromMs / 1000;
   for (const [f, len] of MELODY) {
+    if (skip > 0) { skip -= len * beat; if (skip > 0) continue; t += -skip; skip = 0; continue; }
     [1, 2.01].forEach((mult, i) => {
       const o = ctx.createOscillator();
       const g = ctx.createGain();
@@ -354,20 +365,64 @@ function scheduleLoop() {
     t += len * beat;
   }
   const total = (t - ctx.currentTime) * 1000;
-  music.timer = setTimeout(() => { if (music.playing) scheduleLoop(); }, total + 1200);
+  music.timer = setTimeout(() => { if (music.playing) scheduleLoop(); }, total + GAP_MS);
+}
+function ensureAudio() {
+  if (music.ctx) return true;
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!AC) return false;
+  music.ctx = new AC();
+  music.gain = music.ctx.createGain();
+  music.gain.gain.value = 0.5;
+  music.gain.connect(music.ctx.destination);
+  return true;
+}
+function startMusic(fromMs) {
+  if (!ensureAudio()) return false;
+  music.playing = true;
+  clearTimeout(music.timer);
+  const begin = () => scheduleLoop(fromMs());
+  if (music.ctx.state === 'running') { begin(); return true; }
+  // Browsers only let sound start after the visitor has interacted with this page. Try now,
+  // and otherwise start on the first tap/click/key press anywhere.
+  let started = false;
+  const go = () => {
+    if (started || !music.playing) return;
+    music.ctx.resume().then(() => {
+      if (started || !music.playing || music.ctx.state !== 'running') return;
+      started = true;
+      ['pointerdown', 'keydown', 'touchend'].forEach((ev) => document.removeEventListener(ev, go, true));
+      begin();
+    }).catch(() => {});
+  };
+  ['pointerdown', 'keydown', 'touchend'].forEach((ev) => document.addEventListener(ev, go, true));
+  go();
+  return true;
 }
 export function toggleMusic() {
-  if (!music.ctx) {
-    const AC = window.AudioContext || window.webkitAudioContext;
-    if (!AC) return false;
-    music.ctx = new AC();
-    music.gain = music.ctx.createGain();
-    music.gain.gain.value = 0.5;
-    music.gain.connect(music.ctx.destination);
+  if (music.playing) {
+    music.playing = false;
+    clearTimeout(music.timer);
+    music.ctx?.suspend();
+    prefs.set(MUSIC_ON, false);
+    return false;
   }
-  music.playing = !music.playing;
-  if (music.playing) { music.ctx.resume(); scheduleLoop(); } else { clearTimeout(music.timer); music.ctx.suspend(); }
-  return music.playing;
+  prefs.set(MUSIC_ON, true);
+  prefs.set(MUSIC_T0, Date.now());
+  return startMusic(() => { prefs.set(MUSIC_T0, Date.now()); return 0; });
+}
+/** Called on every page load: keep playing if the visitor switched the music on earlier. */
+function resumeMusicIfOn() {
+  if (!prefs.get(MUSIC_ON, false)) return false;
+  // in-app navigation rebuilds the header but the audio keeps running — don't schedule it twice
+  if (music.playing) return true;
+  // position in the chorus = time since it was switched on, wrapped to the loop length
+  const offset = () => {
+    const t0 = Number(prefs.get(MUSIC_T0, Date.now()));
+    const ms = Math.max(0, Date.now() - t0) % LOOP_MS;
+    return ms > LOOP_MS - GAP_MS ? 0 : ms;
+  };
+  return startMusic(offset);
 }
 
 /* ---------------- page chrome ---------------- */
@@ -420,14 +475,15 @@ export function mountChrome(active, opts = {}) {
   });
 
   const btnMusic = $('#btn-music');
-  btnMusic.addEventListener('click', () => {
-    const on = toggleMusic();
+  const showMusic = (on) => {
     btnMusic.setAttribute('aria-pressed', String(on));
     btnMusic.title = on ? 'Nhạc Giáng sinh (bật)' : 'Nhạc Giáng sinh (tắt)';
     btnMusic.setAttribute('aria-label', on ? 'Tắt nhạc Giáng sinh' : 'Bật nhạc Giáng sinh');
     btnMusic.querySelector('.ms').textContent = on ? 'music_note' : 'volume_off';
     btnMusic.classList.toggle('on', on);
-  });
+  };
+  btnMusic.addEventListener('click', () => showMusic(toggleMusic()));
+  showMusic(resumeMusicIfOn());
   return header;
 }
 

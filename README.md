@@ -26,10 +26,11 @@ public/
 ├── themes.html       Themes & Styles + bộ trộn màu
 ├── css/styles.css
 ├── js/
+│   ├── app.js          điều hướng trong app: chuyển trang không tải lại, nhạc phát liên tục
 │   ├── core.js         lưu trữ, thư viện asset, model design, header/footer, toast, dialog, nhạc, share link
 │   ├── render.js       render SVG: cây, nền, đồ trang trí, lời chúc, xuất PNG, Random Decorate
 │   ├── themes-data.js  6 theme dựng sẵn
-│   └── studio.js / themes.js / home.js
+│   └── studio.js / themes.js / home.js   mỗi file export default mount(signal) cho trang tương ứng
 └── assets/
     ├── manifest.json   danh mục đồ trang trí
     ├── decorations/<category>/*.svg

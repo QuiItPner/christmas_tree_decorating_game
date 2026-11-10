@@ -3,7 +3,7 @@
    full-design markup, PNG export and the random decorator.
    Stage coordinate system: 600 × 720 units.
    ========================================================= */
-import { escapeHtml, round, uid, clamp } from './core.js?v=20261111f';
+import { escapeHtml, round, uid, clamp } from './core.js?v=20261111h';
 
 export const W = 600;
 export const H = 720;
